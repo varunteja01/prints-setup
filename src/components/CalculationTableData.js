@@ -1,0 +1,42 @@
+export const calculationTableData = [
+  {
+    class: '0%',
+    total: '0',
+    disc: '0',
+    cgst: '',
+    sgst: '',
+    totalGST: '',
+  },
+  {
+    class: '5.00%',
+    total: '0',
+    disc: '0',
+    cgst: '0.00',
+    sgst: '0.00',
+    totalGST: '0.00',
+  },
+  {
+    class: '12.00%',
+    total: '2.88',
+    disc: '21.12',
+    cgst: '0.00',
+    sgst: '0.00',
+    totalGST: '2.54',
+  },
+  {
+    class: '18.00%',
+    total: '0',
+    disc: '0',
+    cgst: '0.00',
+    sgst: '0.00',
+    totalGST: '0.00',
+  },
+  {
+    class: 'Total :',
+    total: '2.88',
+    disc: '21.12',
+    cgst: '0.00',
+    sgst: '0.00',
+    totalGST: '2.54',
+  },
+]

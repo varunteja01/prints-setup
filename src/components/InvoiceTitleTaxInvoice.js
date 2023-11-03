@@ -20,41 +20,39 @@ const styles = StyleSheet.create({
     paddingBottom: 2,
     borderBottom: 1,
   },
+  typeStyle: {
+    fontFamily: 'AntonFamily',
+    fontSize: 10,
+  },
+  billNoStyle: {
+    paddingTop: 5,
+  },
 })
 
-const DynamicTaxInvoice = ({ tax }) => {
+const DynamicTaxInvoice = ({ title, entry }) => {
   return (
     <View>
       <View>
-        <Text style={styles.taxInvoiceHeadingStyle}>TAX INVOICE</Text>
+        <Text style={styles.taxInvoiceHeadingStyle}>{title}</Text>
         <Text style={styles.saleTypeStyle}>
-          Sale Type :{' '}
-          <Text style={{ fontFamily: 'AntonFamily', fontSize: 10 }}>
-            {tax.paymentMode}
-          </Text>
+          Sale Type : <Text style={styles.typeStyle}>{entry.sale_type}</Text>
         </Text>
       </View>
       <View style={styles.taxInvoiceStyle}>
-        <Text style={{ paddingTop: 5 }}>
-          Bill No &nbsp;&nbsp;&nbsp;:&nbsp;&nbsp;&nbsp; {tax.billNo}
+        <Text style={styles.billNoStyle}>
+          Bill No &nbsp;&nbsp;&nbsp;:&nbsp;&nbsp;&nbsp; {entry.invoice_number}
         </Text>
         <Text>
-          Date &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;:&nbsp;&nbsp;&nbsp;{' '}
-          {tax.date}
+          Date &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;:&nbsp;&nbsp;&nbsp;&nbsp;
+          {entry.invoice_date}
         </Text>
       </View>
     </View>
   )
 }
 
-const InvoiceTitleTaxInvoice = () => {
-  const sampleTax = {
-    billNo: 'S2300026',
-    date: '06-04-2023',
-    paymentMode: 'CREDIT',
-    po: '',
-  }
-  return <DynamicTaxInvoice tax={sampleTax} />
+const InvoiceTitleTaxInvoice = ({ title, entry }) => {
+  return <DynamicTaxInvoice title={title} entry={entry} />
 }
 
 export default InvoiceTitleTaxInvoice

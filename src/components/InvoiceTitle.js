@@ -17,12 +17,12 @@ const styles = StyleSheet.create({
   },
 })
 
-const InvoiceTitle = () => (
+const InvoiceTitle = ({ invoice, customer, title, entry }) => (
   <View style={styles.invoiceTitleDirection}>
     <Image src={smartpharma} style={styles.titleImage} />
-    <InvoiceTitleFrom />
-    <InvoiceTitleTo />
-    <InvoiceTitleTaxInvoice />
+    <InvoiceTitleFrom invoice={invoice} />
+    <InvoiceTitleTo customer={customer} />
+    <InvoiceTitleTaxInvoice title={title} entry={entry} />
   </View>
 )
 

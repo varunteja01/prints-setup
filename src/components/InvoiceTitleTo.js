@@ -11,38 +11,35 @@ const styles = StyleSheet.create({
     paddingLeft: 5,
     borderRight: 1,
   },
+  t1: { paddingTop: 6 },
+  t2: { fontSize: 8, fontFamily: 'AntonFamily' },
+  tBottom: { paddingBottom: 6 },
 })
 
-const DynamicAddress = ({ address }) => {
+const DynamicAddress = ({ customer }) => {
   return (
     <View>
       <View style={styles.toAddress}>
         {/* In React and most UI frameworks, styles are applied in a cascading manner. 
         When you apply a style to a child element (in this case, <Text>), 
         it takes precedence over the styles applied to its parent (the <View> with styles.toAddress). */}
-        <Text style={{ paddingTop: 6 }}>{address.addLine1}</Text>
-        <Text style={{ fontSize: 8, fontFamily: 'AntonFamily' }}>
-          {address.addLine2}
+        <Text style={styles.t1}>Party : {customer.code}</Text>
+        <Text style={styles.t2}>{customer.name}</Text>
+        <Text>
+          {customer.address_1 +
+            ' ' +
+            customer.address_2 +
+            ' ' +
+            customer.address_3}
         </Text>
-        <Text>{address.addLine3}</Text>
-        <Text>{address.addLine4}</Text>
-        <Text>{address.addLine5}</Text>
-        <Text style={{ paddingBottom: 6 }}>{address.addLine6}</Text>
+        <Text>Phone : {customer.phone}</Text>
+        <Text>D.L.Nos : {customer.dl1}</Text>
+        <Text style={styles.tBottom}>GSTIN : {customer.gst}</Text>
       </View>
     </View>
   )
 }
-const InvoiceTitleTo = () => {
-  const sampleAddress = {
-    addLine1: 'Party : AB01',
-    addLine2: 'SMARTPHARMA MEDICAL AGENCIES',
-    addLine3: 'Karmanghat hyderabad',
-    addLine4: 'Phone :',
-    addLine5: 'D.L.Nos: LKJHGFDSA123456',
-    addLine6: 'GSTIN: 29AACCC1596Q000',
-  }
-
-  return <DynamicAddress address={sampleAddress} />
+const InvoiceTitleTo = ({ customer }) => {
+  return <DynamicAddress customer={customer} />
 }
-
 export default InvoiceTitleTo

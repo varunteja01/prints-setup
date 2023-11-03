@@ -1,12 +1,5 @@
 import React from 'react'
 import { View, Text, StyleSheet } from '@react-pdf/renderer'
-// import { Font } from '@react-pdf/renderer'
-// import MyCustomFont from '../fonts/Roboto-Medium.ttf'
-
-// Font.register({
-//   family: 'AntonFamily',
-//   src: MyCustomFont,
-// })
 
 const styles = StyleSheet.create({
   fromAddress: {
@@ -25,35 +18,27 @@ const styles = StyleSheet.create({
     fontFamily: 'AntonFamily',
   },
 })
-const DynamicAddress = ({ address }) => {
+const DynamicAddress = ({ invoice }) => {
   return (
     <View>
       <View style={styles.fromAddress}>
         {/* In React and most UI frameworks, styles are applied in a cascading manner. 
         When you apply a style to a child element (in this case, <Text>), 
         it takes precedence over the styles applied to its parent (the <View> with styles.toAddress). */}
-        <Text style={styles.fromName}>{address.name}</Text>
-        <Text> {address.addLine1}</Text>
-        <Text>{address.addLine2}</Text>
-        <Text>{address.addLine3}</Text>
-        <Text>{address.addLine4}</Text>
-        <Text>{address.addLine5}</Text>
-        <Text>{address.addLine6}</Text>
+        <Text style={styles.fromName}>{invoice.firm_name}</Text>
+        <Text>
+          {invoice.line_1 + ' ' + invoice.line_2 + ' ' + invoice.city}
+        </Text>
+        <Text>{invoice.pincode}</Text>
+        <Text>Cell : {invoice.landline}</Text>
+        <Text>D.L.No. {invoice.dl1}</Text>
+        <Text>{invoice.email}</Text>
       </View>
     </View>
   )
 }
-const InvoiceTitleFrom = () => {
-  const sampleAddress = {
-    name: 'SMART PHARMA AGENCIES',
-    addLine1: 'D.NO 1-5-788 PRIYADARSHINI NAGAR,NIRMAL',
-    addLine2: '605001',
-    addLine3: 'Cell : 9573838598',
-    addLine4: 'D.L.No. 20B:TS/NML/2021-85659',
-    addLine6: 'snehith@risurgetech.in',
-  }
-
-  return <DynamicAddress address={sampleAddress} />
+const InvoiceTitleFrom = ({ invoice }) => {
+  return <DynamicAddress invoice={invoice} />
 }
 
 export default InvoiceTitleFrom

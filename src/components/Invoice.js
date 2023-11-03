@@ -5,13 +5,13 @@ import {
   Document,
   View,
   StyleSheet,
+  Text,
 } from '@react-pdf/renderer'
 import InvoiceTitle from './InvoiceTitle'
 import InvoiceTable from './InvoiceTable'
-import { tableData } from './TableData'
 import InvoiceTotalItemsQty from './InvoiceTotalItemsQty'
 import InvoiceCalculation from './InvoiceCalculation'
-import { calculationTableData } from './CalculationTableData'
+import InvoiceFooter from './InvoiceFooter'
 
 const styles = StyleSheet.create({
   section: {
@@ -21,9 +21,28 @@ const styles = StyleSheet.create({
     marginRight: 20,
     border: 1,
   },
+  pageNumbers: {
+    position: 'absolute',
+    fontSize: 8,
+    top: 380,
+    left: 320,
+  },
+  poweredBy: {
+    position: 'absolute',
+    fontSize: 8,
+    top: 380,
+    left: 20,
+  },
 })
 
-const Invoice = ({ invoice, customer, title, entry }) => {
+const Invoice = ({
+  invoice,
+  customer,
+  title,
+  entry,
+  tableData,
+  calculationTableData,
+}) => {
   const maxRowsPerPage = 10
   const pagesData = []
 
@@ -43,7 +62,7 @@ const Invoice = ({ invoice, customer, title, entry }) => {
     <PDFViewer style={{ width: '100%', height: '100%' }}>
       <Document>
         {pagesData.map((pageData, pageIndex) => (
-          <Page orientation="landscape" size="A5" key={pageIndex}>
+          <Page orientation="potrait" size="A4" key={pageIndex}>
             <View style={styles.section}>
               <InvoiceTitle
                 invoice={invoice}
@@ -56,8 +75,23 @@ const Invoice = ({ invoice, customer, title, entry }) => {
                 tableData={tableData}
                 isLastPage={pageIndex === pagesData.length - 1}
               />
-              <InvoiceCalculation calculationTableData={calculationTableData} />
+              <InvoiceCalculation
+                calculationTableData={calculationTableData}
+                isLastPage={pageIndex === pagesData.length - 1}
+              />
+              <InvoiceFooter />
             </View>
+            <Text style={styles.poweredBy}>
+              Powered by Smartpharma360 || +91 7337441325 ||
+              www.smartpharma360.in
+            </Text>
+            <Text
+              style={styles.pageNumbers}
+              render={({ pageNumber, totalPages }) =>
+                `Page ${pageNumber} of ${totalPages}`
+              }
+              fixed
+            />
           </Page>
         ))}
       </Document>

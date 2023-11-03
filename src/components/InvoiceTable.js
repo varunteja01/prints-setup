@@ -7,7 +7,7 @@ const styles = StyleSheet.create({
   },
   tableRow: {
     flexDirection: 'row',
-    minHeight: 11,
+    minHeight: 10,
   },
   tableCol: {
     borderRight: 1,

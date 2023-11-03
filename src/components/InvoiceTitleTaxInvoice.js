@@ -1,6 +1,5 @@
 import React from 'react'
-import { View, Text } from '@react-pdf/renderer'
-import { StyleSheet } from '@react-pdf/renderer'
+import { View, Text, StyleSheet } from '@react-pdf/renderer'
 
 const styles = StyleSheet.create({
   taxInvoiceStyle: {
@@ -12,7 +11,7 @@ const styles = StyleSheet.create({
     fontSize: 11,
     paddingTop: 6,
     paddingLeft: 44,
-    paddingRight: 44,
+    paddingRight: 55,
   },
   saleTypeStyle: {
     fontSize: 8,
@@ -28,7 +27,12 @@ const DynamicTaxInvoice = ({ tax }) => {
     <View>
       <View>
         <Text style={styles.taxInvoiceHeadingStyle}>TAX INVOICE</Text>
-        <Text style={styles.saleTypeStyle}>Sale Type : {tax.paymentMode}</Text>
+        <Text style={styles.saleTypeStyle}>
+          Sale Type :{' '}
+          <Text style={{ fontFamily: 'AntonFamily', fontSize: 10 }}>
+            {tax.paymentMode}
+          </Text>
+        </Text>
       </View>
       <View style={styles.taxInvoiceStyle}>
         <Text style={{ paddingTop: 5 }}>

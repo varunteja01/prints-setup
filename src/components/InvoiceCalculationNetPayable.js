@@ -12,6 +12,7 @@ const styles = StyleSheet.create({
     paddingTop: 5,
     fontSize: 9,
     fontFamily: 'AntonFamily',
+    backgroundColor: '#c0c0c0',
   },
 })
 
@@ -41,10 +42,12 @@ const InvoiceCalculationNetPayable = ({ isLastPage }) => (
       </View>
     </View>
     <View style={styles.totalStyle}>
-      <Text>Net Payable </Text>
+      <Text style={{ paddingBottom: 3 }}>Net Payable </Text>
       {isLastPage ? (
         <Text style={{ paddingLeft: 12, paddingTop: 1 }}>13.00</Text>
-      ) : null}
+      ) : (
+        <Text style={{ paddingLeft: 5, paddingTop: 1 }}>continued..</Text>
+      )}
     </View>
   </View>
 )

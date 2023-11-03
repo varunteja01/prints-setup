@@ -21,7 +21,9 @@ const DynamicAddress = ({ address }) => {
         When you apply a style to a child element (in this case, <Text>), 
         it takes precedence over the styles applied to its parent (the <View> with styles.toAddress). */}
         <Text style={{ paddingTop: 6 }}>{address.addLine1}</Text>
-        <Text style={{ fontSize: 8 }}>{address.addLine2}</Text>
+        <Text style={{ fontSize: 8, fontFamily: 'AntonFamily' }}>
+          {address.addLine2}
+        </Text>
         <Text>{address.addLine3}</Text>
         <Text>{address.addLine4}</Text>
         <Text>{address.addLine5}</Text>

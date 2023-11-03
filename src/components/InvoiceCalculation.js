@@ -15,6 +15,8 @@ const styles = StyleSheet.create({
   },
   textStyles: {
     border: 1,
+    borderBottom: 0,
+    borderLeft: 0,
     fontSize: 9,
     width: '100%',
     height: 15,

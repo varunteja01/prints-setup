@@ -5,6 +5,7 @@ import {
   Document,
   View,
   StyleSheet,
+  Text,
 } from '@react-pdf/renderer'
 import InvoiceTitle from './components/InvoiceTitle'
 import InvoiceTable from './components/InvoiceTable'
@@ -12,14 +13,26 @@ import { tableData } from './components/TableData'
 import InvoiceTotalItemsQty from './components/InvoiceTotalItemsQty'
 import InvoiceCalculation from './components/InvoiceCalculation'
 import { calculationTableData } from './components/CalculationTableData'
+import InvoiceFooter from './components/InvoiceFooter'
 
 const styles = StyleSheet.create({
   section: {
     marginTop: 20,
-    marginBottom: 55,
+    marginBottom: 20,
     marginLeft: 20,
     marginRight: 20,
     border: 1,
+  },
+  pageEnd1: {
+    // position: 'absolute',
+    bottom: 16,
+    left: 20,
+    fontSize: 8,
+  },
+  pageNumbers: {
+    bottom: 25,
+    left: '60%',
+    fontSize: 8,
   },
 })
 
@@ -44,7 +57,7 @@ const App = () => {
     <PDFViewer style={{ width: '100%', height: '100%' }}>
       <Document>
         {pagesData.map((pageData, pageIndex) => (
-          <Page orientation="landscape" size="A5" key={pageIndex}>
+          <Page orientation="potrait" size="A4" key={pageIndex}>
             <View style={styles.section}>
               <InvoiceTitle />
               <InvoiceTable tableData={pageData} />
@@ -56,7 +69,19 @@ const App = () => {
                 calculationTableData={calculationTableData}
                 isLastPage={pageIndex === pagesData.length - 1}
               />
+              <InvoiceFooter />
             </View>
+            <Text style={styles.pageEnd1}>
+              Powered by Smartpharma360 || +91 7337441325 ||
+              www.smartpharma360.in
+            </Text>
+            <Text
+              style={styles.pageNumbers}
+              render={({ pageNumber, totalPages }) =>
+                `Page ${pageNumber} of ${totalPages}`
+              }
+              fixed
+            />
           </Page>
         ))}
       </Document>

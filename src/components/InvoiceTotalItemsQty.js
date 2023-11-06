@@ -1,5 +1,6 @@
 import React from 'react'
 import { StyleSheet, View, Text } from '@react-pdf/renderer'
+import { products } from './Constants'
 
 const styles = StyleSheet.create({
   itemStyle: {
@@ -15,9 +16,9 @@ const styles = StyleSheet.create({
   },
 })
 
-const InvoiceTotalItemsQty = ({ isLastPage, tableData }) => {
-  const numberOfRows = tableData.length
-  const { totalQuantity } = tableData.reduce(
+const InvoiceTotalItemsQty = ({ isLastPage, products }) => {
+  const numberOfRows = products.length
+  const { totalQuantity } = products.reduce(
     (accumulator, item) => {
       // Parse quantity and free values to numbers (assuming they are strings)
       const quantity = parseFloat(item.qty) || 0

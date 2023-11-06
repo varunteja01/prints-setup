@@ -8,7 +8,7 @@ import {
   Text,
 } from '@react-pdf/renderer'
 import InvoiceTitle from './InvoiceTitle'
-import InvoiceTable from './InvoiceTable'
+import InvoiceItemsTable from './InvoiceItemsTable'
 import InvoiceTotalItemsQty from './InvoiceTotalItemsQty'
 import InvoiceCalculation from './InvoiceCalculation'
 import InvoiceFooter from './InvoiceFooter'
@@ -22,32 +22,30 @@ const styles = StyleSheet.create({
     border: 1,
   },
   pageNumbers: {
-    position: 'absolute',
     fontSize: 8,
-    top: 380,
-    left: 320,
-  },
-  poweredBy: {
-    position: 'absolute',
-    fontSize: 8,
-    top: 380,
     left: 20,
+    position: 'absolute',
+    bottom: -15,
+    left: '45%',
   },
 })
 
 const Invoice = ({
-  invoice,
-  customer,
   title,
+  invoice,
   entry,
-  tableData,
+  customer,
+  max_items,
+  printColumns,
+  printTableStyles,
   calculationTableData,
+  products,
 }) => {
   const maxRowsPerPage = 10
   const pagesData = []
 
-  for (let i = 0; i < tableData.length; i += maxRowsPerPage) {
-    const pageData = tableData.slice(i, i + maxRowsPerPage)
+  for (let i = 0; i < products.length; i += maxRowsPerPage) {
+    const pageData = products.slice(i, i + maxRowsPerPage)
     const emptyRowCount = maxRowsPerPage - pageData.length
 
     if (emptyRowCount > 0) {
@@ -70,28 +68,30 @@ const Invoice = ({
                 title={title}
                 entry={entry}
               />
-              <InvoiceTable tableData={pageData} />
+              <InvoiceItemsTable
+                invoice={invoice}
+                products={pageData}
+                max_items={max_items}
+                printColumns={printColumns}
+                printTableStyles={printTableStyles}
+              />
               <InvoiceTotalItemsQty
-                tableData={tableData}
+                products={products}
                 isLastPage={pageIndex === pagesData.length - 1}
               />
               <InvoiceCalculation
+                invoice={invoice}
                 calculationTableData={calculationTableData}
                 isLastPage={pageIndex === pagesData.length - 1}
               />
-              <InvoiceFooter />
+              <InvoiceFooter invoice={invoice} />
+              <Text
+                style={styles.pageNumbers}
+                render={({ pageNumber, totalPages }) =>
+                  `Page ${pageNumber} of ${totalPages}`
+                }
+              />
             </View>
-            <Text style={styles.poweredBy}>
-              Powered by Smartpharma360 || +91 7337441325 ||
-              www.smartpharma360.in
-            </Text>
-            <Text
-              style={styles.pageNumbers}
-              render={({ pageNumber, totalPages }) =>
-                `Page ${pageNumber} of ${totalPages}`
-              }
-              fixed
-            />
           </Page>
         ))}
       </Document>

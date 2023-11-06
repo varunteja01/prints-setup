@@ -25,13 +25,13 @@ const styles = StyleSheet.create({
   },
 })
 
-const InvoiceCalculation = ({ isLastPage, calculationTableData }) => {
+const InvoiceCalculation = ({ isLastPage, calculationTableData, invoice }) => {
   return (
     <View style={{ flexDirection: 'row' }}>
       <View style={{ flexDirection: 'column' }}>
         <View style={styles.invoiceCalculationStyle}>
           <Image src={phonepe} style={styles.imageStyles} />
-          <InvoiceCalculationBankDetails />
+          <InvoiceCalculationBankDetails invoice={invoice} />
           <InvoiceCalculationTable
             isLastPage={isLastPage}
             calculationTableData={calculationTableData}

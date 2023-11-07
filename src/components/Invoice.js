@@ -40,6 +40,16 @@ const Invoice = ({
   printTableStyles,
   calculationTableData,
   products,
+  crdb_amount,
+  qr_code,
+  ispreview,
+  uploadBlob,
+  printDetails,
+  resetState,
+  timestamp,
+  printType,
+  clientAnalyticStats,
+  moduleSettings,
 }) => {
   const maxRowsPerPage = 10
   const pagesData = []
@@ -81,8 +91,15 @@ const Invoice = ({
               />
               <InvoiceCalculation
                 invoice={invoice}
+                entry={entry}
                 calculationTableData={calculationTableData}
                 isLastPage={pageIndex === pagesData.length - 1}
+                crdb_amount={crdb_amount}
+                qr_code={`${
+                  invoice?.qr_code == ''
+                    ? 'https://sp360logo.blob.core.windows.net/logo/1695388232759-image1.jpeg'
+                    : invoice?.qr_code
+                }`}
               />
               <InvoiceFooter invoice={invoice} />
               <Text

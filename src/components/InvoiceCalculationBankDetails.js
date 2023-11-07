@@ -24,27 +24,23 @@ const styles = StyleSheet.create({
 
 const DynamicDetails = ({ invoice }) => {
   return (
-    <View style={styles.bankDetailsColumn}>
-      <Text>Our Bank Details:</Text>
-      <Text>
-        Bank Name :<Text style={styles.Bold}>{invoice.bank_name}</Text>
-      </Text>
-      <Text>
-        Acc. No : <Text style={styles.Bold}>{invoice.account_number}</Text>
-      </Text>
-      <Text>
-        IFSC Code: <Text style={styles.Bold}> {invoice.ifsc_code}</Text>
-      </Text>
-    </View>
+    <>
+      <View style={styles.bankDetailsColumn}>
+        <Text>Our Bank Details:</Text>
+        <Text>
+          Bank Name :<Text style={styles.Bold}>{invoice.bank_name}</Text>
+        </Text>
+        <Text>
+          Acc. No : <Text style={styles.Bold}>{invoice.account_number}</Text>
+        </Text>
+        <Text>
+          IFSC Code: <Text style={styles.Bold}> {invoice.ifsc_code}</Text>
+        </Text>
+      </View>
+    </>
   )
 }
 const InvoiceCalculationBankDetails = ({ invoice }) => {
-  // const sampleDetails = {
-  //   detail1: 'BANK OF BARODA',
-  //   detail2: ' 29930200000505',
-  //   detail3: ' BARB0NIRMAL',
-  // }
-
   return <DynamicDetails invoice={invoice} />
 }
 

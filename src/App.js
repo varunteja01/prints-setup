@@ -2,11 +2,26 @@ import React from 'react'
 import Invoice from './components/Invoice'
 import { tableData } from './components/TableData'
 import { calculationTableData } from './components/CalculationTableData'
-import { products } from './components/Constants'
-import { printColumns } from './components/Constants'
-import { printTableStyles } from './components/Constants'
-import { invoice, customer, title, entry } from './components/Constants'
-import { max_items } from './components/Constants'
+import {
+  products,
+  sendEmail,
+  printColumns,
+  printTableStyles,
+  invoice,
+  customer,
+  title,
+  entry,
+  max_items,
+  crdb_amount,
+  isPreview,
+  uploadBlob,
+  printDetails,
+  resetState,
+  timestamp,
+  printType,
+  clientAnalyticStats,
+  moduleSettings,
+} from './components/Constants'
 
 const App = () => {
   return (
@@ -21,6 +36,16 @@ const App = () => {
       printColumns={printColumns}
       printTableStyles={printTableStyles}
       max_items={max_items}
+      crdb_amount={crdb_amount}
+      isPreview={isPreview}
+      sendEmail={sendEmail}
+      uploadBlob={uploadBlob}
+      printDetails={printDetails}
+      resetState={resetState}
+      timestamp={timestamp}
+      printType={printType}
+      clientAnalyticStats={clientAnalyticStats}
+      moduleSettings={moduleSettings}
     />
   )
 }

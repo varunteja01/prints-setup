@@ -1,6 +1,5 @@
 import React from 'react'
 import { StyleSheet, View, Text } from '@react-pdf/renderer'
-import { products } from './Constants'
 
 const styles = StyleSheet.create({
   itemStyle: {

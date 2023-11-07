@@ -16,7 +16,7 @@ const styles = StyleSheet.create({
   },
 })
 
-const InvoiceCalculationNetPayable = ({ isLastPage }) => (
+const InvoiceCalculationNetPayable = ({ isLastPage, entry, crdb_amount }) => (
   <View>
     <View style={styles.netPayableStyles}>
       <View style={{ gap: 4, paddingLeft: 5 }}>
@@ -34,11 +34,19 @@ const InvoiceCalculationNetPayable = ({ isLastPage }) => (
         <Text>:</Text>
       </View>
       <View style={{ gap: 4, paddingRight: 10 }}>
-        {isLastPage ? <Text>0</Text> : null}
-        {isLastPage ? <Text>0</Text> : null}
-        {isLastPage ? <Text>0</Text> : null}
-        {isLastPage ? <Text>0</Text> : null}
-        {isLastPage ? <Text>0</Text> : null}
+        {isLastPage ? (
+          <Text>{parseFloat(entry.gross_total).toFixed(2)}</Text>
+        ) : null}
+        {isLastPage ? (
+          <Text>{parseFloat(entry.total_disc).toFixed(2)}</Text>
+        ) : null}
+        {isLastPage ? (
+          <Text>{parseFloat(entry.total_gst_value).toFixed(2)}</Text>
+        ) : null}
+        {isLastPage ? (
+          <Text>{parseFloat(entry.rounding).toFixed(2)}</Text>
+        ) : null}
+        {isLastPage ? <Text>{crdb_amount.toFixed(2)}</Text> : null}
       </View>
     </View>
     <View style={styles.totalStyle}>

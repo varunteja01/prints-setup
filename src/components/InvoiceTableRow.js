@@ -10,13 +10,13 @@ const InvoiceTableRow = ({ items, columns, styles }) => {
     <View
       style={{
         flexDirection: 'row',
-        borderBottomColor: borderColor,
-        borderBottomWidth: 0.5,
-        // alignItems: 'center',
+        // borderBottomColor: borderColor,
+        // borderBottomWidth: 0.5,
+        alignItems: 'center',
         fontStyle: 'bold',
-        fontSize: 7.5,
+        fontSize: 8,
         color: '#000',
-        height: item.product_name?.length > 40 ? 29 : 14.5,
+        height: item.product_name?.length > 40 ? 29 : 13.5,
         backgroundColor:
           item.product_name == 'Already Supplied' ||
           item.product_name == 'Fridge' ||
@@ -48,7 +48,7 @@ const InvoiceTableRow = ({ items, columns, styles }) => {
           return (
             <Text style={cell_style}>
               {parseFloat(item[`${element.value}`] ?? 0) == 0
-                ? '0.00'
+                ? ' '
                 : parseFloat(item[`${element.value}`]).toFixed(2)}
             </Text>
           )
@@ -58,7 +58,7 @@ const InvoiceTableRow = ({ items, columns, styles }) => {
             <Text style={cell_style}>
               {item[`${element.value}`] == undefined ||
               item[`${element.value}`] === ''
-                ? ''
+                ? ' '
                 : Moment(item[`${element.value}`]).format('MM/YYYY')}
             </Text>
           )

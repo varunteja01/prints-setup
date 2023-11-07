@@ -22,7 +22,7 @@ export const invoice = {
   gst_enabled: true,
   billing_on: 0,
   qr_code:
-    'https://staticfilessp360.blob.core.windows.net/logos/1680520938525-IMG-20230403-WA0001.jpg',
+    'https://sp360logo.blob.core.windows.net/logo/1695388232759-image1.jpeg',
   terms_and_conditions:
     'Goods once sold will not be taken back we here by given the warranty that the goods describe as sold by us this invoice do not contravene in any way the provision of section 18 drugs and cosmetics Act, 1940.\nGoods once sold will not be taken back we here by given the warranty that the goods describe as sold by us this invoice do not contravene in any way the provision of section 18 drugs and cosmetics Act, 1940.\n\nPlease address all correspondence related to adjustment or claims on this invoice to the firm & not to the attention of any individual.\n\nSubject to NIRMAL Jurisdiction only\n\nE.&.O.E',
   sms_enabled: true,
@@ -101,7 +101,7 @@ export const entry = {
   total_disc: -2.01,
   credit_note_amount: '0',
   debit_note_amount: '0',
-  gross_total: 50.16,
+  gross_total: 50.1645454,
   modified: false,
   bill_printed: false,
   freight_amount: 0,
@@ -1926,15 +1926,15 @@ export const customer = {
 }
 export const title = 'TAX INVOICE'
 
-const isPreview = true
+export const isPreview = true
 
-const sendEmail = false
+export const sendEmail = false
 
-const uploadBlob = false
+export const uploadBlob = false
 
-const printDetails = {}
+export const printDetails = {}
 
-const resetState = () => {}
+export const resetState = () => {}
 
 export const printColumns = [
   {
@@ -2021,12 +2021,12 @@ export const printColumns = [
     column: 'column14',
     value: 'gst',
   },
-  {
-    heading: 'Ind.',
-    type: 'indicators',
-    column: 'column15',
-    value: 'indicators',
-  },
+  // {
+  //   heading: 'Ind.',
+  //   type: 'indicators',
+  //   column: 'column15',
+  //   value: 'indicators',
+  // },
 ]
 
 export const printTableStyles = {
@@ -2040,11 +2040,11 @@ export const printTableStyles = {
     height: 14.5,
   },
   column2: {
-    width: '7%',
+    width: '8%',
     borderRightColor: '#000',
     borderRightWidth: 1,
     color: '#000',
-    textAlign: 'right',
+    textAlign: 'center',
     paddingRight: '2px',
     paddingTop: '2px',
     height: 14.5,
@@ -2060,12 +2060,13 @@ export const printTableStyles = {
     height: 14.5,
   },
   column4: {
-    width: '25%',
+    width: '27%',
     color: '#000',
     borderRightColor: '#000',
     borderRightWidth: 1,
     textAlign: 'left',
-    paddingRight: '2px',
+    // paddingRight: '2px',
+    paddingLeft: '2px',
     paddingTop: '2px',
     height: 14.5,
   },
@@ -2075,37 +2076,37 @@ export const printTableStyles = {
     borderRightColor: '#000',
     borderRightWidth: 1,
     paddingTop: '2px',
-    textAlign: 'left',
+    textAlign: 'center',
     height: 14.5,
   },
   column6: {
-    width: '9%',
+    width: '8%',
     color: '#000',
     borderRightColor: '#000',
     borderRightWidth: 1,
-    textAlign: 'left',
+    textAlign: 'center',
     paddingLeft: '2px',
     paddingTop: '2px',
     height: 14.5,
   },
   column7: {
-    width: '5%',
+    width: '7%',
     color: '#000',
     borderRightColor: '#000',
     borderRightWidth: 1,
-    textAlign: 'right',
+    textAlign: 'center',
     paddingRight: '2px',
     paddingTop: '2px',
     height: 14.5,
   },
   column8: {
-    width: '6%',
+    width: '4%',
     color: '#000',
     borderRightColor: '#000',
     borderRightWidth: 1,
     paddingLeft: '2px',
     paddingTop: '2px',
-    textAlign: 'right',
+    textAlign: 'center',
     height: 14.5,
   },
   column9: {
@@ -2113,64 +2114,66 @@ export const printTableStyles = {
     color: '#000',
     borderRightColor: '#000',
     borderRightWidth: 1,
-    textAlign: 'right',
+    textAlign: 'center',
     paddingRight: '2px',
     paddingTop: '2px',
     height: 14.5,
   },
   column10: {
-    width: '6%',
+    width: '5%',
     color: '#000',
     borderRightColor: '#000',
     borderRightWidth: 1,
-    textAlign: 'right',
+    textAlign: 'center',
     paddingRight: '2px',
     paddingTop: '2px',
     height: 14.5,
   },
   column11: {
-    width: '8%',
+    width: '6%',
     color: '#000',
     borderRightColor: '#000',
     borderRightWidth: 1,
-    textAlign: 'right',
+    textAlign: 'center',
     paddingRight: '2px',
     paddingTop: '2px',
     height: 14.5,
   },
   column12: {
-    width: '6%',
+    width: '5%',
     color: '#000',
     borderRightColor: '#000',
     borderRightWidth: 1,
-    textAlign: 'right',
+    textAlign: 'center',
     paddingRight: '2px',
     paddingTop: '2px',
     height: 14.5,
   },
   column13: {
-    width: '4%',
+    width: '5%',
     color: '#000',
-    textAlign: 'right',
+    textAlign: 'center',
+    borderRightColor: '#000',
+    borderRightWidth: 1,
     paddingRight: '2px',
     paddingTop: '2px',
     height: 14.5,
   },
   column14: {
-    width: '4%',
-    textAlign: 'right',
-    borderRightWidth: 1,
-    borderRightColor: '#000',
+    width: '6%',
+    textAlign: 'center',
+    // borderRightWidth: 1,
+    // borderRightColor: '#000',
     paddingTop: '2px',
     color: '#000',
     height: 14.5,
   },
-  column15: {
-    width: '4%',
-    textAlign: 'right',
-    color: '#000',
-    height: 14.5,
-  },
+  // column15: {
+  //   width: '4%',
+  //   textAlign: 'right',
+  //   color: '#000',
+  //   height: 14.5,
+  // },
 }
 
 export const copyPrintColumns = [
@@ -2410,13 +2413,13 @@ export const copyPrintTableStyles = {
   },
 }
 
-const timestamp = '03-Nov-2023 12:58:10'
+export const timestamp = '03-Nov-2023 12:58:10'
 
-const printType = ''
+export const printType = ''
 
-const crdb_amount = 0
+export const crdb_amount = 23.33
 
-const clientAnalyticStats = {
+export const clientAnalyticStats = {
   outstanding_amount: 31303,
   wallet_amount: 13,
   voucher_amount: '₹1,791.00 Cr',
@@ -4296,7 +4299,7 @@ const clientAnalyticStats = {
   net_sales: '37546.00',
 }
 
-const moduleSettings = {
+export const moduleSettings = {
   id: 24,
   client_id: null,
   branch_id: 18,

@@ -1,6 +1,5 @@
 import React from 'react'
 import { StyleSheet, View, Image, Text } from '@react-pdf/renderer'
-import phonepe from '../phonepe.jpg'
 import InvoiceCalculationBankDetails from './InvoiceCalculationBankDetails'
 import InvoiceCalculationTable from './InvoiceCalculationTable'
 import InvoiceCalculationNetPayable from './InvoiceCalculationNetPayable'
@@ -9,6 +8,7 @@ const styles = StyleSheet.create({
   imageStyles: {
     width: 60,
     height: 72,
+    border: 1,
   },
   invoiceCalculationStyle: {
     flexDirection: 'row',
@@ -25,12 +25,20 @@ const styles = StyleSheet.create({
   },
 })
 
-const InvoiceCalculation = ({ isLastPage, calculationTableData, invoice }) => {
+const InvoiceCalculation = ({
+  isLastPage,
+  calculationTableData,
+  invoice,
+  qr_code,
+  entry,
+  crdb_amount,
+}) => {
+  console.log(qr_code)
   return (
     <View style={{ flexDirection: 'row' }}>
       <View style={{ flexDirection: 'column' }}>
         <View style={styles.invoiceCalculationStyle}>
-          <Image src={phonepe} style={styles.imageStyles} />
+          <Image style={styles.imageStyles} src={qr_code} />
           <InvoiceCalculationBankDetails invoice={invoice} />
           <InvoiceCalculationTable
             isLastPage={isLastPage}
@@ -42,7 +50,11 @@ const InvoiceCalculation = ({ isLastPage, calculationTableData, invoice }) => {
         </View>
       </View>
       <View>
-        <InvoiceCalculationNetPayable isLastPage={isLastPage} />
+        <InvoiceCalculationNetPayable
+          isLastPage={isLastPage}
+          entry={entry}
+          crdb_amount={crdb_amount}
+        />
       </View>
     </View>
   )

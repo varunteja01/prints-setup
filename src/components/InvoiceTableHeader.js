@@ -1,5 +1,5 @@
 import React from 'react'
-import { Text, View, StyleSheet } from '@react-pdf/renderer'
+import { Text, View } from '@react-pdf/renderer'
 
 const InvoiceTableHeader = ({ columns, styles }) => (
   <View
@@ -8,7 +8,7 @@ const InvoiceTableHeader = ({ columns, styles }) => (
       borderBottomColor: '#000',
       backgroundColor: '#dbdbdb',
       borderBottomWidth: 1,
-      alignItems: 'center',
+      alignItems: 'right',
       height: 14.5,
       fontStyle: 'bold',
       flexGrow: 1,

@@ -3,20 +3,12 @@ import { View, StyleSheet } from '@react-pdf/renderer'
 import InvoiceTableHeader from './InvoiceTableHeader'
 import InvoiceTableRow from './InvoiceTableRow'
 import InvoiceTableBlankSpace from './InvoiceTableBlankSpace'
-import InvoiceFooter from './InvoiceFooter'
 
 const styles = StyleSheet.create({
-  tableContainer: {
-    // flexDirection: 'row',
-    // flexWrap: 'wrap',
-    // marginTop: 0,
-    // borderWidth: 1,
-    // borderColor: '#000',
-  },
+  tableContainer: {},
 })
 
 const InvoiceItemsTable = ({
-  invoice,
   products,
   max_items,
   printColumns,

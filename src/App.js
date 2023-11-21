@@ -26,6 +26,7 @@ import {
 const App = () => {
   return (
     <Invoice
+      pageDetails={{ pageSize: 'A4', orientation: 'landscape', styles: {} }}
       invoice={invoice}
       customer={customer}
       title={title}

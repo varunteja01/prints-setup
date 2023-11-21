@@ -14,9 +14,9 @@ const InvoiceTableRow = ({ items, columns, styles }) => {
         // borderBottomWidth: 0.5,
         alignItems: 'center',
         fontStyle: 'bold',
-        fontSize: 8,
+        fontSize: 6,
         color: '#000',
-        height: item.product_name?.length > 40 ? 29 : 13.5,
+        height: item.product_name?.length > 40 ? 29 : 14.5,
         backgroundColor:
           item.product_name == 'Already Supplied' ||
           item.product_name == 'Fridge' ||

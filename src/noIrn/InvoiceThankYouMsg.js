@@ -1,8 +1,8 @@
-import React from 'react';
-import { Text, View, StyleSheet } from '@react-pdf/renderer';
+import React from 'react'
+import { Text, View, StyleSheet } from '@react-pdf/renderer'
 
-const fontColor = '#000';
-const borderColor = '#000';
+const fontColor = '#000'
+const borderColor = '#000'
 const styles = StyleSheet.create({
   container: {
     flexDirection: 'row',
@@ -25,6 +25,14 @@ const styles = StyleSheet.create({
     fontSize: 9,
     width: '100%',
   },
+  verify: {
+    width: '10%',
+    color: fontColor,
+    textAlign: 'right',
+    borderRightColor: borderColor,
+    borderRightWidth: 1,
+    height: 14,
+  },
   gst: {
     width: '4%',
     color: fontColor,
@@ -42,15 +50,15 @@ const styles = StyleSheet.create({
     borderRightWidth: 1,
     height: 14,
   },
-  gst_discount: {
-    width: '10%',
-    color: fontColor,
-    textAlign: 'right',
-    paddingRight: '2px',
-    borderRightColor: borderColor,
-    borderRightWidth: 1,
-    height: 14,
-  },
+  // gst_discount: {
+  //   width: '10%',
+  //   color: fontColor,
+  //   textAlign: 'right',
+  //   paddingRight: '2px',
+  //   borderRightColor: borderColor,
+  //   borderRightWidth: 1,
+  //   height: 14,
+  // },
   cgst_value: {
     width: '10%',
     color: fontColor,
@@ -78,19 +86,20 @@ const styles = StyleSheet.create({
     borderRightWidth: 1,
     height: 14,
   },
-});
+})
 
 const InvoiceFooter = () => {
   return (
     <View style={styles.container}>
+      <Text style={styles.verify}>Verification</Text>
       <Text style={styles.gst}>GST%</Text>
-      <Text style={styles.gst_discount}>Disc.</Text>
+      {/* <Text style={styles.gst_discount}>Disc.</Text> */}
       <Text style={styles.gst_value}>Taxable Value</Text>
       <Text style={styles.cgst_value}>CGST Amt.</Text>
       <Text style={styles.sgst_value}>SGST Amt.</Text>
       <Text style={styles.igst_value}>IGST Amt.</Text>
     </View>
-  );
-};
+  )
+}
 
-export default InvoiceFooter;
+export default InvoiceFooter

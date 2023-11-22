@@ -1,8 +1,8 @@
-import React from 'react';
-import { View, StyleSheet } from '@react-pdf/renderer';
-import InvoiceThankYouMsg from './InvoiceThankYouMsg';
-import InvoiceFooterDetails from './InvoiceFooterDetails';
-import InvoiceNote from './InvoiceNote';
+import React from 'react'
+import { View, StyleSheet } from '@react-pdf/renderer'
+import InvoiceThankYouMsg from './InvoiceThankYouMsg'
+import InvoiceFooterDetails from './InvoiceFooterDetails'
+import InvoiceNote from './InvoiceNote'
 
 const styles = StyleSheet.create({
   tableContainer: {
@@ -17,7 +17,7 @@ const styles = StyleSheet.create({
     borderBottomColor: '#000',
     height: '150px',
   },
-});
+})
 
 const InvoiceFooter = ({
   invoice,
@@ -26,6 +26,7 @@ const InvoiceFooter = ({
   products,
   qr_code,
   show_total,
+  crdb_amount,
 }) => (
   <View style={styles.tableContainer}>
     <InvoiceNote footer={footer} />
@@ -37,8 +38,9 @@ const InvoiceFooter = ({
       invoice={invoice}
       qr_code={qr_code}
       show_total={show_total}
+      crdb_amount={crdb_amount}
     />
   </View>
-);
+)
 
-export default InvoiceFooter;
+export default InvoiceFooter

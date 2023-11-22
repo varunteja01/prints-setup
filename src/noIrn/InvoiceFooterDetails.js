@@ -1,6 +1,9 @@
 import React from 'react'
 import { Text, View, StyleSheet, Font, Image } from '@react-pdf/renderer'
-import { numberFormat } from '../constants/number'
+import { numberFormat } from '../utils/number'
+import Moment from 'moment'
+import { entry } from '../components/Constants'
+import moment from 'moment'
 
 const fontColor = '#000'
 const borderColor = '#000'
@@ -55,7 +58,18 @@ const styles = StyleSheet.create({
     flexGrow: 1,
     fontSize: 7,
     width: '100%',
-    height: '58px',
+    height: '59px',
+  },
+  verify: {
+    width: '10%',
+    textAlign: 'left',
+    paddingLeft: 6,
+    borderRightColor: borderColor,
+    borderRightWidth: 1,
+    borderBottomColor: borderColor,
+    // borderBottomWidth: 1,
+    height: 12,
+    paddingRight: '2px',
   },
   gst: {
     width: '4%',
@@ -143,7 +157,7 @@ const styles = StyleSheet.create({
   footer_heading: {
     width: '8%',
     textAlign: 'left',
-    paddingLeft: '15px',
+    paddingLeft: '10px',
   },
   footer_icon: {
     width: '1%',
@@ -187,6 +201,7 @@ const InvoiceFooter = ({
   invoice,
   qr_code,
   show_total,
+  crdb_amount,
 }) => {
   function convertNumberToWords(amount) {
     var words = new Array()
@@ -298,26 +313,35 @@ const InvoiceFooter = ({
   return (
     <View style={styles.footer2}>
       <View style={styles.container}>
-        <Text style={styles.gst}>0% </Text>
-        <Text style={styles.gst_discount}>
-          {show_total == true ? footer?.gst_0_disc : ''}
+        <Text style={styles.verify}>
+          Billed at : {moment(entry.created_at).format('YYYY-MM-DD')}
         </Text>
+        <Text style={styles.gst}>0% </Text>
+        {/* <Text style={styles.gst_discount}>
+          {show_total == true ? footer?.gst_0_disc : ''}
+        </Text> */}
         <Text style={styles.gst_value}>
           {show_total == true ? footer?.gst_exempted_value : ''}
         </Text>
-        <Text style={styles.cgst_value}> </Text>
-        <Text style={styles.sgst_value}> </Text>
-        <Text style={styles.igst_value}> </Text>
-        <Text style={styles.footer_heading}></Text>
-        <Text style={styles.footer_icon}></Text>
-        <Text style={styles.footer_value_border}></Text>
-        <Text style={styles.blank}></Text>
-        <Text style={styles.footer_heading}>Disc. Per</Text>
+        <Text style={styles.cgst_value}></Text>
+        <Text style={styles.sgst_value}></Text>
+        <Text style={styles.igst_value}></Text>
+        <Text style={styles.footer_heading}>Total Outstanding</Text>
         <Text style={styles.footer_icon}>:</Text>
         <Text style={styles.footer_value_border}>
-          {show_total == true ? footer?.overall_disc : ''}
+          {show_total == true ? parseFloat(crdb_amount ?? 0).toFixed(2) : ''}
         </Text>
-        <Text style={styles.footer_heading}>Subtotal</Text>
+        <Text style={styles.blank}></Text>
+
+        <Text style={styles.footer_heading}>Sub Total</Text>
+        <Text style={styles.footer_icon}>:</Text>
+        <Text style={styles.footer_value_border}>
+          {show_total == true
+            ? parseFloat(footer?.gross_total ?? 0).toFixed(2)
+            : ''}
+        </Text>
+
+        <Text style={styles.footer_heading}>Billed Amt</Text>
         <Text style={styles.footer_icon}>:</Text>
         <Text style={styles.footer_value}>
           {show_total == true
@@ -327,10 +351,11 @@ const InvoiceFooter = ({
       </View>
 
       <View style={styles.container}>
+        <Text style={styles.verify}>Stock Out : </Text>
         <Text style={styles.gst}>5.00% </Text>
-        <Text style={styles.gst_discount}>
+        {/* <Text style={styles.gst_discount}>
           {show_total == true ? footer?.gst_1_disc : ''}
-        </Text>
+        </Text> */}
         <Text style={styles.gst_value}>
           {show_total == true ? footer?.gst_1_value : ''}
         </Text>
@@ -375,10 +400,12 @@ const InvoiceFooter = ({
       </View>
 
       <View style={styles.container}>
+        <Text style={styles.verify}>Checked : </Text>
+
         <Text style={styles.gst}>12.00% </Text>
-        <Text style={styles.gst_discount}>
+        {/* <Text style={styles.gst_discount}>
           {show_total == true ? footer?.gst_2_disc : ''}
-        </Text>
+        </Text> */}
         <Text style={styles.gst_value}>
           {show_total == true ? footer?.gst_2_value : ''}
         </Text>
@@ -424,10 +451,11 @@ const InvoiceFooter = ({
       </View>
 
       <View style={styles.footer3}>
+        <Text style={styles.verify}></Text>
         <Text style={styles.gst}>18.00% </Text>
-        <Text style={styles.gst_value_border}>
+        {/* <Text style={styles.gst_value_border}>
           {show_total == true ? footer?.gst_3_disc : ''}
-        </Text>
+        </Text> */}
         <Text style={styles.gst_value_border}>
           {show_total == true ? footer?.gst_3_value : ''}
         </Text>
@@ -469,8 +497,9 @@ const InvoiceFooter = ({
       </View>
 
       <View style={styles.footer3}>
+        <Text style={styles.verify}></Text>
         <Text style={styles.gst_border}>Total :</Text>
-        <Text style={styles.gst_value_border}>
+        {/* <Text style={styles.gst_value_border}>
           {show_total == true
             ? (
                 parseFloat(footer?.gst_0_disc ?? 0) +
@@ -479,7 +508,7 @@ const InvoiceFooter = ({
                 parseFloat(footer?.gst_3_disc ?? 0)
               ).toFixed(2)
             : ''}
-        </Text>
+        </Text> */}
         <Text style={styles.gst_value_border}>
           {show_total == true
             ? (
@@ -516,30 +545,39 @@ const InvoiceFooter = ({
             : (0).toFixed(2)}
         </Text>
         <Text style={styles.blank}></Text>
-        <Text style={styles.amount_words}>
+        {/* <Text style={styles.amount_words}>
           Amt in Words:{' '}
           {show_total == true ? convertNumberToWords(footer?.net_amount) : ''}
-        </Text>
+        </Text> */}
       </View>
 
       <View style={styles.footer4}>
         <View style={styles.tnc}>
           <Text
-            style={{ fontSize: '6', fontStyle: 'bold', padding: '2px 0 0 2px' }}
+            style={{
+              fontSize: '7',
+              fontStyle: 'bold',
+              padding: '2px 0 0 2px',
+              textDecoration: 'underline',
+            }}
           >
-            Terms and Conditions
+            Terms and Conditions :
           </Text>
-          <Text style={{ padding: '2px 0 0 2px' }}>
+          <Text style={{ padding: '2px 0 0 2px', fontSize: 7 }}>
             {invoice?.terms_and_conditions || ''}
+          </Text>
+          <Text style={{ padding: '3px 0 0 2px', fontSize: 7 }}>
+            {invoice?.terms_and_conditions2 || ''}
           </Text>
         </View>
 
-        <View style={{ width: '13%', height: '52px' }}>
+        <View style={{ width: '13%', height: '60px' }}>
           <Text
             style={{
-              fontSize: '6',
-              fontWeight: 'bold',
+              fontSize: '7',
               padding: '2px 0 0 2px',
+              textDecoration: 'underline',
+              fontFamily: 'Helvetica-Bold',
             }}
           >
             Bank Details :
@@ -547,39 +585,49 @@ const InvoiceFooter = ({
 
           <Text
             style={{
-              fontSize: '6',
+              fontSize: '6.5',
               fontWeight: 'bold',
               padding: '0px 0 0 2px',
             }}
           >
-            A/C: {invoice.account_number}
+            A/C : {invoice.account_number}
           </Text>
           <Text
             style={{
-              fontSize: '6',
+              fontSize: '6.5',
               fontWeight: 'bold',
               padding: '0px 0 0 2px',
             }}
           >
-            {invoice?.bank_name}
+            IFSC : {invoice.ifsc_code}
           </Text>
           <Text
             style={{
-              fontSize: '6',
+              fontSize: '6.5',
               fontWeight: 'bold',
               padding: '0px 0 0 2px',
             }}
           >
-            Branch: {invoice.bank_branch_name}
+            Bank :{invoice?.bank_name}
           </Text>
           <Text
             style={{
-              fontSize: '6',
+              fontSize: '6.5',
+
               fontWeight: 'bold',
               padding: '0px 0 0 2px',
             }}
           >
-            IFSC: {invoice.ifsc_code}
+            Branch : {invoice.bank_branch_name}
+          </Text>
+          <Text
+            style={{
+              fontSize: '6.5',
+              fontWeight: 'bold',
+              padding: '0px 0 0 2px',
+            }}
+          >
+            UPI ID : {invoice.upi_address}
           </Text>
         </View>
 

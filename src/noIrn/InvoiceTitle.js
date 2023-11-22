@@ -1,6 +1,6 @@
-import React, { Fragment } from 'react';
-import { Text, View, StyleSheet, Image } from '@react-pdf/renderer';
-import Moment from 'moment';
+import React, { Fragment } from 'react'
+import { Text, View, StyleSheet, Image } from '@react-pdf/renderer'
+import Moment from 'moment'
 
 const styles = StyleSheet.create({
   titleContainer: {
@@ -12,6 +12,7 @@ const styles = StyleSheet.create({
   },
   rowContainer: {
     flexDirection: 'row',
+    borderBottomWidth: 1,
   },
   columnContainer: {
     flexDirection: 'column',
@@ -20,13 +21,12 @@ const styles = StyleSheet.create({
     color: '#000',
     fontSize: 12,
     fontStyle: 'black',
-    fontFamily: 'Helvetica',
-    textAlign: 'center',
+    fontFamily: 'Helvetica-Bold',
     textTransform: 'uppercase',
     height: '20px',
-    width: '200px',
+    width: '100%',
+    textAlign: 'center',
     paddingTop: '2px',
-    borderBottomWidth: 1,
     borderBottomColor: '#000',
   },
   headerContainer: {
@@ -50,7 +50,7 @@ const styles = StyleSheet.create({
   grid3: {
     marginTop: 0,
     width: '300px',
-    lineHeight: 1.1,
+    lineHeight: 1.2,
     paddingLeft: '2px',
     paddingTop: '5px',
     height: '80px',
@@ -64,7 +64,7 @@ const styles = StyleSheet.create({
   billTo: {
     marginTop: 0,
     paddingBottom: 3,
-    fontFamily: 'Helvetica',
+    fontFamily: 'Helvetica-Bold',
     fontStyle: 'heavy',
   },
   logo: {
@@ -74,13 +74,23 @@ const styles = StyleSheet.create({
   address: {
     fontSize: 7,
   },
+  address2: {
+    fontSize: 8,
+  },
+  address3: {
+    fontSize: 7,
+    fontFamily: 'Helvetica-Bold',
+  },
   invoice: {
     textAlign: 'right',
   },
   lr: {
     fontSize: 8,
   },
-});
+  heading: {
+    fontFamily: 'Helvetica-Bold',
+  },
+})
 
 const InvoiceTitle = ({ title, invoice, header, customer, logo_url }) => {
   return (
@@ -98,16 +108,22 @@ const InvoiceTitle = ({ title, invoice, header, customer, logo_url }) => {
           <Text style={styles.billTo}>{invoice.firm_name}</Text>
           <Text style={styles.address}>{invoice.line_1}</Text>
           <Text style={styles.address}>{invoice.line_2}</Text>
+          <Text style={styles.address}>{invoice.line_3}</Text>
+
           <Text
             style={styles.address}
           >{`${invoice.city} - ${invoice.pincode}`}</Text>
-          <Text style={styles.address}>{`(L): ${invoice.landline} ${
+          <Text style={styles.address2}>{`(P): ${invoice.landline} ${
             invoice.email == null ? '' : `- (@): ${invoice.email}`
           }`}</Text>
-          <Text
-            style={styles.address}
-          >{`D.L.No. ${invoice.dl1}, ${invoice.dl2}`}</Text>
           <Text style={styles.address}>
+            D.L.No.
+            <Text
+              style={styles.address3}
+            >{`${invoice.dl1}, ${invoice.dl2}`}</Text>
+          </Text>
+
+          <Text style={styles.address3}>
             {invoice.fssai == null || invoice.fssai == ''
               ? `GSTIN: ${invoice.gstin}`
               : `FSSAI: ${invoice.fssai}, GSTIN: ${invoice.gstin}`}
@@ -117,7 +133,14 @@ const InvoiceTitle = ({ title, invoice, header, customer, logo_url }) => {
 
       <View style={styles.grid2}>
         <View style={styles.rowContainer}>
-          <Text style={styles.reportTitle}>{title}</Text>
+          <Text style={styles.reportTitle}>
+            {title} -{' '}
+            {header.payment_mode == 0
+              ? 'CASH'
+              : header.payment_mode == 1
+              ? 'CREDIT'
+              : ''}
+          </Text>
         </View>
 
         <View style={{ flexDirection: 'row' }}>
@@ -150,20 +173,6 @@ const InvoiceTitle = ({ title, invoice, header, customer, logo_url }) => {
                   ? ''
                   : Moment(header.entry_date).format('DD-MM-YYYY')}
               </Text>
-              <Text
-                style={{
-                  width: '30%',
-                  textAlign: 'right',
-                  padding: '2px 12px 0 0',
-                  fontSize: '10',
-                }}
-              >
-                {header.payment_mode == 0
-                  ? 'CASH'
-                  : header.payment_mode == 1
-                  ? 'CREDIT'
-                  : ''}
-              </Text>
             </View>
             <View style={{ flexDirection: 'row', margin: '5px 0 0 0' }}>
               <Text
@@ -183,25 +192,31 @@ const InvoiceTitle = ({ title, invoice, header, customer, logo_url }) => {
       </View>
 
       <View style={styles.grid3}>
-        <Text style={styles.billTo}>
-          To: {customer?.name}
-          <Text>&nbsp;({customer?.code})</Text>
+        <Text>
+          To:{' '}
+          <Text style={styles.billTo}>
+            {customer?.name}
+            <Text>&nbsp;({customer?.code})</Text>
+          </Text>
         </Text>
-        <Text style={{ fontSize: '7' }}>{customer?.address_1}</Text>
-        <Text style={{ fontSize: '7' }}>{customer?.address_2}</Text>
-        <Text style={{ fontSize: '7' }}>{customer?.address_4}</Text>
-        <Text style={{ fontSize: '7' }}>
-          {customer?.city} - {customer?.pincode}
+        <Text style={{ fontSize: '9' }}>{customer?.address_1}</Text>
+        <Text style={{ fontSize: '9' }}>
+          {customer?.address_2}, {customer?.city} - {customer?.pincode}{' '}
         </Text>
-        <Text style={{ fontSize: '7' }}>(P): {customer?.phone}</Text>
+        <Text style={{ fontSize: '9' }}>{customer?.address_4}</Text>
 
-        <Text style={{ fontSize: '7' }}>
-          D.L.Nos: {customer?.dl_1}, {customer?.dl_2}
+        <Text style={{ fontSize: '8' }}>(P): {customer?.phone}</Text>
+
+        <Text style={{ fontSize: '8' }}>
+          <Text style={styles.heading}>D.L.Nos:</Text> {customer?.dl_1},{' '}
+          {customer?.dl_2}
         </Text>
-        <Text style={{ fontSize: '7' }}>GSTIN: {customer?.gstin}</Text>
+        <Text style={{ fontSize: '8' }}>
+          <Text style={styles.heading}>GSTIN:</Text> {customer?.gstin}
+        </Text>
       </View>
     </View>
-  );
-};
+  )
+}
 
-export default InvoiceTitle;
+export default InvoiceTitle

@@ -20,6 +20,7 @@ const ImageHeaderNoIRN = ({
   clientInformation,
   settingsInfo,
   client,
+  crdb_amount,
   dynamicPagination = false,
   maxCharsPerLine,
   page_blanks = 0,
@@ -51,6 +52,7 @@ const ImageHeaderNoIRN = ({
         items={items}
         products={products}
         invoice={invoice}
+        crdb_amount={crdb_amount}
         show_total={index == pages.length - 1 ? true : false}
         qr_code={`${
           settingsInfo?.qr_code == ''

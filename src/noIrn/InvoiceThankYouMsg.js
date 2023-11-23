@@ -28,7 +28,8 @@ const styles = StyleSheet.create({
   verify: {
     width: '10%',
     color: fontColor,
-    textAlign: 'right',
+    textAlign: 'left',
+    paddingLeft: 4,
     borderRightColor: borderColor,
     borderRightWidth: 1,
     height: 14,
@@ -37,6 +38,7 @@ const styles = StyleSheet.create({
     width: '4%',
     color: fontColor,
     textAlign: 'right',
+    paddingRight: '2px',
     borderRightColor: borderColor,
     borderRightWidth: 1,
     height: 14,

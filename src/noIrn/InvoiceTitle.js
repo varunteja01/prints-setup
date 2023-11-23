@@ -33,7 +33,7 @@ const styles = StyleSheet.create({
     marginTop: 0,
     width: '250px',
     height: '75px',
-    lineHeight: 1.1,
+    lineHeight: 1.2,
     paddingLeft: '2px',
   },
   grid2: {
@@ -72,10 +72,10 @@ const styles = StyleSheet.create({
     height: 60,
   },
   address: {
-    fontSize: 7,
+    fontSize: 8,
   },
   address2: {
-    fontSize: 8,
+    fontSize: 9,
   },
   address3: {
     fontSize: 7,
@@ -106,27 +106,33 @@ const InvoiceTitle = ({ title, invoice, header, customer, logo_url }) => {
         </View>
         <View style={styles.headerContainer}>
           <Text style={styles.billTo}>{invoice.firm_name}</Text>
-          <Text style={styles.address}>{invoice.line_1}</Text>
-          <Text style={styles.address}>{invoice.line_2}</Text>
-          <Text style={styles.address}>{invoice.line_3}</Text>
+          <Text style={styles.address}>
+            {invoice.line_1}
+            {invoice.line_2}
+          </Text>
+          <Text style={styles.address}>
+            {invoice.line_3}
+            {`${invoice.city} - ${invoice.pincode}`}
+          </Text>
 
-          <Text
-            style={styles.address}
-          >{`${invoice.city} - ${invoice.pincode}`}</Text>
           <Text style={styles.address2}>{`(P): ${invoice.landline} ${
             invoice.email == null ? '' : `- (@): ${invoice.email}`
           }`}</Text>
+
           <Text style={styles.address}>
-            D.L.No.
-            <Text
-              style={styles.address3}
-            >{`${invoice.dl1}, ${invoice.dl2}`}</Text>
+            <Text>
+              <Text style={styles.address3}>D.L.No. </Text>
+              {`${invoice.dl1}${invoice.dl2}`}
+            </Text>
           </Text>
 
-          <Text style={styles.address3}>
-            {invoice.fssai == null || invoice.fssai == ''
-              ? `GSTIN: ${invoice.gstin}`
-              : `FSSAI: ${invoice.fssai}, GSTIN: ${invoice.gstin}`}
+          <Text style={styles.address}>
+            <Text>
+              <Text style={styles.address3}>GSTIN: </Text>
+              {invoice.fssai == null || invoice.fssai == ''
+                ? `GSTIN: ${invoice.gstin}`
+                : `FSSAI: ${invoice.fssai}, GSTIN: ${invoice.gstin}`}
+            </Text>
           </Text>
         </View>
       </View>
@@ -153,7 +159,12 @@ const InvoiceTitle = ({ title, invoice, header, customer, logo_url }) => {
           >
             <View style={{ flexDirection: 'row', paddingTop: '2px' }}>
               <Text
-                style={{ width: '18%', textAlign: 'left', marginLeft: '3px' }}
+                style={{
+                  width: '18%',
+                  textAlign: 'left',
+                  marginLeft: '3px',
+                  fontFamily: 'Helvetica-Bold',
+                }}
               >
                 Inv. No.
               </Text>
@@ -163,7 +174,12 @@ const InvoiceTitle = ({ title, invoice, header, customer, logo_url }) => {
             </View>
             <View style={{ flexDirection: 'row', margin: '5px 0 0 0' }}>
               <Text
-                style={{ width: '18%', textAlign: 'left', marginLeft: '3px' }}
+                style={{
+                  width: '18%',
+                  textAlign: 'left',
+                  marginLeft: '3px',
+                  fontFamily: 'Helvetica-Bold',
+                }}
               >
                 Date
               </Text>
@@ -176,7 +192,12 @@ const InvoiceTitle = ({ title, invoice, header, customer, logo_url }) => {
             </View>
             <View style={{ flexDirection: 'row', margin: '5px 0 0 0' }}>
               <Text
-                style={{ width: '18%', textAlign: 'left', marginLeft: '3px' }}
+                style={{
+                  width: '18%',
+                  textAlign: 'left',
+                  marginLeft: '3px',
+                  fontFamily: 'Helvetica-Bold',
+                }}
               >
                 PO #{' '}
               </Text>
@@ -192,13 +213,11 @@ const InvoiceTitle = ({ title, invoice, header, customer, logo_url }) => {
       </View>
 
       <View style={styles.grid3}>
-        <Text>
-          To:{' '}
-          <Text style={styles.billTo}>
-            {customer?.name}
-            <Text>&nbsp;({customer?.code})</Text>
-          </Text>
-        </Text>
+        <View style={{ flexDirection: 'row', justifyContent: 'space-between' }}>
+          <Text style={styles.billTo}>To: {customer?.name}</Text>
+          <Text style={{ paddingRight: 5 }}>&nbsp;({customer?.code})</Text>
+        </View>
+
         <Text style={{ fontSize: '9' }}>{customer?.address_1}</Text>
         <Text style={{ fontSize: '9' }}>
           {customer?.address_2}, {customer?.city} - {customer?.pincode}{' '}

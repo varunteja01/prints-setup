@@ -1,7 +1,6 @@
 import React from 'react'
 import { Text, View, StyleSheet, Font, Image } from '@react-pdf/renderer'
 import { numberFormat } from '../utils/number'
-import Moment from 'moment'
 import { entry } from '../components/Constants'
 import moment from 'moment'
 
@@ -63,7 +62,8 @@ const styles = StyleSheet.create({
   verify: {
     width: '10%',
     textAlign: 'left',
-    paddingLeft: 6,
+    paddingLeft: 4,
+    paddingTop: 1,
     borderRightColor: borderColor,
     borderRightWidth: 1,
     borderBottomColor: borderColor,
@@ -115,6 +115,7 @@ const styles = StyleSheet.create({
     paddingRight: '2px',
     borderRightColor: borderColor,
     borderRightWidth: 1,
+    borderBottomWidth: 1,
     height: 12,
   },
   cgst_value: {
@@ -392,10 +393,13 @@ const InvoiceFooter = ({
               parseFloat(footer?.credit_note_amount || 0)
             : '0.00'}
         </Text>
-        <Text style={styles.footer_heading}>Discount</Text>
+        <Text style={styles.footer_heading}>Cr/Dr Amt.</Text>
         <Text style={styles.footer_icon}>:</Text>
         <Text style={styles.footer_value}>
-          {show_total == true ? footer?.total_disc : ''}
+          {show_total == true
+            ? parseFloat(footer?.debit_note_amount || 0) -
+              parseFloat(footer?.credit_note_amount || 0)
+            : '0.00'}
         </Text>
       </View>
 
@@ -483,7 +487,9 @@ const InvoiceFooter = ({
         <Text style={styles.blank}></Text>
         <Text style={styles.footer_heading}>Total Qty</Text>
         <Text style={styles.footer_icon}>:</Text>
-        <Text style={styles.footer_value_border}> {totalQty(products)}</Text>
+        <Text style={styles.footer_value_border}>
+          {show_total == true ? totalQty(products) : ''}
+        </Text>
         <Text style={styles.footer_heading}>Rounding</Text>
         <Text style={styles.footer_icon}>:</Text>
         <Text style={styles.footer_value_border}>

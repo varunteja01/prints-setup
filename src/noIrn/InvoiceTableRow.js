@@ -1,8 +1,8 @@
-import React, { Fragment } from 'react';
-import { Text, View, StyleSheet } from '@react-pdf/renderer';
-import Moment from 'moment';
+import React, { Fragment } from 'react'
+import { Text, View, StyleSheet } from '@react-pdf/renderer'
+import Moment from 'moment'
 
-const borderColor = '#000';
+const borderColor = '#000'
 
 const InvoiceTableRow = ({
   items,
@@ -12,12 +12,12 @@ const InvoiceTableRow = ({
   styles,
   client,
 }) => {
-  const create_style = StyleSheet.create(styles);
+  const create_style = StyleSheet.create(styles)
   const rows = items.map((item, row_index) => {
-    var line_height = item.product_name?.length > 40 ? 29 : 14.5;
+    var line_height = item.product_name?.length > 40 ? 29 : 15.5
     // TEMP SOLUTION FOR PMBJAK
     if (client?.client_id == 51)
-      line_height = item.product_name?.length > 61 ? 29 : 14.5;
+      line_height = item.product_name?.length > 61 ? 29 : 14.5
     return (
       <View
         style={{
@@ -48,14 +48,14 @@ const InvoiceTableRow = ({
                 ? '#dbdbdb'
                 : '',
             height: line_height,
-          };
+          }
 
           if (element.type == 'number') {
             return (
               <Text style={cell_style}>
                 {item[`${element.value}`] == 0 ? ' ' : item[`${element.value}`]}
               </Text>
-            );
+            )
           }
           if (element.type == 'amount') {
             return (
@@ -64,7 +64,7 @@ const InvoiceTableRow = ({
                   ? ' '
                   : parseFloat(item[`${element.value}`]).toFixed(2)}
               </Text>
-            );
+            )
           }
           if (element.type == 'expiry') {
             return (
@@ -74,19 +74,19 @@ const InvoiceTableRow = ({
                   ? ''
                   : Moment(item[`${element.value}`]).format('MM/YYYY')}
               </Text>
-            );
+            )
           }
           if (element.type == 'item_order') {
             return (
               <Text style={cell_style}>{item[`${element.value}`] + 1}</Text>
-            );
+            )
           }
           if (element.type == 'item_order_seq') {
             return (
               <Text style={cell_style}>
                 {pageno * max_items + (row_index + 1)}
               </Text>
-            );
+            )
           }
           if (element.type == 'rate') {
             return (
@@ -102,7 +102,7 @@ const InvoiceTableRow = ({
                   ? '^'
                   : ''}
               </Text>
-            );
+            )
           }
           if (element.type == 'all_indicated_product_name') {
             return (
@@ -124,7 +124,7 @@ const InvoiceTableRow = ({
                   ? '[P]'
                   : ''}
               </Text>
-            );
+            )
           }
           if (element.type == 'indicated_product_name') {
             return (
@@ -137,7 +137,7 @@ const InvoiceTableRow = ({
                   ? '[P]'
                   : ''}
               </Text>
-            );
+            )
           }
           if (element.type == 'mrp') {
             return (
@@ -147,16 +147,16 @@ const InvoiceTableRow = ({
                   : parseFloat(item[`${element.value}`]).toFixed(2)}
                 {item?.indicator_flags?.[0]?.mrp_indicator == true ? '*' : ''}
               </Text>
-            );
+            )
           }
           return (
             <Text style={cell_style}>{item[`${element.value}`] ?? ''}</Text>
-          );
+          )
         })}
       </View>
-    );
-  });
-  return <Fragment>{rows}</Fragment>;
-};
+    )
+  })
+  return <Fragment>{rows}</Fragment>
+}
 
-export default InvoiceTableRow;
+export default InvoiceTableRow

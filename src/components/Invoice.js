@@ -13,6 +13,7 @@ import InvoiceTotalItemsQty from './InvoiceTotalItemsQty'
 import InvoiceCalculation from './InvoiceCalculation'
 import InvoiceFooter from './InvoiceFooter'
 import NoIrnInvoice from '../noIrn/Invoice'
+import NoIrnInvoice2 from '../noIrnNewFooter/Invoice'
 
 const pageSize = { A4: 'A4', LEGAL: 'LEGAL' }
 const orientation = { PORTRAIT: 'portrait', LANDSCAPE: 'landscape' }
@@ -180,9 +181,34 @@ const Invoice = ({
       page_blanks={page_blanks}
     />
   )
+  const noIrnNewFooter = (
+    <NoIrnInvoice2
+      pageDetails={{
+        pageSize: pageSize.A4,
+        orientation: orientation.LANDSCAPE,
+        styles: styles.page,
+      }}
+      pages={pagesData}
+      title={title}
+      invoice={invoice}
+      entry={entry}
+      customer={customer}
+      max_items={max_items}
+      printColumns={printColumns}
+      printTableStyles={printTableStyles}
+      items={items}
+      products={products}
+      clientInformation={clientInformation}
+      settingsInfo={settingsInfo}
+      crdb_amount={crdb_amount}
+      dynamicPagination={dynamicPagination}
+      maxCharsPerLine={max_chars}
+      page_blanks={page_blanks}
+    />
+  )
   return (
     <PDFViewer style={{ width: '100%', height: '100%' }}>
-      <Document>{noIrn}</Document>
+      <Document>{noIrnNewFooter}</Document>
     </PDFViewer>
   )
 }

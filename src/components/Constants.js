@@ -2,7 +2,7 @@ export const invoice = {
   created_at: '2023-06-16T09:58:50.573Z',
   updated_at: '2023-06-16T09:58:50.573Z',
   id: 3,
-  firm_name: 'AYURVEDA ONE PVT. LTD',
+  firm_name: 'GAYATHRI PHARMACY AND SURGICALS',
   line_1: '4-4-351, 359/SF/2, 2ND FLOOR, SHOP #4',
   line_2: 'GUJRATI GALLI, SULTAN BAZAAR',
   city: 'HYDERABAD',

@@ -19,6 +19,8 @@ Font.register({
   ],
 })
 
+Font.registerHyphenationCallback((word) => [word])
+
 const styles = StyleSheet.create({
   container: {
     flexDirection: 'column',
@@ -27,7 +29,6 @@ const styles = StyleSheet.create({
     flexGrow: 1,
     fontSize: 7,
     width: '40%',
-    // border: 1,
   },
   middle_container: {
     flexDirection: 'column',
@@ -35,7 +36,6 @@ const styles = StyleSheet.create({
     flexGrow: 1,
     fontSize: 7,
     width: '20%',
-    // border: 1,
   },
   right_head_container: {
     flexDirection: 'column',
@@ -44,7 +44,6 @@ const styles = StyleSheet.create({
     fontSize: 7,
     width: '27%',
     marginTop: 6,
-    // border: 1,
   },
   right_value_container: {
     flexDirection: 'column',
@@ -53,7 +52,6 @@ const styles = StyleSheet.create({
     fontSize: 7,
     width: '13%',
     marginTop: 7,
-    // border: 1,
   },
   footer2: {
     flexDirection: 'row',
@@ -65,7 +63,6 @@ const styles = StyleSheet.create({
     width: '100%',
     borderBottomColor: borderColor,
     borderBottomWidth: 1,
-    // border: 1,
   },
   footer3: {
     flexDirection: 'row',

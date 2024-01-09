@@ -2,7 +2,6 @@ import React from 'react'
 import { Text, View, StyleSheet, Font, Image } from '@react-pdf/renderer'
 // import { numberFormat } from 'constants/number';
 
-const fontColor = '#000'
 const borderColor = '#000000'
 
 Font.register({
@@ -18,16 +17,14 @@ Font.register({
   ],
 })
 
-Font.registerHyphenationCallback((word) => [word])
-
 const styles = StyleSheet.create({
   container: {
     flexDirection: 'column',
     alignItems: 'left',
     fontStyle: 'bold',
-    flexGrow: 1,
-    fontSize: 7,
-    width: '35%',
+    fontSize: 8,
+    width: '40%',
+    height: '100%',
     paddingLeft: '1px',
   },
   middle_container: {
@@ -35,33 +32,26 @@ const styles = StyleSheet.create({
     fontStyle: 'bold',
     flexGrow: 1,
     fontSize: 7,
-    width: '10%',
+    width: '20%',
   },
-  right_head_container1: {
+  right_head_container: {
     flexDirection: 'column',
     fontStyle: 'bold',
     flexGrow: 1,
     fontSize: 7,
-    width: '10%',
-  },
-  right_head_container2: {
-    flexDirection: 'column',
-    fontStyle: 'bold',
-    flexGrow: 1,
-    fontSize: 7,
-    width: '35%',
+    width: '27%',
   },
   right_value_container: {
     flexDirection: 'column',
     fontStyle: 'bold',
     flexGrow: 1,
     fontSize: 7,
-    width: '10%',
+    width: '12%',
   },
   footer2: {
     flexDirection: 'row',
     alignItems: 'center',
-    height: 46,
+    height: 50,
     fontStyle: 'bold',
     flexGrow: 1,
     fontSize: 7,
@@ -101,22 +91,14 @@ const styles = StyleSheet.create({
   total: {
     width: '100%',
     textAlign: 'left',
-    height: 9,
+    flexGrow: 1,
     fontSize: 6,
-    paddingLeft: '8px',
-  },
-  bottom_line: {
-    width: '100%',
-    textAlign: 'left',
-    height: 9,
-    fontSize: 6,
-    margin: '4px 0 0 0',
     paddingRight: '2px',
   },
   tnc_details: {
     width: '100%',
     textAlign: 'left',
-    lineHeight: 1.0,
+    lineHeight: 1.2,
     fontSize: 5,
     paddingRight: '2px',
   },
@@ -171,15 +153,13 @@ const styles = StyleSheet.create({
   footer_heading: {
     width: '100%',
     textAlign: 'right',
-    // paddingLeft: '15px',
+    paddingLeft: '15px',
     height: 10,
     fontSize: 6,
-    paddingRight: '2px',
   },
   net_amount: {
     width: '100%',
     textAlign: 'right',
-    paddingLeft: '15px',
     height: 20,
     fontSize: 10,
   },
@@ -218,7 +198,6 @@ const styles = StyleSheet.create({
   blank: {
     width: '100%',
     textAlign: 'center',
-    fontSize: 8,
   },
   tnc: {
     width: '40%',
@@ -230,7 +209,7 @@ const styles = StyleSheet.create({
   },
   logo: {
     padding: '0 0 0 5px',
-    margin: '0 0 8px 0',
+    margin: '0 0 8px 15px ',
     width: 40,
     height: 40,
     textAlign: 'center',
@@ -244,8 +223,8 @@ const InvoiceFooter = ({
   products,
   gstEnabled,
   printType,
-  length,
-  number,
+  message,
+  show_total = false,
   qr_code,
 }) => {
   function convertNumberToWords(amount) {
@@ -278,10 +257,10 @@ const InvoiceFooter = ({
     words[70] = 'Seventy'
     words[80] = 'Eighty'
     words[90] = 'Ninety'
-    amount = amount.toString()
-    var atemp = amount.split('.')
-    var number = atemp[0].split(',').join('')
-    var n_length = number.length
+    amount = amount?.toString()
+    var atemp = amount?.split('.')
+    var number = atemp?.[0]?.split(',').join('')
+    var n_length = number?.length
     var words_string = ''
     if (n_length <= 9) {
       var n_array = new Array(0, 0, 0, 0, 0, 0, 0, 0, 0)
@@ -357,6 +336,7 @@ const InvoiceFooter = ({
 
       return total.toFixed(2)
     } else if (type === 'saved') {
+      // if (printType == 2) {
       if (printType == 'full_header_retail') {
         var mrp_total = 0.0
         var net_total = 0.0
@@ -374,17 +354,19 @@ const InvoiceFooter = ({
         }
 
         return (mrp_total - net_total).toFixed(2)
+        // } else if (printType == 3) {
       } else if (printType == 'full_header_disc_retail') {
-        var disc_total = 0.0
-        for (var i = 0; i < products.length; i++) {
-          let sale_disc =
-            (parseFloat(products[i]?.sale_value) *
-              parseFloat(products[i]?.discount)) /
-            100
-          disc_total = disc_total + sale_disc
-        }
+        // var disc_total = 0.0;
+        // for (var i = 0; i < products.length; i++) {
+        //   let sale_disc =
+        //     (parseFloat(products[i]?.sale_value) *
+        //       parseFloat(products[i]?.discount)) /
+        //     100;
+        //   disc_total = disc_total + sale_disc;
+        // }
 
-        return disc_total.toFixed(2)
+        return parseFloat(footer?.total_disc || 0).toFixed(2)
+        // } else if (printType == 4) {
       } else if (printType == 'full_header_no_disc') {
         return ''
       } else {
@@ -420,41 +402,109 @@ const InvoiceFooter = ({
     } else {
       return 'Saved Amount :'
     }
+    // if (printType == 2) {
+    //   return 'Saved Amount :';
+    // } else if (printType == 3) {
+    //   return 'Discount Amount :';
+    // } else if (printType == 4) {
+    //   return '';
+    // } else {
+    //   return 'Saved Amount :';
+    // }
   }
 
   return (
     <View style={styles.footer2}>
       <View style={styles.container}>
         <Text style={styles.total}>
-          Rs. {convertNumberToWords(footer.net_amount)}
+          Rs.{' '}
+          {convertNumberToWords(
+            parseFloat(
+              parseFloat(footer?.net_amount || 0) +
+                parseFloat(footer?.debit_note_amount || 0) -
+                parseFloat(footer?.credit_note_amount || 0)
+            ).toFixed(2)
+          )}
         </Text>
+        {gstEnabled == true ? (
+          <Text style={styles.total}>
+            CGST 2.50%{' '}
+            {footer.gst_type == true
+              ? (footer.gst_1 / 2).toFixed(2)
+              : (0).toFixed(2)}{' '}
+            6.00%{' '}
+            {footer.gst_type == true
+              ? (footer.gst_2 / 2).toFixed(2)
+              : (0).toFixed(2)}{' '}
+            9.00%{' '}
+            {footer.gst_type == true
+              ? (footer.gst_3 / 2).toFixed(2)
+              : (0).toFixed(2)}
+          </Text>
+        ) : (
+          <Text />
+        )}
+        {gstEnabled == true ? (
+          <Text style={styles.total}>
+            SGST 2.50%{' '}
+            {footer.gst_type == true
+              ? (footer.gst_1 / 2).toFixed(2)
+              : (0).toFixed(2)}{' '}
+            6.00%{' '}
+            {footer.gst_type == true
+              ? (footer.gst_2 / 2).toFixed(2)
+              : (0).toFixed(2)}{' '}
+            9.00%{' '}
+            {footer.gst_type == true
+              ? (footer.gst_3 / 2).toFixed(2)
+              : (0).toFixed(2)}
+          </Text>
+        ) : (
+          <Text />
+        )}
+        {/* <Text style={styles.total}>BILLED BY :</Text> */}
         <Text style={styles.tnc_details}>
-          {`E. &.O.E., Subject to ${invoice?.city} Jurisdiction only`}
+          {invoice?.terms_and_conditions || ''}
         </Text>
-        <Text style={styles.total}></Text>
-        <Text
-          style={styles.bottom_line}
-        >{`Prepared By :                               Signature of Pharmacist`}</Text>
       </View>
 
       <View style={styles.middle_container}>
-        <Text style={styles.blank}></Text>
-        <Text style={styles.blank}>
-          Page No : {number} of {length}
-        </Text>
-      </View>
-
-      {/* <View style={styles.middle_container}></View> */}
-
-      <View style={styles.right_head_container1}>
+        {/* <Text style={styles.blank}>WISH YOU A SPEEDY</Text>
+        <Text style={styles.blank}>RECOVERY</Text> */}
+        {/* <Text style={styles.blank}>{message}</Text> */}
         <Image style={styles.logo} src={qr_code} />
       </View>
 
-      <View style={styles.right_head_container2}>
-        <Text style={styles.footer_heading}></Text>
-        <Text style={styles.footer_heading}></Text>
-        <Text style={styles.footer_heading}></Text>
-        <Text style={styles.footer_heading}>For {invoice?.firm_name}</Text>
+      <View style={styles.right_head_container}>
+        <Text style={styles.footer_heading}>Total MRP Value :</Text>
+        <Text style={styles.footer_heading}>{labelGenerate(printType)}</Text>
+        <Text style={styles.footer_heading}>Rounding Amount :</Text>
+        <Text style={styles.net_amount}>Net Amount :</Text>
+      </View>
+
+      <View style={styles.right_value_container}>
+        <Text style={styles.footer_value}>
+          {show_total ? calcTotal(products, 'mrp') : ''}
+        </Text>
+        <Text style={styles.footer_value}>
+          {show_total ? calcTotal(products, 'saved') : ''}
+        </Text>
+        <Text style={styles.footer_value}>
+          {show_total ? footer.rounding : ''}
+        </Text>
+        <Text style={styles.net_amount}>
+          {/* {show_total ? parseFloat(footer?.net_amount || 0).toFixed(2) : ''} */}
+          {show_total ? (
+            parseFloat(
+              parseFloat(footer?.net_amount || 0) +
+                parseFloat(footer?.debit_note_amount || 0) -
+                parseFloat(footer?.credit_note_amount || 0)
+            )?.toFixed(2)
+          ) : (
+            <Text style={styles.net_amount}>Continued...</Text>
+          )}
+        </Text>
+        {/* {!show_total && <Text style={styles.net_amount}>Continued...</Text>} */}
       </View>
     </View>
   )

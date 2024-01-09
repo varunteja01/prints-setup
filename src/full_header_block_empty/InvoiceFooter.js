@@ -1,14 +1,14 @@
-import React from 'react'
-import { Text, View, StyleSheet } from '@react-pdf/renderer'
-import InvoiceFooterValues from './InvoiceFooterValues'
-import InvoiceFooterDetails from './InvoiceFooterDetails'
-import InvoiceThankYouMsg from './InvoiceThankYouMsg'
-import InvoiceNote from './InvoiceNote'
+import React from 'react';
+import { Text, View, StyleSheet } from '@react-pdf/renderer';
+import InvoiceFooterValues from './InvoiceFooterValues';
+import InvoiceFooterDetails from './InvoiceFooterDetails';
+import InvoiceThankYouMsg from './InvoiceThankYouMsg';
+import InvoiceNote from './InvoiceNote';
 
-import InvoiceStatusBar from './InvoiceStatusBar'
+import InvoiceStatusBar from './InvoiceStatusBar';
 
-const tableRowsCount = 20
-const borderColor = '#000000'
+const tableRowsCount = 20;
+const borderColor = '#000000';
 
 const styles = StyleSheet.create({
   tableContainer: {
@@ -45,7 +45,7 @@ const styles = StyleSheet.create({
     height: '8px',
     fontSize: 6,
   },
-})
+});
 
 const InvoiceFooter = ({
   invoice,
@@ -54,7 +54,7 @@ const InvoiceFooter = ({
   products,
   gstEnabled,
   printType,
-  length = 0,
+  length,
   number,
   qr_code,
   settings,
@@ -91,6 +91,6 @@ const InvoiceFooter = ({
       </Text>
     </View>
   </View>
-)
+);
 
-export default InvoiceFooter
+export default InvoiceFooter;

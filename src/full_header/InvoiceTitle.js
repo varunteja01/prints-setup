@@ -1,21 +1,13 @@
-import React, { Fragment } from 'react'
-import { Text, View, StyleSheet, Image, Font } from '@react-pdf/renderer'
-import Moment from 'moment'
-
-//https://fonts.googleapis.com/css2?family=Roboto:wght@100;500&display=swap
+import React, { Fragment } from 'react';
+import { Text, View, StyleSheet, Image } from '@react-pdf/renderer';
+import Moment from 'moment';
 
 const styles = StyleSheet.create({
   titleContainer: {
     flexDirection: 'column',
     marginTop: 0,
-    minHeight: '90px',
+    minHeight: '60px',
     width: '100%',
-    borderRightWidth: '1',
-    borderRightColor: '#000000',
-    borderLeftWidth: '1',
-    borderLeftColor: '#000000',
-    borderTopWidth: '1',
-    borderTopColor: '#000000',
   },
   rowContainer: {
     flexDirection: 'row',
@@ -50,7 +42,11 @@ const styles = StyleSheet.create({
     marginTop: 0,
     lineHeight: 1.1,
     width: '100%',
-    minHeight: '20px',
+    minHeight: '30px',
+    borderRightWidth: '1',
+    borderRightColor: '#000000',
+    borderLeftWidth: '1',
+    borderLeftColor: '#000000',
     paddingTop: '2px',
   },
   grid3: {
@@ -72,18 +68,18 @@ const styles = StyleSheet.create({
   imageContainer: {
     marginTop: 0,
     width: '20%',
+    paddingTop: '2px',
     paddingLeft: '5px',
     alignContent: 'center',
   },
   billTo: {
     marginTop: 0,
     paddingBottom: 3,
-    fontSize: 16,
+    fontSize: 12,
     width: '100%',
     textAlign: 'center',
-    fontWeight: 'bold',
     fontFamily: 'Helvetica',
-    // display: 'flex',
+    fontStyle: 'heavy',
   },
 
   leftDetails: {
@@ -96,8 +92,8 @@ const styles = StyleSheet.create({
     fontStyle: 'heavy',
   },
   logo: {
-    width: 45,
-    height: 45,
+    width: 30,
+    height: 30,
   },
   address: {
     fontSize: 6,
@@ -109,7 +105,7 @@ const styles = StyleSheet.create({
   lr: {
     fontSize: 8,
   },
-})
+});
 
 const InvoiceTitle = ({
   title,
@@ -124,11 +120,11 @@ const InvoiceTitle = ({
     <View
       style={{
         flexDirection: 'row',
+        borderWidth: 1,
+        borderColor: '#000000',
         paddingTop: '5px',
-        minHeight: '40px',
+        minHeight: '30px',
         width: '100%',
-        borderBottomWidth: '1',
-        borderBottomColor: '#000000',
       }}
     >
       <View style={styles.imageContainer}>
@@ -142,7 +138,7 @@ const InvoiceTitle = ({
         <Text
           style={styles.address}
         >{`DL No: ${invoice?.dl1},${invoice?.dl2}  GSTIN No: ${invoice?.gstin}`}</Text>
-        <Text style={styles.address}>{`(M): ${invoice?.landline}`}</Text>
+        <Text style={styles.address}>{`(Phone): ${invoice?.landline}`}</Text>
       </View>
       <View style={styles.imageContainer}>
         <Text
@@ -179,20 +175,20 @@ const InvoiceTitle = ({
                   marginTop: 0,
                   paddingBottom: 3,
                   fontSize: 8,
-                  width: '26%',
+                  width: '27%',
                   textAlign: 'left',
                   fontFamily: 'Helvetica',
                   fontStyle: 'heavy',
                 }}
               >
-                Cust. Name
+                Customer Name
               </Text>
               <Text
                 style={{
                   marginTop: 0,
                   paddingBottom: 3,
                   fontSize: 8,
-                  width: '3%',
+                  width: '2%',
                   textAlign: 'center',
                   fontFamily: 'Helvetica',
                   fontStyle: 'heavy',
@@ -219,7 +215,6 @@ const InvoiceTitle = ({
               style={{
                 width: '100%',
                 flexDirection: 'row',
-                height: 12,
               }}
             >
               <Text
@@ -227,20 +222,20 @@ const InvoiceTitle = ({
                   marginTop: 0,
                   paddingBottom: 3,
                   fontSize: 8,
-                  width: '26%',
+                  width: '27%',
                   textAlign: 'left',
                   fontFamily: 'Helvetica',
                   fontStyle: 'heavy',
                 }}
               >
-                Mobile
+                Customer No.
               </Text>
               <Text
                 style={{
                   marginTop: 0,
                   paddingBottom: 3,
                   fontSize: 8,
-                  width: '3%',
+                  width: '2%',
                   textAlign: 'center',
                   fontFamily: 'Helvetica',
                   fontStyle: 'heavy',
@@ -274,7 +269,7 @@ const InvoiceTitle = ({
                   marginTop: 0,
                   paddingBottom: 3,
                   fontSize: 8,
-                  width: '26%',
+                  width: '27%',
                   textAlign: 'left',
                   fontFamily: 'Helvetica',
                   fontStyle: 'heavy',
@@ -287,7 +282,7 @@ const InvoiceTitle = ({
                   marginTop: 0,
                   paddingBottom: 3,
                   fontSize: 8,
-                  width: '3%',
+                  width: '2%',
                   textAlign: 'center',
                   fontFamily: 'Helvetica',
                   fontStyle: 'heavy',
@@ -319,7 +314,7 @@ const InvoiceTitle = ({
                 marginTop: '10px',
               }}
             >
-              {`${customer?.payment_mode ?? 'CASH'} BILL`}
+              {`${customer?.payment_mode ?? ''} BILL`}
             </Text>
           </View>
           <View style={{ width: '15%' }}></View>
@@ -429,6 +424,6 @@ const InvoiceTitle = ({
       </View>
     </View>
   </View>
-)
+);
 
-export default InvoiceTitle
+export default InvoiceTitle;

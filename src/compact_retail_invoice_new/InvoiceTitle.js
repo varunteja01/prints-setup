@@ -1,6 +1,6 @@
-import React, { Fragment } from 'react'
-import { Text, View, StyleSheet, Image } from '@react-pdf/renderer'
-import Moment from 'moment'
+import React, { Fragment } from 'react';
+import { Text, View, StyleSheet, Image } from '@react-pdf/renderer';
+import Moment from 'moment';
 
 const styles = StyleSheet.create({
   titleContainer: {
@@ -8,7 +8,6 @@ const styles = StyleSheet.create({
     marginTop: 0,
     minHeight: '60px',
     width: '100%',
-    // border: 1,
   },
   rowContainer: {
     flexDirection: 'row',
@@ -57,7 +56,6 @@ const styles = StyleSheet.create({
     height: '100%',
     paddingLeft: '2px',
     paddingTop: '5px',
-    // border: 1,
   },
   doctor_grid: {
     marginTop: 0,
@@ -78,7 +76,6 @@ const styles = StyleSheet.create({
     paddingTop: '2px',
     paddingRight: '5px',
     alignContent: 'center',
-    // border: 1,
   },
   billTo: {
     marginTop: 0,
@@ -103,7 +100,6 @@ const styles = StyleSheet.create({
   logo: {
     width: 40,
     height: 40,
-    // border: 1,
   },
   address: {
     fontSize: 7,
@@ -116,7 +112,7 @@ const styles = StyleSheet.create({
   lr: {
     fontSize: 8,
   },
-})
+});
 
 const InvoiceTitle = ({
   title,
@@ -178,7 +174,6 @@ const InvoiceTitle = ({
           flexDirection: 'column',
           // minHeight: '30px',
           width: '50%',
-          // border: 1,
         }}
       >
         <View
@@ -196,7 +191,6 @@ const InvoiceTitle = ({
               textAlign: 'left',
               fontFamily: 'Helvetica-Bold',
               fontStyle: 'heavy',
-              // border: 1,
             }}
           >
             Customer Name
@@ -337,7 +331,6 @@ const InvoiceTitle = ({
               textAlign: 'left',
               fontFamily: 'Helvetica',
               fontStyle: 'heavy',
-              // border: 1,
             }}
           >
             Patient Address.
@@ -364,10 +357,9 @@ const InvoiceTitle = ({
               textAlign: 'left',
               fontFamily: 'Helvetica',
               fontStyle: 'heavy',
-              // border: 1,
             }}
           >
-            {header?.patient_address}
+            {customer?.address_1}
           </Text>
         </View>
         <View
@@ -726,6 +718,6 @@ const InvoiceTitle = ({
       </View>
     </View>
   </View>
-)
+);
 
-export default InvoiceTitle
+export default InvoiceTitle;

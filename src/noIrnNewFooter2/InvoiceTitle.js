@@ -75,7 +75,7 @@ const styles = StyleSheet.create({
     fontSize: 8.5,
   },
   address2: {
-    fontSize: 8.5,
+    fontSize: 9,
   },
   address3: {
     fontSize: 8.5,
@@ -218,18 +218,25 @@ const InvoiceTitle = ({ title, invoice, header, customer, logo_url }) => {
       </View>
 
       <View style={styles.grid3}>
-        <View style={{ flexDirection: 'row', justifyContent: 'space-between' }}>
+        <View
+          style={{
+            flexDirection: 'row',
+            justifyContent: 'space-between',
+          }}
+        >
           <Text style={styles.billTo}>To: {customer?.name}</Text>
           <Text style={{ paddingRight: 5 }}>&nbsp;({customer?.code})</Text>
         </View>
 
-        <Text style={{ fontSize: '8.5' }}>{customer?.address_1}, </Text>
         <Text style={{ fontSize: '8.5' }}>
-          {customer?.address_2}, {customer?.city} - {customer?.pincode}{' '}
+          {customer?.address_1},{customer?.address_2}
         </Text>
-        <Text style={{ fontSize: '8.5' }}>{customer?.address_4}</Text>
+        <Text style={{ fontSize: '8.5' }}>
+          {customer?.address_3}, {customer?.city} - {customer?.pincode}{' '}
+        </Text>
+        {/* <Text style={{ fontSize: '8.5' }}>{customer?.address_4}</Text> */}
 
-        <Text style={{ fontSize: '8.5' }}>(P): {customer?.phone}</Text>
+        <Text style={{ fontSize: '9.5' }}>(P): {customer?.phone}</Text>
 
         <Text style={{ fontSize: '8.5' }}>
           <Text style={styles.heading}>D.L.Nos:</Text> {customer?.dl_1},{' '}

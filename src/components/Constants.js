@@ -2,7 +2,7 @@ export const invoice = {
   created_at: '2023-06-16T09:58:50.573Z',
   updated_at: '2023-06-16T09:58:50.573Z',
   id: 3,
-  firm_name: 'LITTLE STARS AND SHE WOMEN AND CHILDREN PHARMACY',
+  firm_name: 'Capita MediHub',
   line_1: '4-4-351, 359/SF/2, 2ND FLOOR, SHOP #4',
   line_2: 'GUJRATI GALLI, SULTAN BAZAAR',
   city: 'HYDERABAD',
@@ -3125,6 +3125,7 @@ export const printColumns = [
     column: 'column14',
     value: 'gst',
   },
+
   // {
   //   heading: 'Ind.',
   //   type: 'indicators',
@@ -5472,4 +5473,4 @@ export const moduleSettings = {
   tag_employee: false,
 }
 
-export const max_items = 24
+export const max_items = 15

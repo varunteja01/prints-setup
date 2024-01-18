@@ -1,8 +1,7 @@
 import React from 'react'
 import { Text, View, StyleSheet, Font, Image } from '@react-pdf/renderer'
 import { numberFormat } from '../utils/number'
-//import { numberFormat } from 'constants/number';
-import moment from 'moment'
+// import { numberFormat } from 'constants/number';
 
 const fontColor = '#000'
 const borderColor = '#000'
@@ -47,7 +46,7 @@ const styles = StyleSheet.create({
     flexGrow: 1,
     fontSize: 7,
     width: '100%',
-    // borderBottomWidth: 1,
+    borderBottomWidth: 1,
     borderBottomColor: borderColor,
   },
   footer4: {
@@ -57,20 +56,7 @@ const styles = StyleSheet.create({
     flexGrow: 1,
     fontSize: 7,
     width: '100%',
-    height: '59px',
-  },
-  verify: {
-    width: '12%',
-    textAlign: 'left',
-    paddingLeft: 2,
-    paddingTop: 1,
-    borderRightColor: borderColor,
-    borderRightWidth: 1,
-    // borderBottomColor: borderColor,
-    // borderBottomWidth: 1,
-    height: 12,
-    paddingRight: '2px',
-    lineHeight: 1.5,
+    height: '58px',
   },
   gst: {
     width: '4%',
@@ -101,7 +87,7 @@ const styles = StyleSheet.create({
     height: 12,
   },
   gst_value: {
-    width: '9%',
+    width: '10%',
     textAlign: 'right',
     paddingRight: '2px',
     borderRightColor: borderColor,
@@ -116,11 +102,10 @@ const styles = StyleSheet.create({
     paddingRight: '2px',
     borderRightColor: borderColor,
     borderRightWidth: 1,
-    borderBottomWidth: 1,
     height: 12,
   },
   cgst_value: {
-    width: '9%',
+    width: '10%',
     textAlign: 'right',
     paddingRight: '2px',
     borderRightColor: borderColor,
@@ -130,7 +115,7 @@ const styles = StyleSheet.create({
     height: 12,
   },
   sgst_value: {
-    width: '9%',
+    width: '10%',
     textAlign: 'right',
     paddingRight: '2px',
     borderRightColor: borderColor,
@@ -140,7 +125,7 @@ const styles = StyleSheet.create({
     height: 12,
   },
   igst_value: {
-    width: '9%',
+    width: '10%',
     textAlign: 'right',
     paddingRight: '2px',
     borderRightColor: borderColor,
@@ -148,74 +133,6 @@ const styles = StyleSheet.create({
     borderBottomColor: borderColor,
     borderBottomWidth: 1,
     height: 12,
-  },
-  gst_last: {
-    width: '4%',
-    textAlign: 'right',
-    borderRightColor: borderColor,
-    borderRightWidth: 1,
-    height: 10.5,
-    paddingRight: '2px',
-    borderBottomWidth: 1,
-  },
-  gst_last2: {
-    width: '4%',
-    textAlign: 'right',
-    borderRightColor: borderColor,
-    borderRightWidth: 1,
-    height: 12,
-    paddingRight: '2px',
-    fontFamily: 'Helvetica-Bold',
-  },
-  gst_value_last: {
-    width: '9%',
-    textAlign: 'right',
-    paddingRight: '2px',
-    borderRightColor: borderColor,
-    borderRightWidth: 1,
-    borderBottomWidth: 1,
-    height: 11.5,
-  },
-  gst_value_last2: {
-    width: '9%',
-    textAlign: 'right',
-    paddingRight: '2px',
-    borderRightColor: borderColor,
-    borderRightWidth: 1,
-    fontFamily: 'Helvetica-Bold',
-    height: 11.5,
-  },
-  cgst_value_last: {
-    width: '10%',
-    textAlign: 'right',
-    paddingRight: '2px',
-    borderRightColor: borderColor,
-    borderRightWidth: 1,
-    height: 10.5,
-  },
-  sgst_value_last: {
-    width: '10%',
-    textAlign: 'right',
-    paddingRight: '2px',
-    borderRightColor: borderColor,
-    borderRightWidth: 1,
-    height: 10.5,
-  },
-  igst_value_last: {
-    width: '10%',
-    textAlign: 'right',
-    paddingRight: '2px',
-    borderRightColor: borderColor,
-    borderRightWidth: 1,
-    height: 10.5,
-  },
-  gst_discount_last: {
-    width: '10%',
-    textAlign: 'right',
-    paddingRight: '2px',
-    borderRightColor: borderColor,
-    borderRightWidth: 1,
-    height: 10.5,
   },
   amount_words: {
     width: '46%',
@@ -227,89 +144,40 @@ const styles = StyleSheet.create({
   footer_heading: {
     width: '8%',
     textAlign: 'left',
-    paddingLeft: '4px',
-    fontFamily: 'Helvetica-Bold',
-  },
-  footer_heading3: {
-    width: '6%',
-    textAlign: 'left',
-    paddingLeft: '4px',
-    fontFamily: 'Helvetica-Bold',
-  },
-  // footer_heading1: {
-  //   width: '5%',
-  //   textAlign: 'left',
-  //   paddingLeft: '4px',
-  //   fontFamily: 'Helvetica-Bold',
-  // },
-  footer_heading2: {
-    width: '6%',
-    textAlign: 'left',
-    paddingLeft: '4px',
-    fontFamily: 'Helvetica-Bold',
-    fontSize: 8,
-    // border: 1,
+    paddingLeft: '15px',
   },
   footer_icon: {
     width: '1%',
     textAlign: 'right',
     paddingRight: '2px',
   },
-  // footer_icon1: {
-  //   width: '0%',
-  //   textAlign: 'center',
-  //   padding: '0px',
-  //   // border: 1,
-  // },
   footer_value: {
     width: '6%',
     textAlign: 'right',
     paddingRight: '2px',
   },
-  footer_value2: {
-    width: '8%',
-    textAlign: 'right',
-    paddingRight: '2px',
-  },
   footer_value_border: {
-    width: '8%',
+    width: '6%',
     textAlign: 'right',
-    paddingRight: '4px',
+    paddingRight: '8px',
     borderRightColor: borderColor,
     borderRightWidth: 1,
     height: 12,
   },
-  footer_value_border3: {
-    width: '8%',
-    textAlign: 'right',
-    paddingRight: '4px',
-    borderRightColor: borderColor,
-    borderRightWidth: 1,
-    height: 12,
-  },
-  // footer_value_border1: {
-  //   width: '4.5%',
-  //   textAlign: 'right',
-  //   paddingRight: '2px',
-  //   borderRightColor: borderColor,
-  //   borderRightWidth: 1,
-  //   height: 12,
-  //   border: 1,
-  // },
   blank: {
     width: '0%',
   },
   tnc: {
-    width: '34%',
+    width: '33%',
     fontSize: 5,
     borderRightWidth: 1,
-    borderTopWidth: 1,
     borderRightColor: '#000',
     height: '60px',
   },
   logo: {
-    width: 55,
-    height: 55,
+    padding: '5px 0 0 5px',
+    width: 50,
+    height: 50,
   },
 })
 
@@ -320,8 +188,6 @@ const InvoiceFooter = ({
   invoice,
   qr_code,
   show_total,
-  crdb_amount,
-  clientAnalyticStats,
 }) => {
   function convertNumberToWords(amount) {
     var words = new Array()
@@ -433,43 +299,28 @@ const InvoiceFooter = ({
   return (
     <View style={styles.footer2}>
       <View style={styles.container}>
-        <Text style={styles.verify}>
-          Print :{' '}
-          {footer?.created_at
-            ? moment(footer?.created_at)
-                .utc()
-                .local()
-                .format('DD-MM-YYYY hh:mm A')
-            : ''}
-        </Text>
         <Text style={styles.gst}>0% </Text>
-        {/* <Text style={styles.gst_discount}>
+        <Text style={styles.gst_discount}>
           {show_total == true ? footer?.gst_0_disc : ''}
-        </Text> */}
+        </Text>
         <Text style={styles.gst_value}>
           {show_total == true ? footer?.gst_exempted_value : ''}
         </Text>
-        <Text style={styles.cgst_value}></Text>
-        <Text style={styles.sgst_value}></Text>
-        <Text style={styles.igst_value}></Text>
-        <Text style={styles.footer_heading}>Outstanding Amt</Text>
+        <Text style={styles.cgst_value}> </Text>
+        <Text style={styles.sgst_value}> </Text>
+        <Text style={styles.igst_value}> </Text>
+        <Text style={styles.footer_heading}></Text>
+        <Text style={styles.footer_icon}></Text>
+        <Text style={styles.footer_value_border}></Text>
+        <Text style={styles.blank}></Text>
+        <Text style={styles.footer_heading}>Disc. Per</Text>
         <Text style={styles.footer_icon}>:</Text>
         <Text style={styles.footer_value_border}>
-          {show_total == true
-            ? clientAnalyticStats?.net_outstanding_amount?.slice(1, -3) || ''
-            : ''}
+          {show_total == true ? footer?.overall_disc : ''}
         </Text>
-        <Text style={styles.footer_heading3}>Sub Total</Text>
+        <Text style={styles.footer_heading}>Subtotal</Text>
         <Text style={styles.footer_icon}>:</Text>
-        <Text style={styles.footer_value_border3}>
-          {show_total == true
-            ? parseFloat(footer?.gross_total ?? 0).toFixed(2)
-            : ''}
-        </Text>
-
-        <Text style={styles.footer_heading2}>Billed Amt</Text>
-        <Text style={styles.footer_icon}>:</Text>
-        <Text style={styles.footer_value2}>
+        <Text style={styles.footer_value}>
           {show_total == true
             ? parseFloat(footer?.gross_total ?? 0).toFixed(2)
             : ''}
@@ -477,11 +328,10 @@ const InvoiceFooter = ({
       </View>
 
       <View style={styles.container}>
-        <Text style={styles.verify}></Text>
         <Text style={styles.gst}>5.00% </Text>
-        {/* <Text style={styles.gst_discount}>
+        <Text style={styles.gst_discount}>
           {show_total == true ? footer?.gst_1_disc : ''}
-        </Text> */}
+        </Text>
         <Text style={styles.gst_value}>
           {show_total == true ? footer?.gst_1_value : ''}
         </Text>
@@ -506,74 +356,30 @@ const InvoiceFooter = ({
               : ''
             : (0).toFixed(2)}
         </Text>
-        {/* <Text style={{ ...styles.footer_heading1, width: '2.5%' }}>Bills</Text>
-        <Text style={styles.footer_icon1}>:</Text>
-        <Text
-          style={{
-            ...styles.footer_value_border1,
-            borderRightWidth: 0,
-            width: '1%',
-          }}
-        >
-          {clientAnalyticStats?.no_of_outstanding || 0}
-        </Text>
-        <text style={{ width: '1%' }}></text>
-        <Text style={{ ...styles.footer_heading1, paddingLeft: 0 }}>
-          Last Receipt
-        </Text>
-        <Text style={styles.footer_icon1}>:</Text>
-        <Text style={{ ...styles.footer_value_border, width: '5.5%' }}>
-          {clientAnalyticStats?.latest_receipt
-            ? moment(clientAnalyticStats?.latest_receipt).format('DD-MM-YYYY')
-            : ''}
-        </Text> */}
-        <Text style={{ ...styles.footer_heading, width: '2.5%' }}>bills</Text>
-        <Text style={{ ...styles.footer_icon, width: '0.5%' }}>:</Text>
-        <Text
-          style={{
-            ...styles.footer_value_border,
-            width: '2%',
-            borderRightWidth: 0,
-          }}
-        >
-          {clientAnalyticStats?.no_of_outstanding || 0}
-        </Text>
-        <Text
-          style={{ ...styles.footer_heading, width: '5%', paddingLeft: '0px' }}
-        >
-          Last receipt
-        </Text>
-        <Text style={{ ...styles.footer_icon, width: '0.5%' }}>:</Text>
-        <Text style={{ ...styles.footer_value_border, width: '6.5%' }}>
-          {clientAnalyticStats?.latest_receipt
-            ? moment(clientAnalyticStats?.latest_receipt).format('DD-MM-YYYY')
-            : ''}
-        </Text>
+        <Text style={styles.footer_heading}>Cases</Text>
+        <Text style={styles.footer_icon}>:</Text>
+        <Text style={styles.footer_value_border}>0</Text>
         <Text style={styles.blank}></Text>
-        <Text style={styles.footer_heading3}>DiscAmt(-)</Text>
+        <Text style={styles.footer_heading}>Cr/Dr Amt.</Text>
         <Text style={styles.footer_icon}>:</Text>
-        <Text style={styles.footer_value_border3}>
-          {show_total == true
-            ? parseFloat(footer?.total_disc || 0).toFixed(2)
-            : ''}
-        </Text>
-        <Text style={styles.footer_heading2}>Cr/Db Amt.</Text>
-        <Text style={styles.footer_icon}>:</Text>
-        <Text style={styles.footer_value2}>
+        <Text style={styles.footer_value_border}>
           {show_total == true
             ? parseFloat(footer?.debit_note_amount || 0) -
               parseFloat(footer?.credit_note_amount || 0)
-            : ''}
+            : '0.00'}
+        </Text>
+        <Text style={styles.footer_heading}>Discount</Text>
+        <Text style={styles.footer_icon}>:</Text>
+        <Text style={styles.footer_value}>
+          {show_total == true ? footer?.total_disc : ''}
         </Text>
       </View>
 
       <View style={styles.container}>
-        <Text style={styles.verify}>Stock Out : </Text>
-
         <Text style={styles.gst}>12.00% </Text>
-        {/* <Text style={styles.gst_discount}>
+        <Text style={styles.gst_discount}>
           {show_total == true ? footer?.gst_2_disc : ''}
-        </Text> */}
+        </Text>
         <Text style={styles.gst_value}>
           {show_total == true ? footer?.gst_2_value : ''}
         </Text>
@@ -599,50 +405,48 @@ const InvoiceFooter = ({
             : (0).toFixed(2)}
         </Text>
         <Text style={styles.blank}></Text>
-        <Text style={styles.footer_heading}></Text>
-        <Text style={styles.footer_icon}></Text>
-        <Text style={styles.footer_value_border}></Text>
-        <Text style={styles.footer_heading3}>GST Amt(+)</Text>
+        <Text style={styles.footer_heading}>Total Items</Text>
         <Text style={styles.footer_icon}>:</Text>
-        <Text style={styles.footer_value_border3}>
-          {show_total == true ? footer?.total_gst_value : ''}
+        <Text style={styles.footer_value_border}>
+          {show_total == true ? items : ''}
         </Text>
-        {/* <Text style={styles.footer_heading}>GST Amt.</Text>
+        <Text style={styles.footer_heading}>Freight Amt.</Text>
+        <Text style={styles.footer_icon}>:</Text>
+        <Text style={styles.footer_value_border}>
+          {footer?.freight_amount == null
+            ? '0.00'
+            : parseFloat(footer?.freight_amount || 0).toFixed(2)}
+        </Text>
+        <Text style={styles.footer_heading}>GST Amt.</Text>
         <Text style={styles.footer_icon}>:</Text>
         <Text style={styles.footer_value}>
           {show_total == true ? footer?.total_gst_value : ''}
-        </Text> */}
-        <Text style={styles.footer_heading2}>TCS</Text>
-        <Text style={styles.footer_icon}>:</Text>
-        <Text style={styles.footer_value2}>
-          {show_total == true ? footer?.tcs_amount : ''}
         </Text>
       </View>
 
       <View style={styles.footer3}>
-        <Text style={styles.verify}></Text>
-        <Text style={styles.gst_last}>18.00% </Text>
-        {/* <Text style={styles.gst_value_border}>
+        <Text style={styles.gst}>18.00% </Text>
+        <Text style={styles.gst_value_border}>
           {show_total == true ? footer?.gst_3_disc : ''}
-        </Text> */}
-        <Text style={styles.gst_value_last}>
+        </Text>
+        <Text style={styles.gst_value_border}>
           {show_total == true ? footer?.gst_3_value : ''}
         </Text>
-        <Text style={styles.gst_value_last}>
+        <Text style={styles.gst_value_border}>
           {footer?.gst_type == true && footer?.gst_3 != null
             ? show_total == true
               ? (footer?.gst_3 / 2).toFixed(2)
               : ''
             : (0).toFixed(2)}
         </Text>
-        <Text style={styles.gst_value_last}>
+        <Text style={styles.gst_value_border}>
           {footer?.gst_type == true && footer?.gst_3 != null
             ? show_total == true
               ? (footer?.gst_3 / 2).toFixed(2)
               : ''
             : (0).toFixed(2)}
         </Text>
-        <Text style={styles.gst_value_last}>
+        <Text style={styles.gst_value_border}>
           {footer?.gst_type == false && footer?.gst_3 != null
             ? show_total == true
               ? footer?.gst_3.toFixed(2)
@@ -650,36 +454,24 @@ const InvoiceFooter = ({
             : (0).toFixed(2)}
         </Text>
         <Text style={styles.blank}></Text>
-        <Text style={styles.footer_heading}>Total Items</Text>
+        <Text style={styles.footer_heading}>Total Qty</Text>
+        <Text style={styles.footer_icon}>:</Text>
+        <Text style={styles.footer_value_border}> {totalQty(products)}</Text>
+        <Text style={styles.footer_heading}>Rounding</Text>
         <Text style={styles.footer_icon}>:</Text>
         <Text style={styles.footer_value_border}>
-          {show_total == true ? items : ''}
+          {show_total == true ? footer?.rounding : ''}
         </Text>
-        {/* <Text style={styles.footer_heading}>Total Qty</Text>
-        <Text style={styles.footer_icon}>:</Text>
-        <Text style={styles.footer_value_border}>
-          {show_total == true ? totalQty(products) : ''}
-        </Text> */}
-        <Text style={styles.footer_heading3}>Freight Amt.</Text>
-        <Text style={styles.footer_icon}>:</Text>
-        <Text style={styles.footer_value_border3}>
-          {show_total &&
-            (footer?.freight_amount == null
-              ? '0.00'
-              : parseFloat(footer?.freight_amount || 0).toFixed(2))}
-        </Text>
-
-        {/* <Text style={styles.footer_heading}>TCS</Text>
+        <Text style={styles.footer_heading}>TCS</Text>
         <Text style={styles.footer_icon}>:</Text>
         <Text style={styles.footer_value}>
           {show_total == true ? footer?.tcs_amount : ''}
-        </Text> */}
+        </Text>
       </View>
 
       <View style={styles.footer3}>
-        <Text style={styles.verify}>Checked :</Text>
-        <Text style={styles.gst_last2}>Total :</Text>
-        {/* <Text style={styles.gst_value_border}>
+        <Text style={styles.gst_border}>Total :</Text>
+        <Text style={styles.gst_value_border}>
           {show_total == true
             ? (
                 parseFloat(footer?.gst_0_disc ?? 0) +
@@ -688,17 +480,17 @@ const InvoiceFooter = ({
                 parseFloat(footer?.gst_3_disc ?? 0)
               ).toFixed(2)
             : ''}
-        </Text> */}
-        <Text style={styles.gst_value_last2}>
+        </Text>
+        <Text style={styles.gst_value_border}>
           {show_total == true
             ? (
                 parseFloat(footer?.gst_1_value ?? 0) +
                 parseFloat(footer?.gst_2_value ?? 0) +
                 parseFloat(footer?.gst_3_value ?? 0)
               ).toFixed(2)
-            : '0.0000'}
+            : ''}
         </Text>
-        <Text style={styles.gst_value_last2}>
+        <Text style={styles.gst_value_border}>
           {footer?.gst_type == true
             ? show_total == true
               ? (
@@ -707,68 +499,48 @@ const InvoiceFooter = ({
                     parseFloat(footer?.gst_3 ?? 0)) /
                   2
                 ).toFixed(2)
-              : '0.0000'
+              : ''
             : (0).toFixed(2)}
         </Text>
-        <Text style={styles.gst_value_last2}>
+        <Text style={styles.gst_value_border}>
           {footer?.gst_type == true
             ? show_total == true
               ? ((footer?.gst_1 + footer?.gst_2 + footer?.gst_3) / 2).toFixed(2)
-              : '0.0000'
+              : ''
             : (0).toFixed(2)}
         </Text>
-        <Text style={styles.gst_value_last2}>
+        <Text style={styles.gst_value_border}>
           {footer?.gst_type == false
             ? show_total == true
               ? (footer?.gst_1 + footer?.gst_2 + footer?.gst_3).toFixed(2)
-              : '0.0000 '
+              : ''
             : (0).toFixed(2)}
         </Text>
-        {/* <Text style={styles.amount_words}>
+        <Text style={styles.blank}></Text>
+        <Text style={styles.amount_words}>
           Amt in Words:{' '}
           {show_total == true ? convertNumberToWords(footer?.net_amount) : ''}
-        </Text> */}
-        <Text style={styles.footer_heading}>Total Qty</Text>
-        <Text style={styles.footer_icon}>:</Text>
-        <Text style={styles.footer_value_border}>
-          {show_total == true ? totalQty(products) : ''}
-        </Text>
-        <Text style={styles.footer_heading3}>Rounding</Text>
-        <Text style={styles.footer_icon}>:</Text>
-        <Text style={styles.footer_value_border3}>
-          {show_total == true ? footer?.rounding : ''}
         </Text>
       </View>
 
       <View style={styles.footer4}>
         <View style={styles.tnc}>
           <Text
-            style={{
-              fontSize: 6,
-              fontStyle: 'bold',
-              padding: '2px 0 0 2px',
-              textDecoration: 'underline',
-            }}
+            style={{ fontSize: '6', fontStyle: 'bold', padding: '2px 0 0 2px' }}
           >
-            Terms and Conditions :
+            Terms and Conditions
           </Text>
-          <Text style={{ padding: '2px 4px 0 2px', fontSize: 8 }}>
+          <Text style={{ padding: '2px 0 0 2px' }}>
             {invoice?.terms_and_conditions || ''}
           </Text>
         </View>
-        <View
-          style={{
-            width: '27%',
-            height: '60px',
-            borderTopWidth: 1,
-          }}
-        >
+
+        <View style={{ width: '13%', height: '52px' }}>
           <Text
             style={{
-              fontSize: '7.5',
-              padding: '2px 0 1px 2px',
-              textDecoration: 'underline',
-              fontFamily: 'Helvetica-Bold',
+              fontSize: '6',
+              fontWeight: 'bold',
+              padding: '2px 0 0 2px',
             }}
           >
             Bank Details :
@@ -776,71 +548,59 @@ const InvoiceFooter = ({
 
           <Text
             style={{
-              fontSize: '7',
+              fontSize: '6',
               fontWeight: 'bold',
               padding: '0px 0 0 2px',
             }}
           >
-            A/C &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;:&nbsp;&nbsp;
-            {invoice.account_number}
+            A/C: {invoice.account_number}
           </Text>
           <Text
             style={{
-              fontSize: '7',
+              fontSize: '6',
               fontWeight: 'bold',
               padding: '0px 0 0 2px',
             }}
           >
-            IFSC &nbsp;&nbsp;&nbsp; :&nbsp;&nbsp;{invoice.ifsc_code}
+            {invoice?.bank_name}
           </Text>
           <Text
             style={{
-              fontSize: '7',
+              fontSize: '6',
               fontWeight: 'bold',
               padding: '0px 0 0 2px',
             }}
           >
-            Bank &nbsp;&nbsp;&nbsp;&nbsp;:&nbsp;&nbsp;{invoice?.bank_name}
+            Branch: {invoice.bank_branch_name}
           </Text>
           <Text
             style={{
-              fontSize: '7',
-
+              fontSize: '6',
               fontWeight: 'bold',
               padding: '0px 0 0 2px',
             }}
           >
-            Branch &nbsp;:&nbsp;&nbsp;{invoice.bank_branch_name}
-          </Text>
-          <Text
-            style={{
-              fontSize: '7',
-              fontWeight: 'bold',
-              padding: '0px 0 0 2px',
-            }}
-          >
-            UPI ID &nbsp;&nbsp;:&nbsp;&nbsp;{invoice.upi_address}
+            IFSC: {invoice.ifsc_code}
           </Text>
         </View>
+
         <View
           style={{
-            width: '8%',
+            width: '7%',
             borderRightWidth: '1',
             borderRightColor: borderColor,
-            borderTopWidth: 1,
             height: '60px',
-            padding: '2px 0 0 2px',
           }}
         >
           <Image style={styles.logo} src={qr_code} />
         </View>
+
         <View
           style={{
-            width: '15%',
+            width: '17%',
             borderRightWidth: '1',
             borderRightColor: borderColor,
             height: '60px',
-            borderTopWidth: '1',
           }}
         >
           <Text style={{ padding: '2px 0 0 2px', height: '15px' }}>
@@ -850,24 +610,16 @@ const InvoiceFooter = ({
             Authorised Signatory
           </Text>
         </View>
-        <View
-          style={{
-            width: '16%',
-            // borderRightWidth: '1',
-            // borderRightColor: borderColor,
-            height: '60px',
-            borderTopWidth: '1',
-          }}
-        >
-          <Text style={{ padding: '2px 0 0 2px', height: '15px' }}>
+
+        <View style={{ width: '30%' }}>
+          <Text style={{ margin: '0 0 0 2px', height: '30%' }}>
             NET AMOUNT:
           </Text>
           <Text
             style={{
-              margin: '17px 0 2px 0px',
-              height: '23px',
-              fontSize: '15',
-              fontFamily: 'Helvetica-Bold',
+              margin: '0 2px 0 0',
+              fontSize: '24',
+              fontFamily: 'Helvetica',
               fontWeight: 'bold',
               textAlign: 'right',
             }}

@@ -885,11 +885,11 @@ const InvoiceFooter = ({
               fontSize: '8px',
             }}
           >
-            NET AMOUNT:
+            NET AMOUNT :
           </Text>
           <Text
             style={{
-              margin: '17px 0 2px 0px',
+              margin: '17px 2px 2px 0px',
               height: '23px',
               fontSize: '15',
               fontFamily: 'Helvetica-Bold',

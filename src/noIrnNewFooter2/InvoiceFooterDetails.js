@@ -225,16 +225,19 @@ const styles = StyleSheet.create({
     height: 12,
   },
   footer_heading: {
-    width: '8%',
+    width: '9%',
     textAlign: 'left',
     paddingLeft: '4px',
     fontFamily: 'Helvetica-Bold',
+    fontSize: 8,
   },
   footer_heading3: {
-    width: '6%',
+    width: '6.5%',
     textAlign: 'left',
     paddingLeft: '4px',
     fontFamily: 'Helvetica-Bold',
+    fontSize: 8,
+    // border: 1,
   },
   // footer_heading1: {
   //   width: '5%',
@@ -267,25 +270,26 @@ const styles = StyleSheet.create({
     paddingRight: '2px',
   },
   footer_value2: {
-    width: '8%',
+    width: '9%',
     textAlign: 'right',
     paddingRight: '2px',
   },
   footer_value_border: {
-    width: '8%',
+    width: '7%',
     textAlign: 'right',
-    paddingRight: '4px',
+    paddingRight: '3px',
     borderRightColor: borderColor,
     borderRightWidth: 1,
     height: 12,
   },
   footer_value_border3: {
-    width: '8%',
+    width: '7.5%',
     textAlign: 'right',
     paddingRight: '4px',
     borderRightColor: borderColor,
     borderRightWidth: 1,
     height: 12,
+    // fontSize: 8,
   },
   // footer_value_border1: {
   //   width: '4.5%',
@@ -300,7 +304,7 @@ const styles = StyleSheet.create({
     width: '0%',
   },
   tnc: {
-    width: '34%',
+    width: '43%',
     fontSize: 5,
     borderRightWidth: 1,
     borderTopWidth: 1,
@@ -477,7 +481,7 @@ const InvoiceFooter = ({
       </View>
 
       <View style={styles.container}>
-        <Text style={styles.verify}></Text>
+        <Text style={styles.verify}>Stock Out :</Text>
         <Text style={styles.gst}>5.00% </Text>
         {/* <Text style={styles.gst_discount}>
           {show_total == true ? footer?.gst_1_disc : ''}
@@ -532,19 +536,19 @@ const InvoiceFooter = ({
         <Text
           style={{
             ...styles.footer_value_border,
-            width: '2%',
+            width: '1%',
             borderRightWidth: 0,
           }}
         >
           {clientAnalyticStats?.no_of_outstanding || 0}
         </Text>
         <Text
-          style={{ ...styles.footer_heading, width: '5%', paddingLeft: '0px' }}
+          style={{ ...styles.footer_heading, width: '6%', paddingLeft: '5px' }}
         >
           Last receipt
         </Text>
-        <Text style={{ ...styles.footer_icon, width: '0.5%' }}>:</Text>
-        <Text style={{ ...styles.footer_value_border, width: '6.5%' }}>
+        <Text style={{ ...styles.footer_icon, width: '1%' }}>:</Text>
+        <Text style={{ ...styles.footer_value_border, width: '6%' }}>
           {clientAnalyticStats?.latest_receipt
             ? moment(clientAnalyticStats?.latest_receipt).format('DD-MM-YYYY')
             : ''}
@@ -568,7 +572,7 @@ const InvoiceFooter = ({
       </View>
 
       <View style={styles.container}>
-        <Text style={styles.verify}>Stock Out : </Text>
+        <Text style={styles.verify}>Checked : </Text>
 
         <Text style={styles.gst}>12.00% </Text>
         {/* <Text style={styles.gst_discount}>
@@ -677,7 +681,7 @@ const InvoiceFooter = ({
       </View>
 
       <View style={styles.footer3}>
-        <Text style={styles.verify}>Checked :</Text>
+        <Text style={styles.verify}></Text>
         <Text style={styles.gst_last2}>Total :</Text>
         {/* <Text style={styles.gst_value_border}>
           {show_total == true
@@ -744,7 +748,7 @@ const InvoiceFooter = ({
         <View style={styles.tnc}>
           <Text
             style={{
-              fontSize: 6,
+              fontSize: 8,
               fontStyle: 'bold',
               padding: '2px 0 0 2px',
               textDecoration: 'underline',
@@ -752,20 +756,22 @@ const InvoiceFooter = ({
           >
             Terms and Conditions :
           </Text>
-          <Text style={{ padding: '2px 4px 0 2px', fontSize: 8 }}>
+          <Text
+            style={{ padding: '2px 4px 0 2px', fontSize: 8, lineHeight: 1.5 }}
+          >
             {invoice?.terms_and_conditions || ''}
           </Text>
         </View>
         <View
           style={{
-            width: '27%',
+            width: '18%',
             height: '60px',
             borderTopWidth: 1,
           }}
         >
           <Text
             style={{
-              fontSize: '7.5',
+              fontSize: '8',
               padding: '2px 0 1px 2px',
               textDecoration: 'underline',
               fontFamily: 'Helvetica-Bold',
@@ -843,10 +849,22 @@ const InvoiceFooter = ({
             borderTopWidth: '1',
           }}
         >
-          <Text style={{ padding: '2px 0 0 2px', height: '15px' }}>
+          <Text
+            style={{
+              padding: '2px 0 0 2px',
+              height: '20px',
+              fontSize: '9px',
+            }}
+          >
             For {invoice.firm_name}
           </Text>
-          <Text style={{ margin: '25px 0 0 2px', height: '15px' }}>
+          <Text
+            style={{
+              margin: '20px 0 0 2px',
+              height: '15px',
+              fontSize: '9px',
+            }}
+          >
             Authorised Signatory
           </Text>
         </View>
@@ -859,7 +877,14 @@ const InvoiceFooter = ({
             borderTopWidth: '1',
           }}
         >
-          <Text style={{ padding: '2px 0 0 2px', height: '15px' }}>
+          <Text
+            style={{
+              padding: '2px 0px 0px 2px',
+              height: '15px',
+              // border: 1,
+              fontSize: '8px',
+            }}
+          >
             NET AMOUNT:
           </Text>
           <Text
@@ -878,12 +903,12 @@ const InvoiceFooter = ({
                     parseFloat(footer?.net_amount || 0) +
                       parseFloat(footer?.debit_note_amount || 0) -
                       parseFloat(footer?.credit_note_amount || 0)
-                  ).slice(1)}`
+                  ).slice(0)}`
                 : `Rs. ${numberFormat(
                     parseFloat(footer?.net_amount || 0) +
                       parseFloat(footer?.debit_note_amount || 0) -
                       parseFloat(footer?.credit_note_amount || 0)
-                  ).slice(1)}`
+                  ).slice(0)}`
               : 'Continued...'}
           </Text>
         </View>

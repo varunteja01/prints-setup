@@ -86,7 +86,7 @@ export const entry = {
   margin_amount: 6.63,
   rep_name: null,
   rep_code: '',
-  net_amount: 58666666,
+  net_amount: 245866666,
   gst_type: true,
   dc_converted: null,
   comments: '',
@@ -5473,4 +5473,4 @@ export const moduleSettings = {
   tag_employee: false,
 }
 
-export const max_items = 15
+export const max_items = 20

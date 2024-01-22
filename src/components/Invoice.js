@@ -145,7 +145,7 @@ const Invoice = ({
   moduleSettings,
 }) => {
   //should not be more than 10
-  const maxRowsPerPage = 15
+  const maxRowsPerPage = 20
   const pagesData = []
 
   for (let i = 0; i < products.length; i += maxRowsPerPage) {

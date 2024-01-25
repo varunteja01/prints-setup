@@ -260,7 +260,7 @@ const InvoiceTitle = ({ title, invoice, header, customer }) => {
               GSTIN
             </Text>
             <Text style={{ fontSize: '8', width: '80%' }}>
-              :&nbsp;{customer?.gstin}
+              :&nbsp;{header?.gstin ?? customer?.gstin}
             </Text>
           </View>
         </View>

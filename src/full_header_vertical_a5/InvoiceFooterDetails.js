@@ -1,7 +1,7 @@
 import React from 'react'
 import { Text, View, StyleSheet, Font, Image } from '@react-pdf/renderer'
 import { numberFormat } from './number'
-// import { convertNumToWords } from 'utils/helpers'
+// import { convertNumToWords } from 'utils/helpers';
 
 const borderColor = '#100c08'
 
@@ -31,7 +31,7 @@ const styles = StyleSheet.create({
   footer2: {
     flexDirection: 'column',
     alignItems: 'center',
-    height: 105,
+    height: 110,
     fontStyle: 'bold',
     flexGrow: 1,
     fontSize: 7,
@@ -158,7 +158,7 @@ const styles = StyleSheet.create({
   footerDiv: {
     flexDirection: 'row',
     alignItems: 'center',
-    height: 14,
+    height: 13,
     fontStyle: 'bold',
     flexGrow: 1,
     fontSize: 7,
@@ -182,7 +182,7 @@ const styles = StyleSheet.create({
     fontStyle: 'bold',
     fontSize: 7,
     width: '100%',
-    height: '20px',
+    height: '22px',
   },
   grand_tot_label: {
     width: '27%',
@@ -464,15 +464,21 @@ const InvoiceFooter = ({
         <Text style={styles.igst_value_last}>
           {show_total ? Number(footer?.gst_4_disc).toFixed(2) : ''}
         </Text>
-
         <Text style={styles.col_tot}></Text>
         <Text style={styles.footer_icon}></Text>
         <Text style={styles.footer_value_border}></Text>
-
-        <Text style={styles.col_tot}>Round Off</Text>
-        <Text style={styles.footer_icon}>:</Text>
+        <Text style={styles.col_tot}>
+          {footer?.freight_amount !== null && footer?.freight_amount !== 0
+            ? 'FREIGHT AMT'
+            : ''}
+        </Text>
+        <Text style={styles.footer_icon}>
+          {footer?.freight_amount !== null && footer?.freight_amount !== 0
+            ? ':'
+            : ''}
+        </Text>
         <Text style={styles.footer_value}>
-          {show_total ? footer?.rounding : ''}
+          {show_total ? footer?.freight_amount : ''}
         </Text>
       </View>
 

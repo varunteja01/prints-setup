@@ -5,10 +5,9 @@ import { View, StyleSheet } from '@react-pdf/renderer'
 //   InvoiceTableRow,
 //   InvoiceTableBlankSpace,
 // } from '../Components/Table';
-import InvoiceTableHeader from './InvoiceTableHeader'
-import InvoiceTableRow from './InvoiceTableRow'
-// import InvoiceTableRow from '../Components/Table/InvoiceTableRow';
-import InvoiceTableBlankSpace from './InvoiceTableBlankSpace'
+import InvoiceTableHeader from '../full_header_vertical_a5_v2/InvoiceTableHeader'
+import InvoiceTableRow from '../full_header_vertical_a5_v2/InvoiceTableRow'
+import InvoiceTableBlankSpace from '../full_header_vertical_a5_v2/InvoiceTableBlankSpace'
 
 const borderColor = '#100c08'
 const styles = StyleSheet.create({

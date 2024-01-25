@@ -1,9 +1,9 @@
-import React from 'react';
-import { View, StyleSheet } from '@react-pdf/renderer';
-import InvoiceFooterHead from './InvoiceFooterHead';
-import InvoiceFooterDetails from './InvoiceFooterDetails';
+import React from 'react'
+import { View, StyleSheet } from '@react-pdf/renderer'
+import InvoiceFooterHead from './InvoiceFooterHead'
+import InvoiceFooterDetails from './InvoiceFooterDetails'
 
-const borderColor = '#100c08';
+const borderColor = '#100c08'
 const styles = StyleSheet.create({
   tableContainer: {
     flexDirection: 'row',
@@ -11,9 +11,9 @@ const styles = StyleSheet.create({
     marginTop: 0,
     borderWidth: 1,
     borderColor: borderColor,
-    height: '145px',
+    height: '150px',
   },
-});
+})
 
 const InvoiceFooter = ({
   invoice,
@@ -36,6 +36,6 @@ const InvoiceFooter = ({
       show_total={show_total}
     />
   </View>
-);
+)
 
-export default InvoiceFooter;
+export default InvoiceFooter

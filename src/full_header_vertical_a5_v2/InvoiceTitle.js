@@ -193,7 +193,9 @@ const InvoiceTitle = ({ title, invoice, header, customer, logo_url }) => {
           <Text style={{ fontSize: '8' }}>
             D.L.Nos: {customer?.dl_1}, {customer?.dl_2}
           </Text>
-          <Text style={{ fontSize: '8' }}>GSTIN: {customer?.gstin}</Text>
+          <Text style={{ fontSize: '8' }}>
+            GSTIN: {header?.gstin ?? customer?.gstin}
+          </Text>
         </View>
 
         {/* Header right */}

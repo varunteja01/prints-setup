@@ -7,7 +7,6 @@ import { View, StyleSheet } from '@react-pdf/renderer'
 // } from '../Components/Table';
 import InvoiceTableHeader from './InvoiceTableHeader'
 import InvoiceTableRow from './InvoiceTableRow'
-// import InvoiceTableRow from '../Components/Table/InvoiceTableRow';
 import InvoiceTableBlankSpace from './InvoiceTableBlankSpace'
 
 const borderColor = '#100c08'

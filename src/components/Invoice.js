@@ -19,12 +19,15 @@ import Consolidated_retail_invoice1 from '../consolidated_retail_invoice/Invoice
 import CompactRetailInvoiceNew from '../compact_retail_invoice_new/Invoice'
 import NoIrnInvoice2 from '../noIrnNewFooter2/Invoice'
 import FullHeaderLogo from '../full_header_logo/Invoice'
+// import FullHeaderVertialA5 from '../full_header_vertical_a5/Invoice'
+// import FullHeaderA4A5V2 from '../full_header_vertical_a5_v2/Invoice'
 import FullHeaderVertialA5 from '../full_header_vertical_a5/Invoice'
-import FullHeaderA4A5V2 from '../full_header_vertical_a5_v2/Invoice'
+import FullHeaderVerticalA5V2 from '../full_header_vertical_a5_v2/Invoice'
 import FullHeaderVerticalA5NoLines from '../full_header_vertical_a5_no_lines/Invoice'
 import FullHeaderBlockEmpty from '../full_header_block_empty/Invoice'
 import FullHeader from '../full_header/Invoice'
 import NoIrnInvoice3 from '../noIrnNewFooter3/Invoice'
+import DefaultRetailInvoice from '../default_retail_invoice/Invoice'
 
 const pageSize = { A4: 'A4', LEGAL: 'LEGAL' }
 const orientation = { PORTRAIT: 'portrait', LANDSCAPE: 'landscape' }
@@ -145,7 +148,7 @@ const Invoice = ({
   moduleSettings,
 }) => {
   //should not be more than 10
-  const maxRowsPerPage = 20
+  const maxRowsPerPage = 15
   const pagesData = []
 
   for (let i = 0; i < products.length; i += maxRowsPerPage) {
@@ -379,6 +382,33 @@ const Invoice = ({
       page_blanks={page_blanks}
     />
   )
+
+  const full_header_vertical_a5_v2 = (
+    <FullHeaderVerticalA5V2
+      pageDetails={{
+        pageSize: pageSize.A4,
+        orientation: orientation.LANDSCAPE,
+        styles: styles.page,
+      }}
+      pages={pagesData}
+      title={title}
+      invoice={invoice}
+      entry={entry}
+      customer={customer}
+      max_items={max_items}
+      printColumns={printColumns}
+      printTableStyles={printTableStyles}
+      items={items}
+      products={products}
+      clientInformation={clientInformation}
+      settingsInfo={settingsInfo}
+      crdb_amount={crdb_amount}
+      dynamicPagination={dynamicPagination}
+      maxCharsPerLine={max_chars}
+      page_blanks={page_blanks}
+    />
+  )
+
   const full_header_vertical_a5 = (
     <FullHeaderVertialA5
       pageDetails={{
@@ -404,31 +434,7 @@ const Invoice = ({
       page_blanks={page_blanks}
     />
   )
-  const full_header_vertical_a5_v2 = (
-    <FullHeaderA4A5V2
-      pageDetails={{
-        pageSize: pageSize.A4,
-        orientation: orientation.LANDSCAPE,
-        styles: styles.page,
-      }}
-      pages={pagesData}
-      title={title}
-      invoice={invoice}
-      entry={entry}
-      customer={customer}
-      max_items={max_items}
-      printColumns={printColumns}
-      printTableStyles={printTableStyles}
-      items={items}
-      products={products}
-      clientInformation={clientInformation}
-      settingsInfo={settingsInfo}
-      crdb_amount={crdb_amount}
-      dynamicPagination={dynamicPagination}
-      maxCharsPerLine={max_chars}
-      page_blanks={page_blanks}
-    />
-  )
+
   const full_header_vertical_a5_no_lines = (
     <FullHeaderVerticalA5NoLines
       pageDetails={{
@@ -534,10 +540,35 @@ const Invoice = ({
       page_blanks={page_blanks}
     />
   )
+  const default_retail_invoice = (
+    <DefaultRetailInvoice
+      pageDetails={{
+        pageSize: pageSize.A4,
+        orientation: orientation.LANDSCAPE,
+        styles: styles.page,
+      }}
+      pages={pagesData}
+      title={title}
+      invoice={invoice}
+      entry={entry}
+      customer={customer}
+      max_items={max_items}
+      printColumns={printColumns}
+      printTableStyles={printTableStyles}
+      items={items}
+      products={products}
+      clientInformation={clientInformation}
+      settingsInfo={settingsInfo}
+      crdb_amount={crdb_amount}
+      dynamicPagination={dynamicPagination}
+      maxCharsPerLine={max_chars}
+      page_blanks={page_blanks}
+    />
+  )
 
   return (
     <PDFViewer style={{ width: '100%', height: '100%' }}>
-      <Document>{noIrnNewFooter2}</Document>
+      <Document>{full_header_vertical_a5}</Document>
     </PDFViewer>
   )
 }

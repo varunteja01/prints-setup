@@ -75,7 +75,7 @@ const styles = StyleSheet.create({
     fontSize: 8.5,
   },
   address2: {
-    fontSize: 9,
+    fontSize: 9.5,
   },
   address3: {
     fontSize: 8.5,
@@ -88,6 +88,9 @@ const styles = StyleSheet.create({
     fontSize: 8,
   },
   heading: {
+    fontFamily: 'Helvetica-Bold',
+  },
+  boldText: {
     fontFamily: 'Helvetica-Bold',
   },
 })
@@ -113,9 +116,20 @@ const InvoiceTitle = ({ title, invoice, header, customer, logo_url }) => {
             {invoice.line_2}, {`${invoice.city} - ${invoice.pincode}`}
           </Text>
 
-          <Text style={styles.address2}>{`(P): ${invoice.landline} ${
+          {/* <Text style={styles.address2}>{`(P): ${invoice.landline} ${
             invoice.email == null ? '' : `- (@): ${invoice.email}`
-          }`}</Text>
+          }`}</Text> */}
+
+          <Text style={styles.address2}>
+            <Text style={{ fontFamily: 'Helvetica-Bold' }}>(P): </Text>
+            <Text>{invoice.landline} </Text>
+            {invoice.email !== null && (
+              <>
+                -<Text style={{ fontFamily: 'Helvetica-Bold' }}> (@): </Text>
+                <Text>{invoice.email}</Text>
+              </>
+            )}
+          </Text>
 
           <Text style={styles.address}>
             <Text>
@@ -236,7 +250,18 @@ const InvoiceTitle = ({ title, invoice, header, customer, logo_url }) => {
         </Text>
         {/* <Text style={{ fontSize: '8.5' }}>{customer?.address_4}</Text> */}
 
-        <Text style={{ fontSize: '9.5' }}>(P): {customer?.phone}</Text>
+        {/* <Text style={{ fontSize: '9.5' }}>(P): {customer?.phone}</Text>
+         */}
+        <Text style={styles.address2}>
+          <Text style={{ fontFamily: 'Helvetica-Bold' }}>(P): </Text>
+          <Text>{customer?.phone} </Text>
+          {customer.email !== null && (
+            <>
+              -<Text style={{ fontFamily: 'Helvetica-Bold' }}> (@): </Text>
+              <Text>{customer.email}</Text>
+            </>
+          )}
+        </Text>
 
         <Text style={{ fontSize: '8.5' }}>
           <Text style={styles.heading}>D.L.Nos:</Text> {customer?.dl_1},{' '}

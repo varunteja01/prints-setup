@@ -46,7 +46,7 @@ const InvoiceTableHeader = ({ footer, page_number }) => (
     </Text>
     <Text style={styles.middle}>{page_number}</Text>
 
-    <Text style={styles.sno}>{footer.temp_invoice_number}</Text>
+    {/* <Text style={styles.sno}>{footer.temp_invoice_number}</Text> */}
   </View>
 )
 

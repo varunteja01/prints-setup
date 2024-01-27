@@ -568,7 +568,7 @@ const Invoice = ({
 
   return (
     <PDFViewer style={{ width: '100%', height: '100%' }}>
-      <Document>{full_header_vertical_a5}</Document>
+      <Document>{noIrnNewFooter2}</Document>
     </PDFViewer>
   )
 }

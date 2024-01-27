@@ -101,7 +101,7 @@ const styles = StyleSheet.create({
     height: 12,
   },
   gst_value: {
-    width: '9%',
+    width: '8.5%',
     textAlign: 'right',
     paddingRight: '2px',
     borderRightColor: borderColor,
@@ -120,7 +120,7 @@ const styles = StyleSheet.create({
     height: 12,
   },
   cgst_value: {
-    width: '9%',
+    width: '8.5%',
     textAlign: 'right',
     paddingRight: '2px',
     borderRightColor: borderColor,
@@ -130,7 +130,7 @@ const styles = StyleSheet.create({
     height: 12,
   },
   sgst_value: {
-    width: '9%',
+    width: '8.5%',
     textAlign: 'right',
     paddingRight: '2px',
     borderRightColor: borderColor,
@@ -140,7 +140,7 @@ const styles = StyleSheet.create({
     height: 12,
   },
   igst_value: {
-    width: '9%',
+    width: '8.5%',
     textAlign: 'right',
     paddingRight: '2px',
     borderRightColor: borderColor,
@@ -168,7 +168,7 @@ const styles = StyleSheet.create({
     fontFamily: 'Helvetica-Bold',
   },
   gst_value_last: {
-    width: '9%',
+    width: '8.5%',
     textAlign: 'right',
     paddingRight: '2px',
     borderRightColor: borderColor,
@@ -177,7 +177,7 @@ const styles = StyleSheet.create({
     height: 11.5,
   },
   gst_value_last2: {
-    width: '9%',
+    width: '8.5%',
     textAlign: 'right',
     paddingRight: '2px',
     borderRightColor: borderColor,
@@ -230,13 +230,14 @@ const styles = StyleSheet.create({
     paddingLeft: '4px',
     fontFamily: 'Helvetica-Bold',
     fontSize: 8,
+    height: 12,
   },
   footer_heading3: {
     width: '6.5%',
     textAlign: 'left',
     paddingLeft: '4px',
     fontFamily: 'Helvetica-Bold',
-    fontSize: 8,
+    fontSize: 7,
     // border: 1,
   },
   // footer_heading1: {
@@ -273,14 +274,23 @@ const styles = StyleSheet.create({
     width: '9%',
     textAlign: 'right',
     paddingRight: '2px',
+    fontSize: 8,
   },
   footer_value_border: {
-    width: '7%',
+    width: '9%',
     textAlign: 'right',
     paddingRight: '3px',
     borderRightColor: borderColor,
     borderRightWidth: 1,
     height: 12,
+    fontSize: 8,
+    // width: '9%',
+    // textAlign: 'right',
+    // paddingRight: '3px',
+    // borderRightColor: borderColor,
+    // borderRightWidth: 1,
+    // height: 12,
+    // fontSize: 8,
   },
   footer_value_border3: {
     width: '7.5%',
@@ -289,7 +299,7 @@ const styles = StyleSheet.create({
     borderRightColor: borderColor,
     borderRightWidth: 1,
     height: 12,
-    // fontSize: 8,
+    fontSize: 7,
   },
   // footer_value_border1: {
   //   width: '4.5%',
@@ -304,7 +314,7 @@ const styles = StyleSheet.create({
     width: '0%',
   },
   tnc: {
-    width: '43%',
+    width: '41.5%',
     fontSize: 5,
     borderRightWidth: 1,
     borderTopWidth: 1,
@@ -536,22 +546,34 @@ const InvoiceFooter = ({
         <Text
           style={{
             ...styles.footer_value_border,
-            width: '1%',
+            width: '2%',
             borderRightWidth: 0,
+            fontSize: 8,
+            textAlign: 'left',
           }}
         >
           {clientAnalyticStats?.no_of_outstanding || 0}
         </Text>
         <Text
-          style={{ ...styles.footer_heading, width: '6%', paddingLeft: '5px' }}
+          style={{
+            ...styles.footer_heading,
+            width: '6%',
+            paddingLeft: '5px',
+            textAlign: 'right',
+          }}
         >
           Last receipt
         </Text>
         <Text style={{ ...styles.footer_icon, width: '1%' }}>:</Text>
-        <Text style={{ ...styles.footer_value_border, width: '6%' }}>
+        <Text
+          style={{
+            ...styles.footer_value_border,
+            width: '7%',
+          }}
+        >
           {clientAnalyticStats?.latest_receipt
             ? moment(clientAnalyticStats?.latest_receipt).format('DD-MM-YYYY')
-            : ''}
+            : 'DD/MM/YYYY'}
         </Text>
         <Text style={styles.blank}></Text>
         <Text style={styles.footer_heading3}>DiscAmt(-)</Text>
@@ -764,7 +786,7 @@ const InvoiceFooter = ({
         </View>
         <View
           style={{
-            width: '18%',
+            width: '19.5%',
             height: '60px',
             borderTopWidth: 1,
           }}

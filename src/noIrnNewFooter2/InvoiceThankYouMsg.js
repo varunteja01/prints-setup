@@ -48,7 +48,7 @@ const styles = StyleSheet.create({
     height: 14,
   },
   gst_value: {
-    width: '9%',
+    width: '8.5%',
     color: fontColor,
     textAlign: 'center',
     paddingRight: '2px',
@@ -68,7 +68,7 @@ const styles = StyleSheet.create({
   //   height: 14,
   // },
   cgst_value: {
-    width: '9%',
+    width: '8.5%',
     color: fontColor,
     textAlign: 'center',
     paddingRight: '2px',
@@ -79,7 +79,7 @@ const styles = StyleSheet.create({
     height: 14,
   },
   sgst_value: {
-    width: '9%',
+    width: '8.5%',
     color: fontColor,
     textAlign: 'center',
     paddingRight: '2px',
@@ -90,7 +90,7 @@ const styles = StyleSheet.create({
     height: 14,
   },
   igst_value: {
-    width: '9%',
+    width: '8.5%',
     color: fontColor,
     textAlign: 'center',
     paddingRight: '2px',

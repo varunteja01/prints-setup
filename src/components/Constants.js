@@ -103,7 +103,7 @@ export const entry = {
   gross_total: 50.1645454,
   modified: false,
   bill_printed: false,
-  freight_amount: 0,
+  freight_amount: 1,
   total_gst_value: 6.26,
   gst_exempted_value: 0,
   gst_0_disc: 0,

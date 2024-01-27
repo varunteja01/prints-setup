@@ -478,7 +478,11 @@ const InvoiceFooter = ({
             : ''}
         </Text>
         <Text style={styles.footer_value}>
-          {show_total ? footer?.freight_amount : ''}
+          {show_total &&
+          footer?.freight_amount !== null &&
+          footer?.freight_amount !== 0
+            ? `${footer?.freight_amount}`
+            : ''}
         </Text>
       </View>
 

@@ -1,7 +1,7 @@
 import React from 'react';
 import { Text, View, StyleSheet } from '@react-pdf/renderer';
 
-const borderColor = '#dbdbdb';
+const borderColor = '#100c08';
 const fontColor = '#000';
 const styles = StyleSheet.create({
   container: {
@@ -12,31 +12,34 @@ const styles = StyleSheet.create({
     alignItems: 'center',
     height: 14,
     fontStyle: 'bold',
-    flexGrow: 1,
+    // flexGrow: 1,
     fontSize: 8,
   },
   sno: {
-    width: '4%',
+    width: '15%',
     paddingLeft: '3px',
+    backgroundColor: '#dbdbdb',
     color: fontColor,
     borderRightColor: borderColor,
     borderRightWidth: 1,
     height: 14,
   },
   hsn: {
-    width: '96%',
+    width: '85%',
     color: fontColor,
     borderRightColor: borderColor,
     borderRightWidth: 1,
-    textAlign: 'right',
+    textAlign: 'left',
     paddingRight: '2px',
   },
 });
 
-const InvoiceTableHeader = () => (
+const InvoiceTableHeader = ({ footer, page_number }) => (
   <View style={styles.container}>
-    <Text style={styles.sno}> </Text>
-    <Text style={styles.hsn}> </Text>
+    <Text style={styles.hsn}>
+      Powered by Smartpharma360™ || +91 7337441325 || www.smartpharma360.in
+    </Text>
+    <Text style={styles.sno}>{footer.temp_invoice_number}</Text>
   </View>
 );
 

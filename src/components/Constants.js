@@ -86,7 +86,7 @@ export const entry = {
   margin_amount: 6.63,
   rep_name: null,
   rep_code: '',
-  net_amount: 245866666,
+  net_amount: 245866.0,
   gst_type: true,
   dc_converted: null,
   comments: '',

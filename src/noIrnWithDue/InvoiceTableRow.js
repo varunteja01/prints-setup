@@ -4,14 +4,21 @@ import Moment from 'moment';
 
 const borderColor = '#000';
 
-const InvoiceTableRow = ({ items, columns, styles, pageno, max_items }) => {
+const InvoiceTableRow = ({
+  items,
+  columns,
+  styles,
+  verticalRows,
+  pageno,
+  max_items,
+}) => {
   const create_style = StyleSheet.create(styles);
   const rows = items.map((item, row_index) => (
     <View
       style={{
         flexDirection: 'row',
         borderBottomColor: borderColor,
-        borderBottomWidth: 0.5,
+        borderBottomWidth: verticalRows ? 0 : 1,
         alignItems: 'center',
         fontStyle: 'bold',
         fontSize: 9,
@@ -37,6 +44,7 @@ const InvoiceTableRow = ({ items, columns, styles, pageno, max_items }) => {
               : '',
           height: item.product_name?.length > 40 ? 29 : 14.5,
         };
+
         if (element.type == 'number') {
           return (
             <Text style={cell_style}>
@@ -59,16 +67,14 @@ const InvoiceTableRow = ({ items, columns, styles, pageno, max_items }) => {
               {item[`${element.value}`] == undefined ||
               item[`${element.value}`] === ''
                 ? ''
-                : Moment(item[`${element.value}`]).format('MM/YY')}
+                : Moment(item[`${element.value}`]).format('MM/YYYY')}
             </Text>
           );
         }
         if (element.type == 'item_order') {
           return (
             <Text style={cell_style}>
-              {item[`${element.value}`] >= 0
-                ? item[`${element.value}`] + 1
-                : ''}
+              {item[`${element.value}`] < 0 ? '' : item[`${element.value}`] + 1}
             </Text>
           );
         }
@@ -140,19 +146,6 @@ const InvoiceTableRow = ({ items, columns, styles, pageno, max_items }) => {
             </Text>
           );
         }
-        if (element.type == 'combined_qty') {
-          let qty = parseFloat(item['sale_quantity'] || 0);
-          let free =
-            parseFloat(item['sale_free'] || 0) > 0
-              ? `+${item['sale_free']}`
-              : '';
-          return (
-            <Text
-              style={{ ...cell_style, fontFamily: 'Helvetica-Bold' }}
-            >{`${qty}${free}`}</Text>
-          );
-        }
-
         return <Text style={cell_style}>{item[`${element.value}`] ?? ''}</Text>;
       })}
     </View>

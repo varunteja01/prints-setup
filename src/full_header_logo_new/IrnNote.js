@@ -16,27 +16,43 @@ const styles = StyleSheet.create({
     fontSize: 8,
   },
   sno: {
-    width: '4%',
+    width: '5%',
     paddingLeft: '3px',
     color: fontColor,
-    borderRightColor: borderColor,
-    borderRightWidth: 1,
     height: 14,
   },
   hsn: {
-    width: '96%',
+    width: '20%',
     color: fontColor,
     borderRightColor: borderColor,
     borderRightWidth: 1,
-    textAlign: 'right',
+    textAlign: 'left',
+    paddingRight: '2px',
+  },
+  sno1: {
+    width: '5%',
+    paddingLeft: '3px',
+    color: fontColor,
+    height: 14,
+  },
+  hsn1: {
+    width: '45%',
+    color: fontColor,
+    borderRightColor: borderColor,
+    borderRightWidth: 1,
+    textAlign: 'left',
     paddingRight: '2px',
   },
 });
 
-const InvoiceTableHeader = () => (
+const InvoiceTableHeader = ({footer}) => (
   <View style={styles.container}>
-    <Text style={styles.sno}> </Text>
-    <Text style={styles.hsn}> </Text>
+    <Text style={styles.sno}>Ack No: </Text>
+    <Text style={styles.hsn}>{footer.ack_no}</Text>
+    <Text style={styles.sno}>Ack Date: </Text>
+    <Text style={styles.hsn}>{footer.ack_date}</Text>
+    <Text style={styles.sno1}>IRN: </Text>
+    <Text style={styles.hsn1}>{footer.irn}</Text>
   </View>
 );
 

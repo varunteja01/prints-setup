@@ -1,6 +1,7 @@
 import React from 'react'
 import { Text, View, StyleSheet, Image } from '@react-pdf/renderer'
 import Moment from 'moment'
+import { entry } from '../components/Constants'
 
 const borderColor = '#100c08'
 const styles = StyleSheet.create({
@@ -31,6 +32,7 @@ const styles = StyleSheet.create({
     marginBottom: '1px',
     borderBottomWidth: 0,
     borderBottomColor: borderColor,
+    // border: 1,
   },
   crdr: {
     height: '15px',
@@ -48,33 +50,38 @@ const styles = StyleSheet.create({
 
   headerContainer: {
     marginTop: 0,
-    width: '275px',
-    height: '75px',
-    lineHeight: 1.1,
-    paddingLeft: '2px',
+    width: '70%',
+    height: '100px',
+    lineHeight: 1.3,
+    paddingLeft: '4px',
+    // border: 1,
   },
   grid2: {
     marginTop: 0,
-    width: '31%',
+    width: '25%',
     lineHeight: 1.1,
     borderWidth: 0.5,
     borderColor: borderColor,
     borderBottomWidth: 0,
     borderLeftWidth: 0,
-    height: '80px',
-    paddingTop: '0px',
+    height: '100px',
+    paddingTop: '5px',
+    paddingLeft: '10px',
+    // border: 1,
   },
   grid3: {
     marginTop: 0,
     width: '100%',
-    lineHeight: 1.1,
+    lineHeight: 1.4,
     fontSize: 8,
-    paddingLeft: '2px',
+    paddingLeft: '4px',
     borderWidth: 0.5,
     borderColor: borderColor,
     borderBottomWidth: 0,
     flexDirection: 'row',
-    height: '60px',
+    height: '100px',
+
+    // border: 1,
   },
   grid4: {
     flexDirection: 'row',
@@ -83,26 +90,42 @@ const styles = StyleSheet.create({
     borderBottomWidth: 0,
     paddingTop: '2px',
     justifyContent: 'space-between',
+    // border: 1,
   },
   imageContainer: {
     marginTop: 0,
-    width: '70px',
-    paddingTop: '2px',
-    paddingLeft: '5px',
+    width: '30%',
+    paddingTop: '9px',
+    paddingLeft: '1px',
+    // border: 1,
+    height: '100px',
   },
   billTo: {
     width: '100%',
     marginTop: 0,
-    paddingBottom: 4,
+    paddingBottom: 2,
+    paddingTop: 2,
     fontFamily: 'Helvetica-Bold',
     fontStyle: 'heavy',
   },
-  logo: {
-    width: 60,
-    height: 60,
+  buyer: {
+    width: '100%',
+    fontFamily: 'Helvetica-Bold',
+    fontStyle: 'heavy',
   },
+  qr: {
+    width: 80,
+    height: 80,
+    border: 1,
+  },
+  logo: {
+    width: 90,
+    height: 90,
+    border: 1,
+  },
+
   address: {
-    fontSize: 9,
+    fontSize: 8,
   },
   invoice: {
     textAlign: 'right',
@@ -121,6 +144,8 @@ const InvoiceTitle = ({
   irn_qr_code,
   qr_code,
   page_number,
+  entry,
+  inventoryType,
 }) => {
   return (
     <View>
@@ -136,15 +161,12 @@ const InvoiceTitle = ({
             borderColor: borderColor,
             borderRightWidth: 0,
             borderBottomWidth: 0,
-            paddingTop: '5px',
-            width: '69%',
+            // paddingTop: '5px',
+            width: '75%',
           }}
         >
-          <View style={styles.imageContainer}>
-            <Image style={styles.logo} src={logo_url} />
-          </View>
           <View style={styles.headerContainer}>
-            <Text style={{ ...styles.billTo, fontSize: 20 }}>
+            <Text style={{ ...styles.billTo, fontSize: 14 }}>
               {invoice.firm_name}
             </Text>
             <Text style={styles.address}>{invoice.line_1}</Text>
@@ -152,11 +174,23 @@ const InvoiceTitle = ({
             <Text
               style={styles.address}
             >{`${invoice.city} - ${invoice.pincode}`}</Text>
-            <Text style={styles.address}>{`Phone: ${invoice.landline}`}</Text>
+            <Text style={styles.address}>{`Phone : ${invoice?.landline}`}</Text>
+            <Text style={styles.address}>{`GST NO : ${invoice?.gstin}`}</Text>
+            <Text style={styles.address}>{`Email : ${invoice?.email}`}</Text>
+            <Text
+              style={{
+                fontSize: 7.4,
+                paddingTop: '3px',
+                fontFamily: 'Helvetica-Bold',
+              }}
+            >{`IRN No : ${header?.irn}`}</Text>
+          </View>
+          <View style={styles.imageContainer}>
+            <Image style={styles.qr} src={irn_qr_code} />
           </View>
         </View>
         <View style={styles.grid2}>
-          <View style={{ flexDirection: 'row', paddingTop: '2px' }}>
+          {/* <View style={{ flexDirection: 'row', paddingTop: '2px' }}>
             <View
               style={{
                 width: '100%',
@@ -235,7 +269,8 @@ const InvoiceTitle = ({
                 </Text>
               </View>
             </View>
-          </View>
+          </View> */}
+          <Image style={styles.logo} src={logo_url} />
         </View>
       </View>
 
@@ -243,42 +278,56 @@ const InvoiceTitle = ({
         <View
           style={{ width: '50%', paddingTop: '5px', borderRightWidth: 0.5 }}
         >
-          <Text style={{ ...styles.billTo, fontSize: 8.5 }}>
+          <Text
+            style={{
+              textDecoration: 'underline',
+              paddingBottom: '2px',
+              fontSize: '10px',
+            }}
+          >
+            customer's Details :-
+          </Text>
+          <Text style={{ ...styles.buyer, fontSize: 8.5 }}>
             {`${customer?.name} (${customer?.code})`}
           </Text>
-          <Text style={{ fontSize: '8' }}>{customer?.address_1}</Text>
-          <Text style={{ fontSize: '8' }}>{customer?.address_2}</Text>
-          <Text style={{ fontSize: '8' }}>
-            {customer?.address_3},{customer?.city}
+          <Text>{customer?.address_1}</Text>
+          <Text>
+            {customer?.address_2},{customer?.address_3}
+          </Text>
+          <Text>
+            {customer?.city}-{customer?.pincode}
           </Text>
           {/* <Text style={{ fontSize: '8' }}>
             {customer?.address_4} - {customer?.city}
           </Text> */}
           {/* <Text style={{ fontSize: '8' }}>{customer?.city}</Text> */}
-          <View
-            style={{ flexDirection: 'row', justifyContent: 'space-between' }}
-          >
-            <Text style={{ fontSize: 8 }}>Tel : {customer?.phone}</Text>
-            <Text style={{ fontSize: 8, paddingRight: '4px' }}>
-              PIN : {customer?.pincode}
+          <View style={{ flexDirection: 'row' }}>
+            <Text style={{ paddingRight: '15px' }}>
+              City : {customer?.city}
             </Text>
+            <Text style={{ paddingRight: '4px' }}>Area : {customer?.city}</Text>
           </View>
+          <Text>GST NO : {customer?.gstin}</Text>
+          <Text style={{ fontFamily: 'Helvetica-Bold' }}>
+            Phone : {customer?.phone}
+          </Text>
+          {/* <Text style={{ fontSize: '8' }}>
+            D.L.Nos: {customer?.dl_1}, {customer?.dl_2}
+          </Text>
+          <Text style={{ fontSize: '8' }}>GSTIN: {customer?.gstin}</Text> */}
         </View>
         <View
           style={{
-            width: '39%',
+            width: '50%',
             paddingTop: '5px',
-            paddingLeft: '5px',
+            paddingLeft: '4px',
             borderRightWidth: 0.5,
           }}
         >
           <View style={{ flexDirection: 'row', alignItems: 'center' }}>
-            <Text style={{ fontSize: '8', textAlign: 'left', width: '15%' }}>
-              Bill No.
-            </Text>
+            <Text style={{ textAlign: 'left', width: '15%' }}>Bill No.</Text>
             <Text
               style={{
-                fontSize: '10',
                 width: '85%',
                 fontFamily: 'Helvetica-Bold',
               }}
@@ -288,12 +337,9 @@ const InvoiceTitle = ({
           </View>
 
           <View style={{ flexDirection: 'row', alignItems: 'center' }}>
-            <Text style={{ fontSize: '8', textAlign: 'left', width: '15%' }}>
-              Date
-            </Text>
+            <Text style={{ textAlign: 'left', width: '15%' }}>Date</Text>
             <Text
               style={{
-                fontSize: '10',
                 width: '85%',
                 fontFamily: 'Helvetica-Bold',
               }}
@@ -301,28 +347,94 @@ const InvoiceTitle = ({
               : {Moment(header.entry_date).format('DD-MM-YYYY')}
             </Text>
           </View>
-          <View style={{ flexDirection: 'row' }}>
-            <Text style={{ fontSize: '8', textAlign: 'left', width: '15%' }}>
-              GST No.
-            </Text>
-            <Text style={{ fontSize: '8', width: '40%' }}>
-              : {header?.gstin ?? customer?.gstin}
-            </Text>
-            <Text style={{ fontSize: '8', textAlign: 'left', width: '10%' }}>
-              PAN
-            </Text>
-            <Text style={{ fontSize: '8', width: '35%' }}>
-              : {customer?.pan}
+          <View style={{ flexDirection: 'row', alignItems: 'center' }}>
+            <Text style={{ textAlign: 'left', width: '15%' }}>Time.</Text>
+            <Text
+              style={{
+                width: '85%',
+              }}
+            >
+              :{' '}
+              {customer.created_at === ''
+                ? ''
+                : inventoryType === 'proforma' && header.entry_date !== ''
+                ? Moment(header?.entry_date)?.format('DD-MM-YYYY')
+                : Moment(header?.created_at).utc().local().format('hh:mm A ')}
             </Text>
           </View>
           <View style={{ flexDirection: 'row' }}>
+            <Text style={{ textAlign: 'left', width: '15%' }}>L.R.No</Text>
+            <Text style={{ width: '30%' }}>:{header?.lr_number} </Text>
+            <Text style={{ textAlign: 'left', width: '15%' }}>L.R.Date</Text>
+            <Text style={{ width: '30%' }}>
+              :{' '}
+              {header?.lr_date
+                ? Moment(header.lr_date).format('DD/MM/YYYY')
+                : ''}
+            </Text>
+          </View>
+          <View style={{ flexDirection: 'row' }}>
+            <Text style={{ textAlign: 'left', width: '15%' }}>Order No.</Text>
+            <Text style={{ width: '30%' }}>: </Text>
+            <Text style={{ textAlign: 'left', width: '15%' }}>Pack</Text>
+            <Text style={{ width: '30%' }}>: {customer?.pan}</Text>
+          </View>
+          <View style={{ flexDirection: 'row', alignItems: 'center' }}>
+            <Text style={{ textAlign: 'left', width: '15%' }}>Tpt.</Text>
+            <Text
+              style={{
+                width: '85%',
+              }}
+            >
+              : {header?.transport_name}
+            </Text>
+          </View>
+          <View style={{ flexDirection: 'row' }}>
+            <Text
+              style={{
+                textAlign: 'left',
+                width: '15%',
+                fontFamily: 'Helvetica-Bold',
+              }}
+            >
+              Eway Bill
+            </Text>
+            <Text
+              style={{
+                width: '30%',
+                fontFamily: 'Helvetica-Bold',
+              }}
+            >
+              : {header.e_way_bill_no}
+            </Text>
+            <Text style={{ textAlign: 'left', width: '15%' }}>S.Man</Text>
+            <Text style={{ width: '30%' }}>: {entry?.rep_name}</Text>
+          </View>
+          <View
+            style={{
+              flexDirection: 'row',
+              alignItems: 'center',
+              fontFamily: 'Helvetica-Bold',
+            }}
+          >
+            <Text style={{ textAlign: 'left', width: '15%' }}>E-Invoice</Text>
+            <Text
+              style={{
+                fontSize: '8',
+                width: '85%',
+              }}
+            >
+              :
+            </Text>
+          </View>
+          {/* <View style={{ flexDirection: 'row' }}>
             <Text style={{ fontSize: '8', width: '15%', textAlign: 'left' }}>
               D.L.Nos
             </Text>
-            <Text style={{ fontSize: '8', width: '85%' }}>{`: ${
-              customer?.dl_1 != null ? customer?.dl_1 : ' '
-            }\n: ${customer?.dl_2 != null ? customer?.dl_2 : ' '}`}</Text>
-          </View>
+            <Text
+              style={{ fontSize: '8', width: '85%' }}
+            >{`: ${customer?.dl_1}\n: ${customer?.dl_2}`}</Text>
+          </View> */}
           {/* <View style={{ flexDirection: 'row', margin: '2px 0 ' }}>
             <Text style={{ fontSize: '8', width: '15%', textAlign: 'left' }}>
               State
@@ -332,22 +444,12 @@ const InvoiceTitle = ({
             </Text>
           </View> */}
         </View>
-        <View
-          style={{
-            width: '11%',
-            borderRightColor: borderColor,
-          }}
-        >
-          <Image style={styles.logo} src={irn_qr_code} />
-        </View>
       </View>
-      <View style={styles.grid4}>
+      {/* <View style={styles.grid4}>
         <Text style={{ paddingLeft: '4px', fontSize: 7 }}>
           IRN NO : {header.irn}
         </Text>
-        <Text style={{ paddingLeft: '4px', fontSize: 7, paddingRight: '4px' }}>
-          {page_number}
-        </Text>
+        <Text style={{ paddingLeft: '4px', fontSize: 7 }}>{page_number}</Text>
       </View>
       <View style={styles.grid4}>
         <Text style={{ paddingLeft: '4px', fontSize: 7 }}>
@@ -358,12 +460,6 @@ const InvoiceTitle = ({
               )})`
             : ''}
         </Text>
-        <Text style={{ paddingLeft: '4px', fontSize: 7, paddingRight: '4px' }}>
-          PO number :{' '}
-          {header.purchase_order_header_id !== null
-            ? header.purchase_order_header_id
-            : 'N/A'}
-        </Text>
       </View>
       <View style={styles.grid4}>
         <Text style={{ paddingLeft: '4px', fontSize: 8, width: '65%' }}>
@@ -372,7 +468,7 @@ const InvoiceTitle = ({
         <Text style={{ paddingLeft: '4px', fontSize: 8, width: '35%' }}>
           Cases
         </Text>
-      </View>
+      </View> */}
     </View>
   )
 }

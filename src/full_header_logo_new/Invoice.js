@@ -4,9 +4,10 @@ import InvoiceTitleFullHeaderLogo from './InvoiceTitle'
 import InvoiceItemsTableFullHeaderLogo from './InvoiceItemsTable'
 import InvoiceFooterFullHeaderLogo from './InvoiceFooter'
 import TempNoteFullHeaderLogo from './TempNote'
+import InvoiceNote from './InvoiceNote'
 
 const FullHeaderLogo = ({
-  pageDetails: { pageSize, halfPage, imageContainer },
+  pageDetails: { pageSize, styles, imageContainer },
   pages,
   title,
   invoice,
@@ -17,14 +18,14 @@ const FullHeaderLogo = ({
   printTableStyles,
   items,
   products,
-  fetchQRUrl,
+  fetchQRUrl = () => {},
   clientInformation,
   settingsInfo,
   crdb_amount,
   moduleSettings,
 }) => {
-  return pages.map((page, index) => (
-    <Page size={pageSize} style={halfPage}>
+  return pages.map((page, index, footer) => (
+    <Page size={pageSize} style={styles}>
       <View style={imageContainer}>
         <InvoiceTitleFullHeaderLogo
           title={title}
@@ -32,7 +33,6 @@ const FullHeaderLogo = ({
           header={entry}
           customer={customer}
           logo_url={`${clientInformation?.client_logo}`}
-          // irn_qr_code={fetchQRUrl(entry?.irn_qrcode)}
           irn_qr_code={`${
             settingsInfo?.irn_qrcode == ''
               ? 'https://staticfilessp360.blob.core.windows.net/logos/white.jpg'
@@ -54,6 +54,7 @@ const FullHeaderLogo = ({
           pageno={index}
           moduleSettings={moduleSettings}
         />
+        <InvoiceNote footer={footer} />
         <InvoiceFooterFullHeaderLogo
           footer={entry}
           items={items}
@@ -67,7 +68,10 @@ const FullHeaderLogo = ({
           }`}
           crdb_amount={crdb_amount}
         />
-        <TempNoteFullHeaderLogo footer={entry} />
+        <TempNoteFullHeaderLogo
+          footer={entry}
+          page_number={`Page ${index + 1} of ${pages.length}`}
+        />
       </View>
     </Page>
   ))

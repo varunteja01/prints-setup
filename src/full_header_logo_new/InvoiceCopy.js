@@ -106,32 +106,44 @@ export default function Invoice({
     if (Object.keys(invoiceDetails).length > 0) {
       if (!isPreview) {
         try {
-          if (JSPrintManager.websocket_status == WSStatus.Open) {
-            var cpj = new ClientPrintJob();
-            cpj.clientPrinter = new InstalledPrinter(printDetails?.printer);
-            const element = createDoc(rows);
-            const blob = pdf(element).toBlob();
-            const no_of_copies = parseInt(printDetails?.copies);
-            let myPrintFile = new PrintFilePDF(
-              blob,
-              FileSourceType.BLOB,
-              `INVOICE-${entry?.entry_number}`,
-              no_of_copies,
-            );
-            myPrintFile.printRotation = PrintRotation['Rot90'];
-            myPrintFile.pageSizing = Sizing['Fit'];
-            cpj.files.push(myPrintFile);
-            cpj.onUpdated = function (data) {
-              console.log('JSP onUpdated', data);
-            };
-            cpj.onFinished = function (data) {
-              console.log('JSP onFinished', data);
-            };
-            cpj.sendToClient();
-          } else if (JSPrintManager.websocket_status == WSStatus.Closed)
-            console.log('JSPM is not installed or not running!');
-          else if (JSPrintManager.websocket_status == WSStatus.Blocked)
-            console.log('JSPM has blocked this website!');
+          const uri = axios.defaults.baseURL;
+          JSPrintManager.license_url = `${uri}/jspm`;
+          JSPrintManager.auto_reconnect = true;
+          JSPrintManager.start();
+          JSPrintManager.WS.onOpen = function () {
+            console.log('JSPM WS Open');
+          };
+          JSPrintManager.WS.onClose = function () {
+            console.log('JSPM WS Close');
+          };
+          JSPrintManager.WS.onStatusChanged = function () {
+            if (JSPrintManager.websocket_status == WSStatus.Open) {
+              var cpj = new ClientPrintJob();
+              cpj.clientPrinter = new InstalledPrinter(printDetails?.printer);
+              const element = createDoc(rows);
+              const blob = pdf(element).toBlob();
+              const no_of_copies = parseInt(printDetails?.copies);
+              let myPrintFile = new PrintFilePDF(
+                blob,
+                FileSourceType.BLOB,
+                `INVOICE-${entry?.entry_number}`,
+                no_of_copies,
+              );
+              myPrintFile.printRotation = PrintRotation['Rot90'];
+              myPrintFile.pageSizing = Sizing['Fit'];
+              cpj.files.push(myPrintFile);
+              cpj.onUpdated = function (data) {
+                console.log('JSP onUpdated', data);
+              };
+              cpj.onFinished = function (data) {
+                console.log('JSP onFinished', data);
+              };
+              cpj.sendToClient();
+            } else if (JSPrintManager.websocket_status == WSStatus.Closed)
+              console.log('JSPM is not installed or not running!');
+            else if (JSPrintManager.websocket_status == WSStatus.Blocked)
+              console.log('JSPM has blocked this website!');
+          };
         } catch (error) {
           console.error(error);
         }

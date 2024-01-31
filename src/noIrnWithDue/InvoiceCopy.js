@@ -17,12 +17,18 @@ import {
   FileSourceType,
   InstalledPrinter,
 } from 'jsprintmanager';
+import InvoiceTitle from './InvoiceTitle';
+import InvoiceItemsTable from './InvoiceItemsTable';
+import InvoiceFooter from './InvoiceFooter';
+import IrnNote from './IrnNote';
+import TempNote from './TempNote';
 
-import InvoiceTitleFullHeaderVertical from './InvoiceTitle';
-import InvoiceItemsTableFullHeaderVertical from './InvoiceItemsTable';
-import InvoiceFooterFullHeaderVertical from './InvoiceFooter';
-import TempNoteFullHeaderVertical from './TempNote';
-import apiRequest from 'utils/api';
+import InvoiceTitleNoLogo from './noLogoInv/InvoiceTitle';
+import InvoiceItemsTableNoLogo from './noLogoInv/InvoiceItemsTable';
+import InvoiceFooterNoLogo from './noLogoInv/InvoiceFooter';
+import TempNoteNoLogo from './noLogoInv/TempNote';
+
+import apiRequest from '../../utils/api';
 import axios from 'axios';
 import { useSelector } from 'react-redux';
 
@@ -36,6 +42,8 @@ const styles = StyleSheet.create({
     lineHeight: 1.5,
     flexDirection: 'column',
     size: 'A4 landscape',
+    borderWidth: 1,
+    borderColor: '#000',
   },
   logo: {
     width: 74,
@@ -53,11 +61,9 @@ export default function Invoice({
   title,
   items,
   saveFileBlob = false,
-  handlePrintClose,
   isPreview,
   printDetails,
   resetPrintOutState,
-  crdb_amount,
 }) {
   Font.register({
     family: 'Helvetica',
@@ -73,7 +79,6 @@ export default function Invoice({
   });
 
   const [invoiceDetails, setInvoiceDetails] = React.useState({});
-
   const [pdfRender, setPDFRender] = React.useState(false);
   const clientInformation = useSelector((state) => state.client);
   const settingsInfo = useSelector((state) => state.settings);
@@ -86,64 +91,64 @@ export default function Invoice({
         savePDF(rows);
       }
     });
-    return () => {
-      cancel = true;
-    };
+    return () => (cancel = true);
   }, []);
+
+  React.useEffect(() => {
+    if (Object.keys(invoiceDetails).length > 0) {
+      if (!isPreview) {
+        try {
+          JSPWork();
+          resetPrintOutState();
+        } catch (error) {
+          console.error(error);
+        }
+      } else {
+        setPDFRender(true);
+      }
+    }
+  }, [invoiceDetails]);
 
   async function getInvoiceSettings() {
     try {
       const response = await apiRequest('api/invoice_settings', null, 'GET');
-      console.log('invoice_settings', response.results[0]);
-      console.info('invoice_settings');
       setInvoiceDetails(response.results[0]);
     } catch (error) {
       console.error(error);
     }
   }
 
-  React.useEffect(() => {
-    if (Object.keys(invoiceDetails).length > 0) {
-      if (!isPreview) {
-        try {
-          if (JSPrintManager.websocket_status == WSStatus.Open) {
-            var cpj = new ClientPrintJob();
-            cpj.clientPrinter = new InstalledPrinter(printDetails?.printer);
-            const element = createDoc(rows);
-            const blob = pdf(element).toBlob();
-            const no_of_copies = parseInt(printDetails?.copies);
-            let myPrintFile = new PrintFilePDF(
-              blob,
-              FileSourceType.BLOB,
-              `INVOICE-${entry?.entry_number}`,
-              no_of_copies,
-            );
-            myPrintFile.printRotation = PrintRotation['Rot90'];
-            myPrintFile.pageSizing = Sizing['Fit'];
-            cpj.files.push(myPrintFile);
-            cpj.onUpdated = function (data) {
-              console.log('JSP onUpdated', data);
-            };
-            cpj.onFinished = function (data) {
-              console.log('JSP onFinished', data);
-            };
-            cpj.sendToClient();
-          } else if (JSPrintManager.websocket_status == WSStatus.Closed)
-            console.log('JSPM is not installed or not running!');
-          else if (JSPrintManager.websocket_status == WSStatus.Blocked)
-            console.log('JSPM has blocked this website!');
-        } catch (error) {
-          console.error(error);
-        }
-        resetPrintOutState();
-      } else {
-        // setPDFRender(true);
-      }
-    }
-  }, [invoiceDetails]);
+  function JSPWork() {
+    if (JSPrintManager.websocket_status == WSStatus.Open) {
+      var cpj = new ClientPrintJob();
+      cpj.clientPrinter = new InstalledPrinter(printDetails?.printer);
+      const element = createDoc();
+      const blob = pdf(element).toBlob();
+      const no_of_copies = parseInt(printDetails?.copies);
+      let myPrintFile = new PrintFilePDF(
+        blob,
+        FileSourceType.BLOB,
+        `INVOICE-${entry?.entry_number}`,
+        no_of_copies,
+      );
+      myPrintFile.printRotation = PrintRotation['Rot90'];
+      myPrintFile.pageSizing = Sizing['Fit'];
+      cpj.files.push(myPrintFile);
+      cpj.onUpdated = function (data) {
+        console.log('JSP onUpdated', data);
+      };
+      cpj.onFinished = function (data) {
+        console.log('JSP onFinished', data);
+      };
+      cpj.sendToClient();
+    } else if (JSPrintManager.websocket_status == WSStatus.Closed)
+      console.log('JSPM is not installed or not running!');
+    else if (JSPrintManager.websocket_status == WSStatus.Blocked)
+      console.log('JSPM has blocked this website!');
+  }
 
   async function savePDF(rows) {
-    const element = createDoc(rows);
+    const element = createDoc();
     const myPdf = pdf([]);
     myPdf.updateContainer(element);
     const blob = await myPdf.toBlob(); /*create blob*/
@@ -201,43 +206,96 @@ export default function Invoice({
     }
   }
 
-  const rows = pages.map((page) => (
+  const rows = pages.map((page, index) => (
     <Page size="A4" orientation="landscape" style={styles.page}>
-      <InvoiceTitleFullHeaderVertical
+      <InvoiceTitle
         title={title}
-        invoice={invoice}
+        invoice={invoiceDetails}
         header={entry}
         customer={customer}
         logo_url={`${clientInformation?.client_logo}`}
       />
-      <InvoiceItemsTableFullHeaderVertical
-        invoice={invoice}
+      <IrnNote footer={entry} />
+      <InvoiceItemsTable
+        invoice={invoiceDetails}
         products={page}
         max_items={max_items}
       />
-      <InvoiceFooterFullHeaderVertical
+      <InvoiceFooter
         footer={entry}
         items={items}
-        invoice={invoice}
+        invoice={invoiceDetails}
+        products={products}
+        show_total={index == pages.length - 1 ? true : false}
         qr_code={`${
           settingsInfo?.qr_code == ''
             ? 'https://staticfilessp360.blob.core.windows.net/logos/white.jpg'
             : settingsInfo?.qr_code
         }`}
-        crdb_amount={crdb_amount}
       />
-      <TempNoteFullHeaderVertical footer={entry} />
+      <TempNote
+        footer={entry}
+        page_number={`Page ${index + 1} of ${pages.length}`}
+      />
     </Page>
   ));
 
-  function createDoc(rows) {
+  const headerNoLogoInvoice = pages.map((page) => (
+    <Page size="A4" orientation="landscape" style={styles.page}>
+      <InvoiceTitleNoLogo
+        title={title}
+        invoice={invoiceDetails}
+        header={entry}
+        customer={customer}
+        logo_url={`${clientInformation?.client_logo}`}
+      />
+      <InvoiceItemsTableNoLogo
+        invoice={invoiceDetails}
+        products={page}
+        max_items={max_items}
+      />
+      <InvoiceFooterNoLogo
+        footer={entry}
+        items={items}
+        invoice={invoiceDetails}
+        products={products}
+        qr_code={`${
+          settingsInfo?.qr_code == ''
+            ? 'https://staticfilessp360.blob.core.windows.net/logos/white.jpg'
+            : settingsInfo?.qr_code
+        }`}
+      />
+      <TempNoteNoLogo footer={entry} />
+    </Page>
+  ));
+
+  const renderprintLayout = () => {
+    switch (invoiceDetails?.print_layout_sale_id) {
+      case 1:
+        return rows;
+      // case 2:
+      // case 3:
+      // case 4:
+      //   return fullHeaderRows;
+      // case 5:
+      //   return fullHeaderBlockRows;
+      case 6:
+        return rows;
+      case 7:
+        return headerNoLogoInvoice;
+      default:
+        return rows;
+    }
+  };
+
+  function createDoc() {
     return (
       <Document
         id="PDFViewer"
-        key={entry?.entry_number}
-        title={`INVOICE-${entry?.entry_number}`}
+        title={`INVOICE-${entry.entry_number}`}
+        key={entry.entry_number}
       >
-        {rows}
+        {renderprintLayout()}
       </Document>
     );
   }
@@ -246,9 +304,11 @@ export default function Invoice({
     return (
       <Fragment>
         {pdfRender && (
-          <PDFViewer width="100%" height="800">
-            {createDoc(rows)}
-          </PDFViewer>
+          <div style={{ height: '100%' }}>
+            <PDFViewer width="100%" height="100%" style={{ border: 'none' }}>
+              {createDoc()}
+            </PDFViewer>
+          </div>
         )}
       </Fragment>
     );

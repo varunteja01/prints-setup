@@ -1,18 +1,18 @@
-import React, { Fragment } from 'react';
-import { Text, View, StyleSheet } from '@react-pdf/renderer';
-import Moment from 'moment';
+import React, { Fragment } from 'react'
+import { Text, View, StyleSheet } from '@react-pdf/renderer'
+import Moment from 'moment'
 
-const borderColor = '#000';
+const borderColor = '#000'
 
-const InvoiceTableRow = ({ items, columns, styles, pageno, max_items }) => {
-  const create_style = StyleSheet.create(styles);
-  const rows = items.map((item, row_index) => (
+const InvoiceTableRow = ({ items, columns, styles }) => {
+  const create_style = StyleSheet.create(styles)
+  const rows = items.map((item) => (
     <View
       style={{
         flexDirection: 'row',
         borderBottomColor: borderColor,
         borderBottomWidth: 0.5,
-        alignItems: 'center',
+        // alignItems: 'center',
         fontStyle: 'bold',
         fontSize: 9,
         color: '#000',
@@ -36,22 +36,22 @@ const InvoiceTableRow = ({ items, columns, styles, pageno, max_items }) => {
               ? '#dbdbdb'
               : '',
           height: item.product_name?.length > 40 ? 29 : 14.5,
-        };
+        }
         if (element.type == 'number') {
           return (
             <Text style={cell_style}>
               {item[`${element.value}`] == 0 ? ' ' : item[`${element.value}`]}
             </Text>
-          );
+          )
         }
         if (element.type == 'amount') {
           return (
             <Text style={cell_style}>
               {parseFloat(item[`${element.value}`] ?? 0) == 0
-                ? ' '
+                ? '0.00'
                 : parseFloat(item[`${element.value}`]).toFixed(2)}
             </Text>
-          );
+          )
         }
         if (element.type == 'expiry') {
           return (
@@ -59,31 +59,18 @@ const InvoiceTableRow = ({ items, columns, styles, pageno, max_items }) => {
               {item[`${element.value}`] == undefined ||
               item[`${element.value}`] === ''
                 ? ''
-                : Moment(item[`${element.value}`]).format('MM/YY')}
+                : Moment(item[`${element.value}`]).format('MM/YYYY')}
             </Text>
-          );
+          )
         }
         if (element.type == 'item_order') {
-          return (
-            <Text style={cell_style}>
-              {item[`${element.value}`] >= 0
-                ? item[`${element.value}`] + 1
-                : ''}
-            </Text>
-          );
-        }
-        if (element.type == 'item_order_seq') {
-          return (
-            <Text style={cell_style}>
-              {pageno * max_items + (row_index + 1)}
-            </Text>
-          );
+          return <Text style={cell_style}>{item[`${element.value}`] + 1}</Text>
         }
         if (element.type == 'rate') {
           return (
             <Text style={cell_style}>
               {parseFloat(item[`${element.value}`] ?? 0) == 0
-                ? ' '
+                ? '0.00'
                 : parseFloat(item[`${element.value}`]).toFixed(2)}
               {item?.indicator_flags?.[0]?.net_rate_indicator == true
                 ? '*'
@@ -93,7 +80,17 @@ const InvoiceTableRow = ({ items, columns, styles, pageno, max_items }) => {
                 ? '^'
                 : ''}
             </Text>
-          );
+          )
+        }
+        if (element.type == 'mrp') {
+          return (
+            <Text style={cell_style}>
+              {parseFloat(item[`${element.value}`] ?? 0) == 0
+                ? ' '
+                : parseFloat(item[`${element.value}`]).toFixed(2)}
+              {item?.indicator_flags?.[0]?.mrp_indicator == true ? '*' : ''}
+            </Text>
+          )
         }
         if (element.type == 'all_indicated_product_name') {
           return (
@@ -115,7 +112,7 @@ const InvoiceTableRow = ({ items, columns, styles, pageno, max_items }) => {
                 ? '[P]'
                 : ''}
             </Text>
-          );
+          )
         }
         if (element.type == 'indicated_product_name') {
           return (
@@ -128,36 +125,13 @@ const InvoiceTableRow = ({ items, columns, styles, pageno, max_items }) => {
                 ? '[P]'
                 : ''}
             </Text>
-          );
+          )
         }
-        if (element.type == 'mrp') {
-          return (
-            <Text style={cell_style}>
-              {parseFloat(item[`${element.value}`] ?? 0) == 0
-                ? ' '
-                : parseFloat(item[`${element.value}`]).toFixed(2)}
-              {item?.indicator_flags?.[0]?.mrp_indicator == true ? '*' : ''}
-            </Text>
-          );
-        }
-        if (element.type == 'combined_qty') {
-          let qty = parseFloat(item['sale_quantity'] || 0);
-          let free =
-            parseFloat(item['sale_free'] || 0) > 0
-              ? `+${item['sale_free']}`
-              : '';
-          return (
-            <Text
-              style={{ ...cell_style, fontFamily: 'Helvetica-Bold' }}
-            >{`${qty}${free}`}</Text>
-          );
-        }
-
-        return <Text style={cell_style}>{item[`${element.value}`] ?? ''}</Text>;
+        return <Text style={cell_style}>{item[`${element.value}`] ?? ''}</Text>
       })}
     </View>
-  ));
-  return <Fragment>{rows}</Fragment>;
-};
+  ))
+  return <Fragment>{rows}</Fragment>
+}
 
-export default InvoiceTableRow;
+export default InvoiceTableRow

@@ -7,18 +7,14 @@ import { View, StyleSheet } from '@react-pdf/renderer'
 // } from '../Components/Table';
 import InvoiceTableHeader from './InvoiceTableHeader'
 import InvoiceTableRow from './InvoiceTableRow'
-// import InvoiceTableRow from '../Components/Table/InvoiceTableRow';
 import InvoiceTableBlankSpace from './InvoiceTableBlankSpace'
-
-const borderColor = '#100c08'
 const styles = StyleSheet.create({
   tableContainer: {
     flexDirection: 'row',
     flexWrap: 'wrap',
     marginTop: 0,
-    borderWidth: 0.5,
-    borderColor: borderColor,
-    borderBottomWidth: 0,
+    borderWidth: 1,
+    borderColor: '#000',
   },
 })
 
@@ -28,8 +24,8 @@ const InvoiceItemsTable = ({
   max_items,
   printColumns,
   printTableStyles,
+  verticalRows,
   pageno,
-  moduleSettings,
 }) => {
   return (
     <View style={styles.tableContainer}>
@@ -38,11 +34,16 @@ const InvoiceItemsTable = ({
         items={products}
         columns={printColumns}
         styles={StyleSheet.create(printTableStyles)}
+        verticalRows={verticalRows}
         pageno={pageno}
         max_items={max_items}
-        moduleSettings={moduleSettings}
       />
-      <InvoiceTableBlankSpace rowsCount={max_items - products.length} />
+      <InvoiceTableBlankSpace
+        rowsCount={max_items - products.length}
+        columns={printColumns}
+        styles={StyleSheet.create(printTableStyles)}
+        verticalRows={verticalRows}
+      />
     </View>
   )
 }

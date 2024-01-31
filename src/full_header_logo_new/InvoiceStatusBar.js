@@ -1,8 +1,8 @@
-import React from 'react';
-import { Text, View, StyleSheet } from '@react-pdf/renderer';
+import React from 'react'
+import { Text, View, StyleSheet } from '@react-pdf/renderer'
 
-const borderColor = '#dbdbdb';
-const fontColor = '#000';
+const borderColor = '#dbdbdb'
+const fontColor = '#000'
 const styles = StyleSheet.create({
   container: {
     flexDirection: 'row',
@@ -31,13 +31,13 @@ const styles = StyleSheet.create({
     textAlign: 'right',
     paddingRight: '2px',
   },
-});
+})
 
 const InvoiceTableHeader = () => (
   <View style={styles.container}>
     <Text style={styles.sno}> </Text>
     <Text style={styles.hsn}> </Text>
   </View>
-);
+)
 
-export default InvoiceTableHeader;
+export default InvoiceTableHeader

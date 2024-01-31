@@ -1,8 +1,8 @@
-import React from 'react';
-import { Text, View, StyleSheet } from '@react-pdf/renderer';
+import React from 'react'
+import { Text, View, StyleSheet } from '@react-pdf/renderer'
 
-const borderColor = '#dbdbdb';
-const fontColor = '#000';
+const borderColor = '#dbdbdb'
+const fontColor = '#000'
 const styles = StyleSheet.create({
   container: {
     flexDirection: 'row',
@@ -37,18 +37,18 @@ const styles = StyleSheet.create({
     textAlign: 'left',
     paddingRight: '2px',
   },
-});
+})
 
 const InvoiceTableHeader = ({ footer, page_number }) => (
   <>
     <View style={styles.container}>
       <Text style={styles.hsn}>
-        Powered by Smartpharma360™ || +91 7337441325 || www.smartpharma360.in
+        Powered by Smartpharma360™ || +91 7337441325 || www.smartpharma360.in{' '}
       </Text>
       <Text style={styles.middle}>{page_number}</Text>
       <Text style={styles.sno}>{footer.temp_invoice_number}</Text>
     </View>
-    <View style={{ ...styles.container, borderBottomWidth: 0, height: 22 }}>
+    {/* <View style={{ ...styles.container, borderBottomWidth: 0, height: 22 }}>
       <Text
         style={{
           width: '100%',
@@ -61,8 +61,8 @@ const InvoiceTableHeader = ({ footer, page_number }) => (
       >
         WE DO NOT ACCEPT RETURN IN CASE OF BREAKAGE & EXPIRY
       </Text>
-    </View>
+    </View> */}
   </>
-);
+)
 
-export default InvoiceTableHeader;
+export default InvoiceTableHeader

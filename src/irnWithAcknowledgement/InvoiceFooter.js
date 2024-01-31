@@ -1,17 +1,25 @@
 import React from 'react';
 import { View, StyleSheet } from '@react-pdf/renderer';
-import InvoiceFooterHead from './InvoiceFooterHead';
+import InvoiceThankYouMsg from './InvoiceThankYouMsg';
 import InvoiceFooterDetails from './InvoiceFooterDetails';
+import InvoiceNote from './InvoiceNote';
 
-const borderColor = '#100c08';
+import InvoiceStatusBar from './InvoiceStatusBar';
+
+const tableRowsCount = 20;
+
 const styles = StyleSheet.create({
   tableContainer: {
     flexDirection: 'row',
     flexWrap: 'wrap',
     marginTop: 0,
-    borderWidth: 0.5,
-    borderColor: borderColor,
-    height: '180px',
+    borderRightWidth: 1,
+    borderRightColor: '#000',
+    borderLeftColor: '#000',
+    borderLeftWidth: 1,
+    borderBottomWidth: 1,
+    borderBottomColor: '#000',
+    height: '150px',
   },
 });
 
@@ -20,20 +28,22 @@ const InvoiceFooter = ({
   footer,
   items,
   products,
-  show_total,
   qr_code,
-  crdb_amount,
+  show_total,
+  timestamp,
+  moduleSettings,
 }) => (
   <View style={styles.tableContainer}>
-    <InvoiceFooterHead footer={footer} items={items} show_total={show_total} />
+    <InvoiceNote footer={footer} />
+    <InvoiceThankYouMsg />
     <InvoiceFooterDetails
       footer={footer}
       items={items}
       products={products}
       invoice={invoice}
       qr_code={qr_code}
-      crdb_amount={crdb_amount}
       show_total={show_total}
+      moduleSettings={moduleSettings}
     />
   </View>
 );

@@ -1,7 +1,7 @@
 import React from 'react'
 import { Text, View, StyleSheet, Font, Image } from '@react-pdf/renderer'
-import { numberFormat } from './number'
-// import { convertNumToWords } from 'utils/helpers';
+import { numberFormat } from '../utils/number'
+// import { convertNumToWords } from 'utils/helpers'
 
 const borderColor = '#100c08'
 
@@ -31,16 +31,17 @@ const styles = StyleSheet.create({
   footer2: {
     flexDirection: 'column',
     alignItems: 'center',
-    height: 140,
+    height: 170,
     fontStyle: 'bold',
     flexGrow: 1,
     fontSize: 7,
     width: '100%',
+    // border: 1,
   },
   footer3: {
     flexDirection: 'row',
     alignItems: 'center',
-    height: 15,
+    height: 13,
     fontStyle: 'bold',
     flexGrow: 1,
     fontSize: 7,
@@ -158,23 +159,25 @@ const styles = StyleSheet.create({
   footerDiv: {
     flexDirection: 'row',
     alignItems: 'center',
-    height: 20,
+    height: 15,
     fontStyle: 'bold',
     flexGrow: 1,
     fontSize: 9,
     width: '100%',
+    // border: 1,
   },
   footerDiv2: {
     flexDirection: 'row',
     alignItems: 'center',
-    height: '30px',
+    height: '40px',
     fontStyle: 'bold',
     flexGrow: 1,
     fontSize: 9,
     width: '100%',
+    // border: 1,
   },
   amount_words: {
-    width: '73%',
+    width: '100%',
     height: '100%',
     textAlign: 'left',
     paddingLeft: '15px',
@@ -182,14 +185,17 @@ const styles = StyleSheet.create({
     borderRightWidth: 0.5,
     borderBottomColor: borderColor,
     borderBottomWidth: 0.5,
+    paddingTop: '2px',
+    // border: 1,
   },
   footer4: {
     flexDirection: 'row',
     alignItems: 'center',
     fontStyle: 'bold',
-    fontSize: 7,
+    fontSize: 8,
     width: '100%',
-    height: '30px',
+    height: '50px',
+    // border: 1,
   },
   grand_tot_label: {
     width: '27%',
@@ -213,13 +219,15 @@ const styles = StyleSheet.create({
   },
   tncDiv: {
     width: '40%',
-    fontSize: 5,
+    fontSize: 5.5,
     paddingTop: '2px',
     paddingLeft: '2px',
+    // border: 1,
+    height: '50px',
   },
 
   tncLabel: {
-    fontSize: '6',
+    fontSize: '8',
     textDecoration: 'underline',
     fontStyle: 'bold',
   },
@@ -229,6 +237,8 @@ const styles = StyleSheet.create({
     fontSize: 5,
     // textAlign: 'center',
     paddingTop: '2px',
+    // border: 1,
+    height: '50px',
   },
   signatory: {
     fontSize: 8,
@@ -295,21 +305,25 @@ const styles = StyleSheet.create({
     margin: 0,
     fontSize: 7,
     fontFamily: 'Helvetica-Bold',
+    paddingBottom: 2,
+    // border: 1,
   },
   forLabel: {
-    width: '25%',
+    width: '40%',
     marginTop: '2px',
     fontSize: 8,
     fontStyle: 'bold',
     textAlign: 'left',
   },
   forValue: {
-    width: '75%',
-    marginTop: '2px',
+    width: '60%',
+    marginTop: '0px',
     fontSize: 8,
     fontStyle: 'bold',
     textAlign: 'right',
     fontFamily: 'Helvetica-Bold',
+    paddingRight: '20px',
+    // border: 1,
   },
   logo: {
     margin: '15px 0 0 0px',
@@ -327,6 +341,102 @@ const InvoiceFooter = ({
   crdb_amount,
   show_total = false,
 }) => {
+  function convertNumberToWords(amount) {
+    var words = new Array()
+    words[0] = ''
+    words[1] = 'One'
+    words[2] = 'Two'
+    words[3] = 'Three'
+    words[4] = 'Four'
+    words[5] = 'Five'
+    words[6] = 'Six'
+    words[7] = 'Seven'
+    words[8] = 'Eight'
+    words[9] = 'Nine'
+    words[10] = 'Ten'
+    words[11] = 'Eleven'
+    words[12] = 'Twelve'
+    words[13] = 'Thirteen'
+    words[14] = 'Fourteen'
+    words[15] = 'Fifteen'
+    words[16] = 'Sixteen'
+    words[17] = 'Seventeen'
+    words[18] = 'Eighteen'
+    words[19] = 'Nineteen'
+    words[20] = 'Twenty'
+    words[30] = 'Thirty'
+    words[40] = 'Forty'
+    words[50] = 'Fifty'
+    words[60] = 'Sixty'
+    words[70] = 'Seventy'
+    words[80] = 'Eighty'
+    words[90] = 'Ninety'
+    var atemp = amount?.toString().split('.')
+    var number = atemp[0]?.split(',')?.join('')
+    var n_length = number?.length
+    var words_string = ''
+    if (n_length <= 9) {
+      var n_array = new Array(0, 0, 0, 0, 0, 0, 0, 0, 0)
+      var received_n_array = new Array()
+      for (var i = 0; i < n_length; i++) {
+        received_n_array[i] = number.substr(i, 1)
+      }
+      for (var i = 9 - n_length, j = 0; i < 9; i++, j++) {
+        n_array[i] = received_n_array[j]
+      }
+      for (var i = 0, j = 1; i < 9; i++, j++) {
+        if (i == 0 || i == 2 || i == 4 || i == 7) {
+          if (n_array[i] == 1) {
+            n_array[j] = 10 + parseInt(n_array[j])
+            n_array[i] = 0
+          }
+        }
+      }
+      var value = ''
+      for (var i = 0; i < 9; i++) {
+        if (i == 0 || i == 2 || i == 4 || i == 7) {
+          value = n_array[i] * 10
+        } else {
+          value = n_array[i]
+        }
+        if (value != 0) {
+          words_string += words[value] + ' '
+        }
+        if (
+          (i == 1 && value != 0) ||
+          (i == 0 && value != 0 && n_array[i + 1] == 0)
+        ) {
+          words_string += 'Crores '
+        }
+        if (
+          (i == 3 && value != 0) ||
+          (i == 2 && value != 0 && n_array[i + 1] == 0)
+        ) {
+          words_string += 'Lakhs '
+        }
+        if (
+          (i == 5 && value != 0) ||
+          (i == 4 && value != 0 && n_array[i + 1] == 0)
+        ) {
+          words_string += 'Thousand '
+        }
+        if (
+          i == 6 &&
+          value != 0 &&
+          n_array[i + 1] != 0 &&
+          n_array[i + 2] != 0
+        ) {
+          words_string += 'Hundred and '
+        } else if (i == 6 && value != 0) {
+          words_string += 'Hundred '
+        }
+      }
+      words_string = words_string.split('  ').join(' ')
+    }
+    words_string += 'Rupees Only'
+    return words_string
+  }
+
   return (
     <View style={styles.footer2}>
       <View style={styles.container}>
@@ -516,48 +626,49 @@ const InvoiceFooter = ({
         </Text>
       </View>
 
-      <View style={styles.footerDiv}>
-        <Text style={styles.amount_words}>
-          {show_total
-            ? `RS. ${numberFormat(
-                (footer?.net_amount || 0) + (crdb_amount || 0)
-              )}`
-            : ''}
-        </Text>
-
-        <Text style={styles.grand_tot_label}>
-          {show_total ? `NET PAYABLE` : ''}
-        </Text>
-      </View>
-
       <View style={styles.footerDiv2}>
         <View style={styles?.amount_words}>
           <View style={{ flexDirection: 'row' }}>
-            <Text style={{ ...styles.bankDetails, width: '60%' }}>
-              Bank Name : {show_total ? invoice?.bank_name : ''}
+            <Text
+              style={{ ...styles.bankDetails, width: '60%', paddingTop: 3 }}
+            >
+              Bank Name : {invoice?.bank_name}
             </Text>
-            <Text style={{ ...styles.bankDetails, width: '60%' }}>
-              IFSC Code : {show_total ? invoice?.ifsc_code : ''}
+            <Text
+              style={{ ...styles.bankDetails, width: '40%', paddingTop: 3 }}
+            >
+              IFSC Code : {invoice?.ifsc_code}
             </Text>
           </View>
           <Text style={styles.bankDetails}>
-            Bank A/C : {show_total ? invoice?.account_number : ''}
+            Bank A/C : {invoice?.account_number}
           </Text>
           <Text style={styles.bankDetails}>
-            Branch : {show_total ? invoice?.bank_branch_name : ''}
+            Branch : {invoice?.bank_branch_name}
           </Text>
         </View>
 
-        <Text style={styles.grand_tot_val}>
-          {show_total
-            ? footer?.net_amount % 1 != 0
-              ? `Rs. ${numberFormat(
-                  (footer?.net_amount || 0) + (crdb_amount || 0)
-                )}`
-              : `Rs. ${numberFormat(
-                  (footer?.net_amount || 0) + (crdb_amount || 0)
-                )}.00`
-            : 'Continued...'}
+        <Text style={styles.grand_tot_label}>
+          {show_total && 'NET PAYABLE\n'}
+          {show_total && (
+            <Text>
+              {footer?.net_amount % 1 !== 0
+                ? `Rs. ${numberFormat(
+                    (footer?.net_amount || 0) + (crdb_amount || 0)
+                  )}`
+                : `Rs. ${numberFormat(
+                    (footer?.net_amount || 0) + (crdb_amount || 0)
+                  )}.00`}
+            </Text>
+          )}
+          {!show_total && 'Continued...'}
+        </Text>
+      </View>
+
+      <View style={styles.footerDiv}>
+        <Text style={styles.amount_words}>
+          Amt in Words:{' '}
+          {show_total == true ? convertNumberToWords(footer?.net_amount) : ''}
         </Text>
       </View>
 
@@ -570,19 +681,25 @@ const InvoiceFooter = ({
         <View
           style={{
             width: '10%',
-            height: '60px',
+            height: '40px',
+            // border: 1,
+            height: '50px',
           }}
         >
           <Image style={styles.logo} src={qr_code} />
         </View>
         <View style={styles.authsignDiv}>
-          <View style={{ flexDirection: 'row', paddingTop: '2px' }}>
-            <Text style={styles.forLabel}>Checked By :</Text>
+          <View style={{ flexDirection: 'row', paddingTop: '0px' }}>
+            <Text style={styles.forLabel}>Billed By :</Text>
             <Text style={styles.forValue}>For {invoice.firm_name} </Text>
           </View>
           <View style={{ flexDirection: 'row' }}>
-            <Text style={styles.forLabel}>Delivered By :</Text>
+            <Text style={styles.forLabel}>Order By :</Text>
             <Text style={styles.forValue}> </Text>
+          </View>
+          <View style={{ flexDirection: 'row' }}>
+            <Text style={styles.forLabel}></Text>
+            <Text style={styles.forValue}>Authorised Signatory</Text>
           </View>
         </View>
       </View>

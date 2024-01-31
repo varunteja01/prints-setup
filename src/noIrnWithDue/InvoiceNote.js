@@ -6,7 +6,7 @@ const fontColor = '#000';
 const styles = StyleSheet.create({
   container: {
     flexDirection: 'row',
-    borderBottomColor: '#dbdbdb',
+    borderBottomColor: '#000',
     backgroundColor: '#fff',
     borderBottomWidth: 1,
     alignItems: 'center',
@@ -18,25 +18,23 @@ const styles = StyleSheet.create({
   sno: {
     width: '4%',
     paddingLeft: '3px',
+    backgroundColor: '#dbdbdb',
     color: fontColor,
     borderRightColor: borderColor,
     borderRightWidth: 1,
-    height: 14,
   },
   hsn: {
-    width: '96%',
+    width: '66%',
     color: fontColor,
-    borderRightColor: borderColor,
-    borderRightWidth: 1,
-    textAlign: 'right',
+    textAlign: 'left',
     paddingRight: '2px',
   },
 });
 
-const InvoiceTableHeader = () => (
+const InvoiceTableHeader = ({ footer }) => (
   <View style={styles.container}>
-    <Text style={styles.sno}> </Text>
-    <Text style={styles.hsn}> </Text>
+    <Text style={styles.sno}>Note: </Text>
+    <Text style={styles.hsn}>{footer.comments}</Text>
   </View>
 );
 

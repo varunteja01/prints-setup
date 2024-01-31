@@ -1,10 +1,5 @@
 import React from 'react'
 import { View, StyleSheet } from '@react-pdf/renderer'
-// import {
-//   InvoiceTableHeader,
-//   InvoiceTableRow,
-//   InvoiceTableBlankSpace,
-// } from '../Components/Table';
 import InvoiceTableHeader from './InvoiceTableHeader'
 import InvoiceTableRow from './InvoiceTableRow'
 // import InvoiceTableRow from '../Components/Table/InvoiceTableRow';

@@ -19,6 +19,7 @@ import Consolidated_retail_invoice1 from '../consolidated_retail_invoice/Invoice
 import CompactRetailInvoiceNew from '../compact_retail_invoice_new/Invoice'
 import NoIrnInvoice2 from '../noIrnNewFooter2/Invoice'
 import FullHeaderLogo from '../full_header_logo/Invoice'
+import FullHeaderLogoNew from '../full_header_logo_new/Invoice'
 // import FullHeaderVertialA5 from '../full_header_vertical_a5/Invoice'
 // import FullHeaderA4A5V2 from '../full_header_vertical_a5_v2/Invoice'
 import FullHeaderVertialA5 from '../full_header_vertical_a5/Invoice'
@@ -28,6 +29,9 @@ import FullHeaderBlockEmpty from '../full_header_block_empty/Invoice'
 import FullHeader from '../full_header/Invoice'
 import NoIrnInvoice3 from '../noIrnNewFooter3/Invoice'
 import DefaultRetailInvoice from '../default_retail_invoice/Invoice'
+import IrnWithAcknowledgement from '../irnWithAcknowledgement/Invoice'
+import NoIrnWithDue from '../noIrnWithDue/Invoice'
+import IrnDoubleA5 from '../irn_double_a5/Invoice'
 
 const pageSize = { A4: 'A4', LEGAL: 'LEGAL' }
 const orientation = { PORTRAIT: 'portrait', LANDSCAPE: 'landscape' }
@@ -361,6 +365,31 @@ const Invoice = ({
     <FullHeaderLogo
       pageDetails={{
         pageSize: pageSize.A4,
+        halfPage: styles.halfPage,
+        imageContainer: styles.imageContainer,
+      }}
+      pages={pagesData}
+      title={title}
+      invoice={invoice}
+      entry={entry}
+      customer={customer}
+      max_items={max_items}
+      printColumns={printColumns}
+      printTableStyles={printTableStyles}
+      items={items}
+      products={products}
+      clientInformation={clientInformation}
+      settingsInfo={settingsInfo}
+      crdb_amount={crdb_amount}
+      dynamicPagination={dynamicPagination}
+      maxCharsPerLine={max_chars}
+      page_blanks={page_blanks}
+    />
+  )
+  const full_header_logo_new = (
+    <FullHeaderLogoNew
+      pageDetails={{
+        pageSize: pageSize.A4,
         orientation: orientation.LANDSCAPE,
         styles: styles.halfPage,
       }}
@@ -565,10 +594,86 @@ const Invoice = ({
       page_blanks={page_blanks}
     />
   )
+  const irnWithAcknowledgement = (
+    <IrnWithAcknowledgement
+      pageDetails={{
+        pageSize: pageSize.A4,
+        orientation: orientation.LANDSCAPE,
+        styles: styles.page,
+      }}
+      pages={pagesData}
+      title={title}
+      invoice={invoice}
+      entry={entry}
+      customer={customer}
+      max_items={max_items}
+      printColumns={printColumns}
+      printTableStyles={printTableStyles}
+      items={items}
+      products={products}
+      clientInformation={clientInformation}
+      settingsInfo={settingsInfo}
+      crdb_amount={crdb_amount}
+      dynamicPagination={dynamicPagination}
+      maxCharsPerLine={max_chars}
+      page_blanks={page_blanks}
+    />
+  )
+
+  const noIrnWithDue = (
+    <NoIrnWithDue
+      pageDetails={{
+        pageSize: pageSize.A4,
+        orientation: orientation.LANDSCAPE,
+        styles: styles.page,
+      }}
+      pages={pagesData}
+      title={title}
+      invoice={invoice}
+      entry={entry}
+      customer={customer}
+      max_items={max_items}
+      printColumns={printColumns}
+      printTableStyles={printTableStyles}
+      items={items}
+      products={products}
+      clientInformation={clientInformation}
+      settingsInfo={settingsInfo}
+      crdb_amount={crdb_amount}
+      dynamicPagination={dynamicPagination}
+      maxCharsPerLine={max_chars}
+      page_blanks={page_blanks}
+    />
+  )
+  const irn_double_a5 = (
+    <IrnDoubleA5
+      pageDetails={{
+        pageSize: pageSize.A4,
+        orientation: orientation.PORTRAIT,
+        styles: styles.page,
+      }}
+      pages={pagesData}
+      title={title}
+      invoice={invoice}
+      entry={entry}
+      customer={customer}
+      max_items={max_items}
+      printColumns={printColumns}
+      printTableStyles={printTableStyles}
+      items={items}
+      products={products}
+      clientInformation={clientInformation}
+      settingsInfo={settingsInfo}
+      crdb_amount={crdb_amount}
+      dynamicPagination={dynamicPagination}
+      maxCharsPerLine={max_chars}
+      page_blanks={page_blanks}
+    />
+  )
 
   return (
     <PDFViewer style={{ width: '100%', height: '100%' }}>
-      <Document>{noIrnNewFooter2}</Document>
+      <Document>{full_header_logo}</Document>
     </PDFViewer>
   )
 }

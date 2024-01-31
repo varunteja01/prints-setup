@@ -18,10 +18,10 @@ import {
   InstalledPrinter,
 } from 'jsprintmanager';
 
-import InvoiceTitleFullHeaderVertical from './InvoiceTitle';
-import InvoiceItemsTableFullHeaderVertical from './InvoiceItemsTable';
-import InvoiceFooterFullHeaderVertical from './InvoiceFooter';
-import TempNoteFullHeaderVertical from './TempNote';
+import InvoiceTitleNoLogo from './InvoiceTitle';
+import InvoiceItemsTableNoLogo from './InvoiceItemsTable';
+import InvoiceFooterNoLogo from './InvoiceFooter';
+import TempNoteNoLogo from './TempNote';
 import apiRequest from 'utils/api';
 import axios from 'axios';
 import { useSelector } from 'react-redux';
@@ -59,19 +59,6 @@ export default function Invoice({
   resetPrintOutState,
   crdb_amount,
 }) {
-  Font.register({
-    family: 'Helvetica',
-    fonts: [
-      {
-        src: `./data/Helvetica.ttf`,
-      },
-      {
-        src: `./data/Helvetica-Bold.ttf`,
-        fontWeight: 'bold',
-      },
-    ],
-  });
-
   const [invoiceDetails, setInvoiceDetails] = React.useState({});
 
   const [pdfRender, setPDFRender] = React.useState(false);
@@ -203,19 +190,19 @@ export default function Invoice({
 
   const rows = pages.map((page) => (
     <Page size="A4" orientation="landscape" style={styles.page}>
-      <InvoiceTitleFullHeaderVertical
+      <InvoiceTitleNoLogo
         title={title}
         invoice={invoice}
         header={entry}
         customer={customer}
         logo_url={`${clientInformation?.client_logo}`}
       />
-      <InvoiceItemsTableFullHeaderVertical
+      <InvoiceItemsTableNoLogo
         invoice={invoice}
         products={page}
         max_items={max_items}
       />
-      <InvoiceFooterFullHeaderVertical
+      <InvoiceFooterNoLogo
         footer={entry}
         items={items}
         invoice={invoice}
@@ -226,7 +213,7 @@ export default function Invoice({
         }`}
         crdb_amount={crdb_amount}
       />
-      <TempNoteFullHeaderVertical footer={entry} />
+      <TempNoteNoLogo footer={entry} />
     </Page>
   ));
 

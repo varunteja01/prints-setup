@@ -573,7 +573,7 @@ const InvoiceFooter = ({
         >
           {clientAnalyticStats?.latest_receipt
             ? moment(clientAnalyticStats?.latest_receipt).format('DD-MM-YYYY')
-            : 'DD/MM/YYYY'}
+            : ' '}
         </Text>
         <Text style={styles.blank}></Text>
         <Text style={styles.footer_heading3}>DiscAmt(-)</Text>

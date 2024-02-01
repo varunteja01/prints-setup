@@ -149,6 +149,18 @@ const InvoiceTableRow = ({
               </Text>
             )
           }
+          if (element.type == 'combined_qty') {
+            let qty = parseFloat(item['sale_quantity'] || 0)
+            let free =
+              parseFloat(item['sale_free'] || 0) > 0
+                ? `+${item['sale_free']}`
+                : ''
+            return (
+              <Text
+                style={{ ...cell_style, fontFamily: 'Helvetica' }}
+              >{`${qty}${free}`}</Text>
+            )
+          }
 
           return (
             <Text style={cell_style}>{item[`${element.value}`] ?? ''}</Text>

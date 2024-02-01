@@ -32,6 +32,7 @@ import DefaultRetailInvoice from '../default_retail_invoice/Invoice'
 import IrnWithAcknowledgement from '../irnWithAcknowledgement/Invoice'
 import NoIrnWithDue from '../noIrnWithDue/Invoice'
 import IrnDoubleA5 from '../irn_double_a5/Invoice'
+import FullHeaderVerticalA5 from '../full_header_vertical_a5/Invoice'
 
 const pageSize = { A4: 'A4', LEGAL: 'LEGAL' }
 const orientation = { PORTRAIT: 'portrait', LANDSCAPE: 'landscape' }
@@ -673,7 +674,7 @@ const Invoice = ({
 
   return (
     <PDFViewer style={{ width: '100%', height: '100%' }}>
-      <Document>{full_header_logo}</Document>
+      <Document>{noIrnNewFooter2}</Document>
     </PDFViewer>
   )
 }

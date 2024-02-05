@@ -574,8 +574,8 @@ const Invoice = ({
     <DefaultRetailInvoice
       pageDetails={{
         pageSize: pageSize.A4,
-        orientation: orientation.LANDSCAPE,
         styles: styles.page,
+        imageContainer: styles.imageContainer,
       }}
       pages={pagesData}
       title={title}
@@ -674,7 +674,7 @@ const Invoice = ({
 
   return (
     <PDFViewer style={{ width: '100%', height: '100%' }}>
-      <Document>{noIrnNewFooter2}</Document>
+      <Document>{default_retail_invoice}</Document>
     </PDFViewer>
   )
 }

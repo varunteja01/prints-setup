@@ -3,8 +3,13 @@ import { View, StyleSheet } from '@react-pdf/renderer'
 import InvoiceTableHeader from './InvoiceTableHeader'
 import InvoiceTableRow from './InvoiceTableRow'
 import InvoiceTableBlankSpace from './InvoiceTableBlankSpace'
+// import {
+//   InvoiceTableHeader,
+//   InvoiceTableRow,
+//   InvoiceTableBlankSpace,
+// } from '../Components/Table'
 
-// const tableRowsCount = 15
+// const tableRowsCount = 15;
 
 const styles = StyleSheet.create({
   tableContainer: {
@@ -33,8 +38,14 @@ const InvoiceItemsTable = ({
         styles={StyleSheet.create(printTableStyles)}
         max_items={max_items}
         pageno={pageno}
+        verticalRows={true}
       />
-      <InvoiceTableBlankSpace rowsCount={max_items - products.length} />
+      <InvoiceTableBlankSpace
+        rowsCount={max_items - products.length}
+        columns={printColumns}
+        styles={StyleSheet.create(printTableStyles)}
+        verticalRows={true}
+      />
     </View>
   )
 }

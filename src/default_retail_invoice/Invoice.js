@@ -3,7 +3,8 @@ import { Page, View } from '@react-pdf/renderer'
 import InvoiceTitle from './InvoiceTitle'
 import InvoiceItemsTable from './InvoiceItemsTable'
 import InvoiceFooter from './InvoiceFooter'
-//for thermal testing i used this
+import InvoiceTempNote from './TempNote'
+import { customer, entry } from '../components/Constants'
 
 const DefaultRetailInvoice = ({
   pageDetails: { pageSize, styles, imageContainer },
@@ -47,6 +48,10 @@ const DefaultRetailInvoice = ({
           invoice={invoice}
           footer={entry}
           items={products_arr?.length}
+        />
+        <InvoiceTempNote
+          footer={entry}
+          page_number={`Page ${i + 1} of ${pages.length}`}
         />
       </View>
     </Page>

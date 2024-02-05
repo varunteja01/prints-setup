@@ -1,11 +1,11 @@
-import React, { Fragment } from 'react'
-import { Text, View, StyleSheet } from '@react-pdf/renderer'
-import Moment from 'moment'
+import React, { Fragment } from 'react';
+import { Text, View, StyleSheet } from '@react-pdf/renderer';
+import Moment from 'moment';
 
-const borderColor = '#000000'
+const borderColor = '#000000';
 
 const InvoiceTableRow = ({ items, columns, styles }) => {
-  const create_style = StyleSheet.create(styles)
+  const create_style = StyleSheet.create(styles);
   const rows = items.map((item) => (
     <View
       style={{
@@ -24,13 +24,13 @@ const InvoiceTableRow = ({ items, columns, styles }) => {
       {columns.map((element, index) => {
         let cell_style = {
           ...create_style[`${element.column}`],
-        }
+        };
         if (element.type == 'number') {
           return (
             <Text style={cell_style}>
               {item[`${element.value}`] == 0 ? ' ' : item[`${element.value}`]}
             </Text>
-          )
+          );
         }
         if (element.type == 'amount') {
           return (
@@ -39,7 +39,7 @@ const InvoiceTableRow = ({ items, columns, styles }) => {
                 ? ' '
                 : parseFloat(item[`${element.value}`]).toFixed(2)}
             </Text>
-          )
+          );
         }
         if (element.type == 'expiry') {
           return (
@@ -49,10 +49,10 @@ const InvoiceTableRow = ({ items, columns, styles }) => {
                 ? ''
                 : Moment(item[`${element.value}`]).format('MM/YY')}
             </Text>
-          )
+          );
         }
         if (element.type == 'item_order') {
-          return <Text style={cell_style}>{item[`${element.value}`] + 1}</Text>
+          return <Text style={cell_style}>{item[`${element.value}`] + 1}</Text>;
         }
         if (element.type == 'rate') {
           return (
@@ -68,7 +68,7 @@ const InvoiceTableRow = ({ items, columns, styles }) => {
                 ? '^'
                 : ''}
             </Text>
-          )
+          );
         }
         if (element.type == 'mrp') {
           return (
@@ -78,7 +78,7 @@ const InvoiceTableRow = ({ items, columns, styles }) => {
                 : parseFloat(item[`${element.value}`]).toFixed(2)}
               {item?.indicator_flags?.[0]?.mrp_indicator == true ? '*' : ''}
             </Text>
-          )
+          );
         }
         if (element.type == 'indicated_product_name') {
           return (
@@ -94,13 +94,13 @@ const InvoiceTableRow = ({ items, columns, styles }) => {
               &nbsp;
               {item[`${element.value}`] ?? ''}
             </Text>
-          )
+          );
         }
-        return <Text style={cell_style}>{item[`${element.value}`] ?? ''}</Text>
+        return <Text style={cell_style}>{item[`${element.value}`] ?? ''}</Text>;
       })}
     </View>
-  ))
-  return <Fragment>{rows}</Fragment>
-}
+  ));
+  return <Fragment>{rows}</Fragment>;
+};
 
-export default InvoiceTableRow
+export default InvoiceTableRow;

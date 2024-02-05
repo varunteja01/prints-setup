@@ -1,20 +1,18 @@
-import React, { Fragment } from 'react'
-import { Text, View, StyleSheet, Image } from '@react-pdf/renderer'
-import Moment from 'moment'
+import React, { Fragment } from 'react';
+import { Text, View, StyleSheet, Image } from '@react-pdf/renderer';
+import Moment from 'moment';
 
 const styles = StyleSheet.create({
   titleContainer: {
     flexDirection: 'column',
     marginTop: 0,
-    height: 150,
+    height: 110,
     width: '100%',
-    border: 1,
   },
   rowContainer: {
     flexDirection: 'row',
     borderBottomWidth: 0.5,
     borderBottomColor: '#dbdbdb',
-    // height: 15,
     fontSize: 8,
     paddingBottom: '2px',
     fontFamily: 'Helvetica-Bold',
@@ -48,8 +46,7 @@ const styles = StyleSheet.create({
     borderColor: '#dbdbdb',
     borderTopColor: '#222',
     borderRightColor: '#222',
-    height: 80,
-    // border: 1,
+    height: 70,
   },
   grid3: {
     marginTop: 0,
@@ -74,14 +71,12 @@ const styles = StyleSheet.create({
     // width: '20%',
     paddingTop: '2px',
     paddingLeft: '5px',
-    // border: 1,
   },
   imageContainer2: {
     marginTop: 0,
     // width: '20%',
     paddingTop: '2px',
     paddingRight: '5px',
-    // border: 1,
   },
   billTo: {
     marginTop: 0,
@@ -104,7 +99,7 @@ const styles = StyleSheet.create({
   lr: {
     fontSize: 8,
   },
-})
+});
 
 const InvoiceTitle = ({
   title,
@@ -131,7 +126,6 @@ const InvoiceTitle = ({
           minHeight: '60px',
           width: '100%',
           justifyContent: 'space-between',
-          // border: 1,
         }}
       >
         <View style={styles.imageContainer}>
@@ -156,21 +150,6 @@ const InvoiceTitle = ({
         <View style={styles.imageContainer2}>
           <Image style={styles.logo} src={qr_code} />
         </View>
-        {/* <View style={styles.headerContainer}>
-          <Text style={styles.billTo}>{invoice.firm_name}</Text>
-          <Text style={styles.address}>{invoice.line_1}</Text>
-          <Text style={styles.address}>{invoice.line_2}</Text>
-          <Text
-            style={styles.address}
-          >{`${invoice.city} - ${invoice.pincode}`}</Text>
-          <Text style={styles.address}>{`(L): ${invoice.landline} ${
-            invoice.email == null ? '' : `- (@): ${invoice.email}`
-          }`}</Text>
-          <Text
-            style={styles.address}
-          >{`D.L.No. ${invoice.dl1}, ${invoice.dl2}`}</Text>
-          <Text style={styles.address}>{`GSTIN: ${invoice.gstin}`}</Text>
-        </View> */}
       </View>
 
       <View style={styles.grid2}>
@@ -179,15 +158,6 @@ const InvoiceTitle = ({
             style={{ width: '75%', paddingTop: '2px', paddingBottom: '2px' }}
           >
             <View style={styles.rowContainer}>
-              {/* <View
-            style={{
-              borderRightWidth: 0.5,
-              borderRightColor: '#dbdbdb',
-              width: '40%',
-            }}
-          >
-            <Text style={styles.reportTitle}>{title}</Text>
-          </View> */}
               <View
                 style={{
                   flexDirection: 'row',
@@ -360,7 +330,7 @@ const InvoiceTitle = ({
         </View>
       </View>
     </View>
-  )
-}
+  );
+};
 
-export default InvoiceTitle
+export default InvoiceTitle;

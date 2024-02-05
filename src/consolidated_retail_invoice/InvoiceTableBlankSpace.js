@@ -1,12 +1,12 @@
-import React, { Fragment } from 'react'
-import { Text, View, StyleSheet } from '@react-pdf/renderer'
+import React, { Fragment } from 'react';
+import { Text, View, StyleSheet } from '@react-pdf/renderer';
 
-const borderColor = '#000'
-const styles = StyleSheet.create({
+const borderColor = '#000';
+const rowStyles = StyleSheet.create({
   row: {
     flexDirection: 'row',
     alignItems: 'center',
-    height: 12,
+    height: 14,
     fontStyle: 'bold',
     color: 'white',
   },
@@ -22,19 +22,34 @@ const styles = StyleSheet.create({
   amount: {
     width: '15%',
   },
-})
+});
 
-const InvoiceTableBlankSpace = ({ rowsCount }) => {
-  const blankRows = Array(rowsCount).fill(0)
-  const rows = blankRows.map((x, i) => (
-    <View style={styles.row} key={`BR${i}`}>
-      <Text style={styles.description}>-</Text>
-      <Text style={styles.qty}>-</Text>
-      <Text style={styles.rate}>-</Text>
-      <Text style={styles.amount}>-</Text>
-    </View>
-  ))
-  return <Fragment>{rows}</Fragment>
-}
+const InvoiceTableBlankSpace = ({
+  rowsCount,
+  columns,
+  styles,
+  verticalRows = false,
+}) => {
+  const blankRows = Array(rowsCount).fill(0);
+  const rows = blankRows.map((x, i) =>
+    verticalRows ? (
+      <View style={{ flexDirection: 'row' }} key={`BR${i}`}>
+        {columns.map((c) => (
+          <View style={styles[`${c.column}`]}>
+            <Text></Text>
+          </View>
+        ))}
+      </View>
+    ) : (
+      <View style={rowStyles.row}>
+        <Text style={rowStyles.description}>-</Text>
+        <Text style={rowStyles.qty}>-</Text>
+        <Text style={rowStyles.rate}>-</Text>
+        <Text style={rowStyles.amount}>-</Text>
+      </View>
+    ),
+  );
+  return <Fragment>{rows}</Fragment>;
+};
 
-export default InvoiceTableBlankSpace
+export default InvoiceTableBlankSpace;

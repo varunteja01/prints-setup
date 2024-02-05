@@ -1,4 +1,4 @@
-export const numberFormat = (value) =>
+export const numberFormat = value =>
   new Intl.NumberFormat('en-IN', {
     currency: 'INR',
-  }).format(value)
+  }).format(value);

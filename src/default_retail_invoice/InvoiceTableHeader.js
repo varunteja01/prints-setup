@@ -1,5 +1,5 @@
-import React from 'react'
-import { Text, View, StyleSheet } from '@react-pdf/renderer'
+import React from 'react';
+import { Text, View, StyleSheet } from '@react-pdf/renderer';
 
 const InvoiceTableHeader = ({ columns, styles }) => {
   return (
@@ -21,10 +21,10 @@ const InvoiceTableHeader = ({ columns, styles }) => {
           <Text style={styles[`${columns[index].column}`]}>
             {columns[index].heading}
           </Text>
-        )
+        );
       })}
     </View>
-  )
-}
+  );
+};
 
-export default InvoiceTableHeader
+export default InvoiceTableHeader;

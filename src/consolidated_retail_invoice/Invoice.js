@@ -3,14 +3,14 @@ import { Page, View } from '@react-pdf/renderer'
 import InvoiceTitle from './InvoiceTitle'
 import InvoiceItemsTable from './InvoiceItemsTable'
 import InvoiceFooter from './InvoiceFooter'
+import InvoiceTempNote from './TempNote'
 
-const DefaultRetailInvoice = ({
+const ConsolidatedHeaderRetail = ({
   pageDetails: { pageSize, styles, imageContainer },
   pages,
   title,
   invoiceDetails,
   invoice,
-  entry,
   invoice_head,
   doctor_details,
   patient_details,
@@ -21,6 +21,7 @@ const DefaultRetailInvoice = ({
   clientInformation,
   inventoryType,
   settingsInfo,
+  entry,
 }) => {
   return pages.map((page, i) => (
     <Page size={pageSize} style={styles} key={i}>
@@ -38,7 +39,11 @@ const DefaultRetailInvoice = ({
               ? 'https://staticfilessp360.blob.core.windows.net/logos/white.jpg'
               : settingsInfo?.qr_code
           }`}
-          header_image_url="https://sp360logo.blob.core.windows.net/logo/1695381632500-image2.jpeg"
+          header_image_url={`${
+            settingsInfo?.header_image_url == ''
+              ? 'https://staticfilessp360.blob.core.windows.net/logos/white.jpg'
+              : settingsInfo?.header_image_url
+          }`}
         />
         <InvoiceItemsTable
           invoice={invoice}
@@ -54,9 +59,13 @@ const DefaultRetailInvoice = ({
           items={products_arr?.length}
           show_total={i == pages.length - 1 ? true : false}
         />
+        <InvoiceTempNote
+          footer={entry}
+          page_number={`Page ${i + 1} of ${pages.length}`}
+        />
       </View>
     </Page>
   ))
 }
 
-export default DefaultRetailInvoice
+export default ConsolidatedHeaderRetail

@@ -4,6 +4,7 @@ import InvoiceTitle from './InvoiceTitle'
 import InvoiceItemsTable from './InvoiceItemsTable'
 import InvoiceFooter from './InvoiceFooter'
 import TempNote from './TempNote'
+import { customer, entry } from '../components/Constants'
 
 const Invoice = ({
   pageDetails: { pageSize, styles, imageContainer },
@@ -11,7 +12,6 @@ const Invoice = ({
   title,
   invoiceDetails,
   invoice,
-  entry,
   invoice_head,
   doctor_details,
   patient_details,
@@ -26,6 +26,8 @@ const Invoice = ({
   clientInformation,
   inventoryType,
   user,
+  entry,
+  customer,
 }) => {
   // console.log('1', pageSize);
   // console.log('2', styles);
@@ -52,8 +54,8 @@ const Invoice = ({
           title={title}
           invoice={invoice}
           header={entry}
-          customer={patient_details}
-          doctor={doctor_details}
+          customer={customer}
+          doctor={entry}
           logo_url={`${clientInformation?.client_logo}`}
           qr_code={`${
             settingsInfo?.qr_code == ''

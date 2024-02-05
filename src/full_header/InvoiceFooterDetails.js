@@ -1,5 +1,5 @@
 import React from 'react'
-import { Text, View, StyleSheet, Font, Image } from '@react-pdf/renderer'
+import { Text, View, StyleSheet, Font } from '@react-pdf/renderer'
 // import { numberFormat } from 'constants/number';
 
 const borderColor = '#000000'
@@ -22,10 +22,9 @@ const styles = StyleSheet.create({
     flexDirection: 'column',
     alignItems: 'left',
     fontStyle: 'bold',
-    fontSize: 8,
+    fontSize: 7,
     width: '40%',
     height: '100%',
-    paddingLeft: '1px',
   },
   middle_container: {
     flexDirection: 'column',
@@ -39,14 +38,14 @@ const styles = StyleSheet.create({
     fontStyle: 'bold',
     flexGrow: 1,
     fontSize: 7,
-    width: '27%',
+    width: '30%',
   },
   right_value_container: {
     flexDirection: 'column',
     fontStyle: 'bold',
     flexGrow: 1,
     fontSize: 7,
-    width: '12%',
+    width: '10%',
   },
   footer2: {
     flexDirection: 'row',
@@ -98,7 +97,7 @@ const styles = StyleSheet.create({
   tnc_details: {
     width: '100%',
     textAlign: 'left',
-    lineHeight: 1.2,
+    lineHeight: 1.0,
     fontSize: 5,
     paddingRight: '2px',
   },
@@ -207,13 +206,6 @@ const styles = StyleSheet.create({
     height: '45px',
     paddingTop: '2px',
   },
-  logo: {
-    padding: '0 0 0 5px',
-    margin: '0 0 8px 15px ',
-    width: 40,
-    height: 40,
-    textAlign: 'center',
-  },
 })
 
 const InvoiceFooter = ({
@@ -225,7 +217,6 @@ const InvoiceFooter = ({
   printType,
   message,
   show_total = false,
-  qr_code,
 }) => {
   function convertNumberToWords(amount) {
     var words = new Array()
@@ -471,8 +462,7 @@ const InvoiceFooter = ({
       <View style={styles.middle_container}>
         {/* <Text style={styles.blank}>WISH YOU A SPEEDY</Text>
         <Text style={styles.blank}>RECOVERY</Text> */}
-        {/* <Text style={styles.blank}>{message}</Text> */}
-        <Image style={styles.logo} src={qr_code} />
+        <Text style={styles.blank}>{message}</Text>
       </View>
 
       <View style={styles.right_head_container}>
@@ -494,17 +484,15 @@ const InvoiceFooter = ({
         </Text>
         <Text style={styles.net_amount}>
           {/* {show_total ? parseFloat(footer?.net_amount || 0).toFixed(2) : ''} */}
-          {show_total ? (
-            parseFloat(
-              parseFloat(footer?.net_amount || 0) +
-                parseFloat(footer?.debit_note_amount || 0) -
-                parseFloat(footer?.credit_note_amount || 0)
-            )?.toFixed(2)
-          ) : (
-            <Text style={styles.net_amount}>Continued...</Text>
-          )}
+          {show_total
+            ? parseFloat(
+                parseFloat(footer?.net_amount || 0) +
+                  parseFloat(footer?.debit_note_amount || 0) -
+                  parseFloat(footer?.credit_note_amount || 0)
+              )?.toFixed(2)
+            : ''}
         </Text>
-        {/* {!show_total && <Text style={styles.net_amount}>Continued...</Text>} */}
+        {!show_total && <Text style={styles.net_amount}>Continued...</Text>}
       </View>
     </View>
   )

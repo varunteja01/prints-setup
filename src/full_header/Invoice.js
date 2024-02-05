@@ -3,6 +3,8 @@ import { Page, View } from '@react-pdf/renderer'
 import InvoiceTitle from './InvoiceTitle'
 import InvoiceItemsTable from './InvoiceItemsTable'
 import InvoiceFooter from './InvoiceFooter'
+import TempNote from './TempNote'
+import { customer, entry, products } from '../components/Constants'
 
 const Invoice = ({
   pageDetails: { pageSize, styles, imageContainer },
@@ -23,6 +25,9 @@ const Invoice = ({
   settingsInfo,
   clientInformation,
   inventoryType,
+  customer,
+  entry,
+  products,
 }) => {
   // console.log('1', pageSize);
   // console.log('2', styles);
@@ -42,16 +47,15 @@ const Invoice = ({
   // console.log('15', settingsInfo);
   // console.log('16', clientInformation);
 
-  console.log('qr in props', settingsInfo)
   return pages.map((page, index) => (
     <Page size={pageSize} style={styles}>
       <View style={imageContainer}>
         <InvoiceTitle
           title={title}
           invoice={invoice}
-          header={invoice_head}
-          customer={patient_details}
-          doctor={doctor_details}
+          header={entry}
+          customer={customer}
+          doctor={entry}
           logo_url={`${clientInformation?.client_logo}`}
           inventoryType={inventoryType}
         />
@@ -66,17 +70,22 @@ const Invoice = ({
         />
         <InvoiceFooter
           invoice={invoice}
-          footer={invoice_head}
-          items={page?.length}
-          products={page}
+          footer={entry}
+          items={products?.length}
+          products={products}
           gstEnabled={gstEnabled}
           printType={print_layout}
           qr_code={`${
-            settingsInfo?.qr_code ??
-            'https://staticfilessp360.blob.core.windows.net/logos/white.jpg'
+            settingsInfo?.qr_code == ''
+              ? 'https://staticfilessp360.blob.core.windows.net/logos/white.jpg'
+              : settingsInfo?.qr_code
           }`}
           message={message}
           show_total={index == pages.length - 1 ? true : false}
+        />
+        <TempNote
+          footer={entry}
+          page_number={`Page ${index + 1} of ${pages.length}`}
         />
       </View>
     </Page>

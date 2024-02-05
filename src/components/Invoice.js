@@ -521,14 +521,13 @@ const Invoice = ({
     <FullHeader
       pageDetails={{
         pageSize: pageSize.A4,
-        orientation: orientation.LANDSCAPE,
         styles: styles.page,
+        imageContainer: styles.imageContainer,
       }}
       pages={pagesData}
       title={title}
       invoice={invoice}
-      // entry={entry}
-      invoice_head={entry}
+      entry={entry}
       customer={customer}
       max_items={max_items}
       printColumns={printColumns}
@@ -548,8 +547,8 @@ const Invoice = ({
     <CompactRetailInvoiceNew
       pageDetails={{
         pageSize: pageSize.A4,
-        orientation: orientation.LANDSCAPE,
         styles: styles.page,
+        imageContainer: styles.imageContainer,
       }}
       pages={pagesData}
       title={title}
@@ -674,7 +673,7 @@ const Invoice = ({
 
   return (
     <PDFViewer style={{ width: '100%', height: '100%' }}>
-      <Document>{default_retail_invoice}</Document>
+      <Document>{compact_retail_invoice_new}</Document>
     </PDFViewer>
   )
 }

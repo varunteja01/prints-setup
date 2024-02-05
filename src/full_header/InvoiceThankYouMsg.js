@@ -1,8 +1,8 @@
-import React from 'react'
-import { Text, View, StyleSheet } from '@react-pdf/renderer'
+import React from 'react';
+import { Text, View, StyleSheet } from '@react-pdf/renderer';
 
-const fontColor = '#000'
-const borderColor = '#000000'
+const fontColor = '#000';
+const borderColor = '#000000';
 const styles = StyleSheet.create({
   container: {
     flexDirection: 'row',
@@ -12,7 +12,6 @@ const styles = StyleSheet.create({
     flexGrow: 1,
     fontSize: 6,
     width: '100%',
-    // border: 1,
   },
   gst: {
     width: '15%',
@@ -27,7 +26,7 @@ const styles = StyleSheet.create({
     paddingRight: '2px',
     height: 10,
   },
-})
+});
 
 const InvoiceFooter = ({ items, footer, gstEnabled }) => {
   return (
@@ -38,7 +37,7 @@ const InvoiceFooter = ({ items, footer, gstEnabled }) => {
         {gstEnabled == true ? `Total Tax : ${footer?.total_gst_value}` : ``}
       </Text>
     </View>
-  )
-}
+  );
+};
 
-export default InvoiceFooter
+export default InvoiceFooter;

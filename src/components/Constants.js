@@ -95,7 +95,7 @@ export const entry = {
   billing_on: '0',
   created_at: '2023-10-19T12:35:23.308Z',
   updated_at: '2023-10-19T12:35:23.308Z',
-  payment_mode: 1,
+  payment_mode: 0,
   total_gst: 6.26,
   total_disc: -2.01,
   credit_note_amount: '0',

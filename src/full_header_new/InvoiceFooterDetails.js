@@ -1,6 +1,6 @@
 import React from 'react'
-import { Text, View, StyleSheet, Font } from '@react-pdf/renderer'
-// import { numberFormat } from 'constants/number'
+import { Text, View, StyleSheet, Font, Image } from '@react-pdf/renderer'
+// import { numberFormat } from 'constants/number';
 
 const borderColor = '#000000'
 
@@ -25,6 +25,7 @@ const styles = StyleSheet.create({
     fontSize: 7,
     width: '40%',
     height: '100%',
+    // border: 1,
   },
   middle_container: {
     flexDirection: 'column',
@@ -32,13 +33,26 @@ const styles = StyleSheet.create({
     flexGrow: 1,
     fontSize: 7,
     width: '20%',
+    // border: 1,
+  },
+  qr_styles: {
+    paddingTop: '2px',
+    paddingLeft: '5px',
+    width: '15%',
+    // border: 1,
+  },
+  logo: {
+    width: 50,
+    height: 50,
+    // border: 1,
   },
   right_head_container: {
     flexDirection: 'column',
     fontStyle: 'bold',
     flexGrow: 1,
     fontSize: 7,
-    width: '30%',
+    width: '15%',
+    // border: 1,
   },
   right_value_container: {
     flexDirection: 'column',
@@ -46,6 +60,7 @@ const styles = StyleSheet.create({
     flexGrow: 1,
     fontSize: 7,
     width: '10%',
+    // border: 1,
   },
   footer2: {
     flexDirection: 'row',
@@ -55,6 +70,7 @@ const styles = StyleSheet.create({
     flexGrow: 1,
     fontSize: 7,
     width: '100%',
+    // border: 1,
   },
   footer3: {
     flexDirection: 'row',
@@ -213,11 +229,13 @@ const InvoiceFooter = ({
   footer,
   items,
   products,
+  qr_code,
   gstEnabled,
   printType,
   message,
   show_total = false,
 }) => {
+  // console.log('SHOW QR ' + qr_code)
   function convertNumberToWords(amount) {
     var words = new Array()
     words[0] = ''
@@ -465,6 +483,10 @@ const InvoiceFooter = ({
         <Text style={styles.blank}>{message}</Text>
       </View>
 
+      <View style={styles.qr_styles}>
+        <Image style={styles.logo} src={qr_code} />
+      </View>
+
       <View style={styles.right_head_container}>
         <Text style={styles.footer_heading}>Total MRP Value :</Text>
         <Text style={styles.footer_heading}>{labelGenerate(printType)}</Text>
@@ -490,7 +512,7 @@ const InvoiceFooter = ({
                   parseFloat(footer?.debit_note_amount || 0) -
                   parseFloat(footer?.credit_note_amount || 0)
               )?.toFixed(2)
-            : 'Continued...'}
+            : 'Continued..'}
         </Text>
         {/* {!show_total && <Text style={styles.net_amount}>Continued...</Text>} */}
       </View>

@@ -52,7 +52,15 @@ const styles = StyleSheet.create({
   grid3: {
     marginTop: 0,
     lineHeight: 1.1,
-    width: '55%',
+    width: '38%',
+    height: '100%',
+    paddingLeft: '2px',
+    paddingTop: '5px',
+  },
+  grid4: {
+    marginTop: 0,
+    lineHeight: 1.1,
+    width: '35%',
     height: '100%',
     paddingLeft: '2px',
     paddingTop: '5px',
@@ -60,7 +68,7 @@ const styles = StyleSheet.create({
   doctor_grid: {
     marginTop: 0,
     lineHeight: 1.1,
-    width: '30%',
+    width: '27%',
     height: '100%',
     paddingLeft: '2px',
     paddingTop: '5px',
@@ -275,7 +283,7 @@ const InvoiceTitle = ({
                   fontStyle: 'heavy',
                 }}
               >
-                Customer Address
+                Doctor Name
               </Text>
               <Text
                 style={{
@@ -301,24 +309,134 @@ const InvoiceTitle = ({
                   fontStyle: 'heavy',
                 }}
               >
-                {`${invoice.line_1},${invoice.line_2},${invoice.city} - ${invoice.pincode}`}
+                {doctor?.name}
               </Text>
             </View>
           </View>
-          <View style={{ width: '15%' }}>
-            <Text
+          <View style={styles.grid4}>
+            <View
               style={{
                 width: '100%',
-                textAlign: 'center',
-                fontSize: 9,
-                marginTop: '10px',
+                flexDirection: 'row',
+                height: 12,
               }}
             >
-              {`${customer?.payment_mode ?? ''} BILL`}
-            </Text>
+              <Text
+                style={{
+                  marginTop: 0,
+                  paddingBottom: 3,
+                  fontSize: 8,
+                  width: '27%',
+                  textAlign: 'left',
+                  fontFamily: 'Helvetica',
+                  fontStyle: 'heavy',
+                }}
+              >
+                IP Number
+              </Text>
+              <Text
+                style={{
+                  marginTop: 0,
+                  paddingBottom: 3,
+                  fontSize: 8,
+                  width: '2%',
+                  textAlign: 'center',
+                  fontFamily: 'Helvetica',
+                  fontStyle: 'heavy',
+                }}
+              >
+                :
+              </Text>
+              <Text
+                style={{
+                  marginTop: 0,
+                  paddingBottom: 3,
+                  fontSize: 8,
+                  width: '71%',
+                  textAlign: 'left',
+                  fontFamily: 'Helvetica',
+                  fontStyle: 'heavy',
+                }}
+              >
+                {customer?.ip_number}
+              </Text>
+            </View>
+
+            <View
+              style={{
+                width: '100%',
+                flexDirection: 'row',
+              }}
+            >
+              <Text
+                style={{
+                  marginTop: 0,
+                  paddingBottom: 3,
+                  fontSize: 8,
+                  width: '27%',
+                  textAlign: 'left',
+                  fontFamily: 'Helvetica',
+                  fontStyle: 'heavy',
+                }}
+              >
+                Insurance
+              </Text>
+              <Text
+                style={{
+                  marginTop: 0,
+                  paddingBottom: 3,
+                  fontSize: 8,
+                  width: '2%',
+                  textAlign: 'center',
+                  fontFamily: 'Helvetica',
+                  fontStyle: 'heavy',
+                }}
+              >
+                :
+              </Text>
+              <Text
+                style={{
+                  marginTop: 0,
+                  paddingBottom: 3,
+                  fontSize: 8,
+                  width: '71%',
+                  textAlign: 'left',
+                  fontFamily: 'Helvetica',
+                  fontStyle: 'heavy',
+                }}
+              >
+                {customer?.insurance_name}
+              </Text>
+            </View>
           </View>
+
           {/* <View style={{ width: '15%' }}></View> */}
           <View style={styles.doctor_grid}>
+            <View
+              style={{
+                width: '100%',
+                flexDirection: 'row',
+                height: 12,
+              }}
+            >
+              <Text
+                style={{
+                  marginTop: 0,
+                  paddingBottom: 3,
+                  fontSize: 8,
+                  // width: '32%',
+                  textAlign: 'left',
+                  fontFamily: 'Helvetica',
+                  fontStyle: 'heavy',
+                }}
+              >
+                {header?.payment_mode == 0
+                  ? 'CASH BILL'
+                  : header?.payment_mode == 1
+                  ? 'CREDIT BILL'
+                  : 'BILL'}
+              </Text>
+            </View>
             <View
               style={{
                 width: '100%',
@@ -417,52 +535,6 @@ const InvoiceTitle = ({
                       .utc()
                       .local()
                       .format('DD-MM-YYYY HH:mm:ss')}
-              </Text>
-            </View>
-            <View
-              style={{
-                width: '100%',
-                flexDirection: 'row',
-              }}
-            >
-              <Text
-                style={{
-                  marginTop: 0,
-                  paddingBottom: 3,
-                  fontSize: 8,
-                  width: '33%',
-                  textAlign: 'left',
-                  fontFamily: 'Helvetica',
-                  fontStyle: 'heavy',
-                }}
-              >
-                Doctor Name
-              </Text>
-              <Text
-                style={{
-                  marginTop: 0,
-                  paddingBottom: 3,
-                  fontSize: 8,
-                  width: '2%',
-                  textAlign: 'center',
-                  fontFamily: 'Helvetica',
-                  fontStyle: 'heavy',
-                }}
-              >
-                :
-              </Text>
-              <Text
-                style={{
-                  marginTop: 0,
-                  paddingBottom: 3,
-                  fontSize: 8,
-                  width: '65%',
-                  textAlign: 'left',
-                  fontFamily: 'Helvetica',
-                  fontStyle: 'heavy',
-                }}
-              >
-                {doctor?.name}
               </Text>
             </View>
           </View>

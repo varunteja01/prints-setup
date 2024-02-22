@@ -15,7 +15,7 @@ import InvoiceFooter from './InvoiceFooter'
 import NoIrnInvoice from '../noIrn/Invoice'
 import NoIrnInvoiceNew from '../noIrnNew/Invoice'
 import NoIrnInvoice1 from '../noIrnNewFooter1/Invoice'
-import Consolidated_retail_invoice1 from '../consolidated_retail_invoice/Invoice'
+import ConsolidatedRetailInvoice from '../consolidated_retail_invoice/Invoice'
 import CompactRetailInvoiceNew from '../compact_retail_invoice_new/Invoice'
 import NoIrnInvoice2 from '../noIrnNewFooter2/Invoice'
 import FullHeaderLogo from '../full_header_logo/Invoice'
@@ -27,6 +27,7 @@ import FullHeaderVerticalA5V2 from '../full_header_vertical_a5_v2/Invoice'
 import FullHeaderVerticalA5NoLines from '../full_header_vertical_a5_no_lines/Invoice'
 import FullHeaderBlockEmpty from '../full_header_block_empty/Invoice'
 import FullHeader from '../full_header/Invoice'
+import FullHeaderNew from '../full_header_new/Invoice'
 import NoIrnInvoice3 from '../noIrnNewFooter3/Invoice'
 import DefaultRetailInvoice from '../default_retail_invoice/Invoice'
 import IrnWithAcknowledgement from '../irnWithAcknowledgement/Invoice'
@@ -337,7 +338,7 @@ const Invoice = ({
     />
   )
   const consolidated_retail_invoice = (
-    <Consolidated_retail_invoice1
+    <ConsolidatedRetailInvoice
       pageDetails={{
         pageSize: pageSize.A5,
         orientation: orientation.LANDSCAPE,
@@ -542,6 +543,31 @@ const Invoice = ({
       page_blanks={page_blanks}
     />
   )
+  const full_header_new = (
+    <FullHeaderNew
+      pageDetails={{
+        pageSize: pageSize.A4,
+        styles: styles.page,
+        imageContainer: styles.imageContainer,
+      }}
+      pages={pagesData}
+      title={title}
+      invoice={invoice}
+      entry={entry}
+      customer={customer}
+      max_items={max_items}
+      printColumns={printColumns}
+      printTableStyles={printTableStyles}
+      items={items}
+      products={products}
+      clientInformation={clientInformation}
+      settingsInfo={settingsInfo}
+      crdb_amount={crdb_amount}
+      dynamicPagination={dynamicPagination}
+      maxCharsPerLine={max_chars}
+      page_blanks={page_blanks}
+    />
+  )
 
   const compact_retail_invoice_new = (
     <CompactRetailInvoiceNew
@@ -673,7 +699,7 @@ const Invoice = ({
 
   return (
     <PDFViewer style={{ width: '100%', height: '100%' }}>
-      <Document>{compact_retail_invoice_new}</Document>
+      <Document>{full_header}</Document>
     </PDFViewer>
   )
 }

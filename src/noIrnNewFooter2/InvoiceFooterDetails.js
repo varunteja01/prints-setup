@@ -237,7 +237,7 @@ const styles = StyleSheet.create({
     textAlign: 'left',
     paddingLeft: '4px',
     fontFamily: 'Helvetica-Bold',
-    fontSize: 7,
+    fontSize: 8,
     // border: 1,
   },
   // footer_heading1: {
@@ -299,7 +299,7 @@ const styles = StyleSheet.create({
     borderRightColor: borderColor,
     borderRightWidth: 1,
     height: 12,
-    fontSize: 7,
+    fontSize: 8,
   },
   // footer_value_border1: {
   //   width: '4.5%',
@@ -541,7 +541,7 @@ const InvoiceFooter = ({
             ? moment(clientAnalyticStats?.latest_receipt).format('DD-MM-YYYY')
             : ''}
         </Text> */}
-        <Text style={{ ...styles.footer_heading, width: '2.5%' }}>bills</Text>
+        <Text style={{ ...styles.footer_heading, width: '2.5%' }}>Bills</Text>
         <Text style={{ ...styles.footer_icon, width: '0.5%' }}>:</Text>
         <Text
           style={{
@@ -594,7 +594,7 @@ const InvoiceFooter = ({
       </View>
 
       <View style={styles.container}>
-        <Text style={styles.verify}>Checked : </Text>
+        <Text style={styles.verify}></Text>
 
         <Text style={styles.gst}>12.00% </Text>
         {/* <Text style={styles.gst_discount}>
@@ -646,7 +646,7 @@ const InvoiceFooter = ({
       </View>
 
       <View style={styles.footer3}>
-        <Text style={styles.verify}></Text>
+        <Text style={styles.verify}>Checked :</Text>
         <Text style={styles.gst_last}>18.00% </Text>
         {/* <Text style={styles.gst_value_border}>
           {show_total == true ? footer?.gst_3_disc : ''}
@@ -804,7 +804,7 @@ const InvoiceFooter = ({
 
           <Text
             style={{
-              fontSize: '7',
+              fontSize: '8',
               fontWeight: 'bold',
               padding: '0px 0 0 2px',
             }}
@@ -814,7 +814,7 @@ const InvoiceFooter = ({
           </Text>
           <Text
             style={{
-              fontSize: '7',
+              fontSize: '8',
               fontWeight: 'bold',
               padding: '0px 0 0 2px',
             }}
@@ -823,7 +823,7 @@ const InvoiceFooter = ({
           </Text>
           <Text
             style={{
-              fontSize: '7',
+              fontSize: '8',
               fontWeight: 'bold',
               padding: '0px 0 0 2px',
             }}
@@ -832,7 +832,7 @@ const InvoiceFooter = ({
           </Text>
           <Text
             style={{
-              fontSize: '7',
+              fontSize: '8',
 
               fontWeight: 'bold',
               padding: '0px 0 0 2px',
@@ -842,7 +842,7 @@ const InvoiceFooter = ({
           </Text>
           <Text
             style={{
-              fontSize: '7',
+              fontSize: '8',
               fontWeight: 'bold',
               padding: '0px 0 0 2px',
             }}

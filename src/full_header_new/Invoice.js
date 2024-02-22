@@ -3,6 +3,7 @@ import { Page, View } from '@react-pdf/renderer'
 import InvoiceTitle from './InvoiceTitle'
 import InvoiceItemsTable from './InvoiceItemsTable'
 import InvoiceFooter from './InvoiceFooter'
+import TempNote from './TempNote'
 import { customer, entry, products } from '../components/Constants'
 
 const Invoice = ({
@@ -24,8 +25,8 @@ const Invoice = ({
   settingsInfo,
   clientInformation,
   inventoryType,
-  entry,
   customer,
+  entry,
   products,
 }) => {
   // console.log('1', pageSize);
@@ -45,6 +46,7 @@ const Invoice = ({
   // console.log('14', print_layout);
   // console.log('15', settingsInfo);
   // console.log('16', clientInformation);
+  console.log('settingsInfo?.qr_code', settingsInfo)
 
   return pages.map((page, index) => (
     <Page size={pageSize} style={styles}>
@@ -75,12 +77,15 @@ const Invoice = ({
           gstEnabled={gstEnabled}
           printType={print_layout}
           qr_code={`${
-            settingsInfo?.qr_code == ''
-              ? 'https://staticfilessp360.blob.core.windows.net/logos/white.jpg'
-              : settingsInfo?.qr_code
+            settingsInfo?.qr_code ??
+            'https://staticfilessp360.blob.core.windows.net/logos/white.jpg'
           }`}
           message={message}
           show_total={index == pages.length - 1 ? true : false}
+        />
+        <TempNote
+          footer={entry}
+          page_number={`Page ${index + 1} of ${pages.length}`}
         />
       </View>
     </Page>

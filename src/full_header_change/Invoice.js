@@ -3,8 +3,6 @@ import { Page, View } from '@react-pdf/renderer'
 import InvoiceTitle from './InvoiceTitle'
 import InvoiceItemsTable from './InvoiceItemsTable'
 import InvoiceFooter from './InvoiceFooter'
-import TempNote from './TempNote'
-
 import { customer, entry, products } from '../components/Constants'
 
 const Invoice = ({
@@ -35,7 +33,8 @@ const Invoice = ({
   // console.log('1', pageSize);
   // console.log('2', styles);
   // console.log('3', imageContainer);
-  // console.log('3.1', pages);
+  console.log('3.1', pages)
+  console.log('3.2', maxCharsPerLine)
   // console.log('4', invoice);
   // console.log('5', invoice_head);
   // console.log('6', doctor_details);
@@ -84,51 +83,48 @@ const Invoice = ({
 
   console.log('pages copy', pagesCopy)
 
-  return pagesCopy.map((page, index) => (
-    <Page key={index} size={pageSize} style={styles}>
-      <View style={imageContainer}>
-        <InvoiceTitle
-          title={title}
-          invoice={invoice}
-          header={entry}
-          customer={customer}
-          doctor={entry}
-          logo_url={`${clientInformation?.client_logo}`}
-          inventoryType={inventoryType}
-        />
-        <InvoiceItemsTable
-          invoice={invoice}
-          products={page}
-          max_items={maxItems}
-          printType={print_layout}
-          printColumns={printColumns}
-          printTableStyles={printTableStyles}
-          pageno={index}
-          dynamicPagination={dynamicPagination}
-          maxCharsPerLine={maxCharsPerLine}
-        />
-        <InvoiceFooter
-          invoice={invoice}
-          footer={entry}
-          items={products?.length}
-          products={products}
-          gstEnabled={gstEnabled}
-          printType={print_layout}
-          qr_code={`${
-            settingsInfo?.qr_code == ''
-              ? 'https://staticfilessp360.blob.core.windows.net/logos/white.jpg'
-              : settingsInfo?.qr_code
-          }`}
-          message={message}
-          show_total={index == pagesCopy.length - 1 ? true : false}
-        />
-        <TempNote
-          footer={entry}
-          page_number={`Page ${index + 1} of ${pages.length}`}
-        />
-      </View>
-    </Page>
-  ))
+  return pagesCopy.map((page, index) => {
+    return (
+      <Page key={index} size={pageSize} style={styles}>
+        <View style={imageContainer}>
+          <InvoiceTitle
+            title={title}
+            invoice={invoice}
+            header={entry}
+            customer={customer}
+            doctor={entry}
+            logo_url={`${clientInformation?.client_logo}`}
+            inventoryType={inventoryType}
+          />
+          <InvoiceItemsTable
+            invoice={invoice}
+            products={page}
+            max_items={maxItems}
+            printType={print_layout}
+            printColumns={printColumns}
+            printTableStyles={printTableStyles}
+            pageno={index}
+            dynamicPagination={dynamicPagination}
+            maxCharsPerLine={maxCharsPerLine}
+          />
+          <InvoiceFooter
+            invoice={invoice}
+            footer={entry}
+            items={products?.length}
+            products={products}
+            gstEnabled={gstEnabled}
+            printType={print_layout}
+            qr_code={`${
+              settingsInfo?.qr_code ??
+              'https://sp360logo.blob.core.windows.net/logo/1704796242270-white-square.jpg'
+            }`}
+            message={message}
+            show_total={index == pagesCopy.length - 1 ? true : false}
+          />
+        </View>
+      </Page>
+    )
+  })
 }
 
 export default Invoice

@@ -1,6 +1,7 @@
 import React from 'react'
 import { Text, View, StyleSheet, Font, Image } from '@react-pdf/renderer'
 // import { numberFormat } from 'constants/number'
+import { convertNumToWords } from '../components/helpers'
 
 const borderColor = '#000000'
 
@@ -22,9 +23,10 @@ const styles = StyleSheet.create({
     flexDirection: 'column',
     alignItems: 'left',
     fontStyle: 'bold',
-    fontSize: 7,
+    fontSize: 8,
     width: '40%',
     height: '100%',
+    paddingLeft: '1px',
   },
   middle_container: {
     flexDirection: 'column',
@@ -33,28 +35,19 @@ const styles = StyleSheet.create({
     fontSize: 7,
     width: '20%',
   },
-  qr_styles: {
-    paddingTop: '2px',
-    paddingLeft: '5px',
-    width: '15%',
-  },
-  logo: {
-    width: 50,
-    height: 50,
-  },
   right_head_container: {
     flexDirection: 'column',
     fontStyle: 'bold',
     flexGrow: 1,
     fontSize: 7,
-    width: '15%',
+    width: '27%',
   },
   right_value_container: {
     flexDirection: 'column',
     fontStyle: 'bold',
     flexGrow: 1,
     fontSize: 7,
-    width: '10%',
+    width: '12%',
   },
   footer2: {
     flexDirection: 'row',
@@ -106,7 +99,7 @@ const styles = StyleSheet.create({
   tnc_details: {
     width: '100%',
     textAlign: 'left',
-    lineHeight: 1.0,
+    lineHeight: 1.2,
     fontSize: 5,
     paddingRight: '2px',
   },
@@ -215,6 +208,13 @@ const styles = StyleSheet.create({
     height: '45px',
     paddingTop: '2px',
   },
+  logo: {
+    padding: '0 0 0 5px',
+    margin: '0 0 8px 15px ',
+    width: 40,
+    height: 40,
+    textAlign: 'center',
+  },
 })
 
 const InvoiceFooter = ({
@@ -222,108 +222,108 @@ const InvoiceFooter = ({
   footer,
   items,
   products,
-  qr_code,
   gstEnabled,
   printType,
   message,
   show_total = false,
+  qr_code,
 }) => {
-  function convertNumberToWords(amount) {
-    var words = new Array()
-    words[0] = ''
-    words[1] = 'One'
-    words[2] = 'Two'
-    words[3] = 'Three'
-    words[4] = 'Four'
-    words[5] = 'Five'
-    words[6] = 'Six'
-    words[7] = 'Seven'
-    words[8] = 'Eight'
-    words[9] = 'Nine'
-    words[10] = 'Ten'
-    words[11] = 'Eleven'
-    words[12] = 'Twelve'
-    words[13] = 'Thirteen'
-    words[14] = 'Fourteen'
-    words[15] = 'Fifteen'
-    words[16] = 'Sixteen'
-    words[17] = 'Seventeen'
-    words[18] = 'Eighteen'
-    words[19] = 'Nineteen'
-    words[20] = 'Twenty'
-    words[30] = 'Thirty'
-    words[40] = 'Forty'
-    words[50] = 'Fifty'
-    words[60] = 'Sixty'
-    words[70] = 'Seventy'
-    words[80] = 'Eighty'
-    words[90] = 'Ninety'
-    amount = amount?.toString()
-    var atemp = amount?.split('.')
-    var number = atemp?.[0]?.split(',').join('')
-    var n_length = number?.length
-    var words_string = ''
-    if (n_length <= 9) {
-      var n_array = new Array(0, 0, 0, 0, 0, 0, 0, 0, 0)
-      var received_n_array = new Array()
-      for (var i = 0; i < n_length; i++) {
-        received_n_array[i] = number.substr(i, 1)
-      }
-      for (var i = 9 - n_length, j = 0; i < 9; i++, j++) {
-        n_array[i] = received_n_array[j]
-      }
-      for (var i = 0, j = 1; i < 9; i++, j++) {
-        if (i == 0 || i == 2 || i == 4 || i == 7) {
-          if (n_array[i] == 1) {
-            n_array[j] = 10 + parseInt(n_array[j])
-            n_array[i] = 0
-          }
-        }
-      }
-      var value = ''
-      for (var i = 0; i < 9; i++) {
-        if (i == 0 || i == 2 || i == 4 || i == 7) {
-          value = n_array[i] * 10
-        } else {
-          value = n_array[i]
-        }
-        if (value != 0) {
-          words_string += words[value] + ' '
-        }
-        if (
-          (i == 1 && value != 0) ||
-          (i == 0 && value != 0 && n_array[i + 1] == 0)
-        ) {
-          words_string += 'Crores '
-        }
-        if (
-          (i == 3 && value != 0) ||
-          (i == 2 && value != 0 && n_array[i + 1] == 0)
-        ) {
-          words_string += 'Lakhs '
-        }
-        if (
-          (i == 5 && value != 0) ||
-          (i == 4 && value != 0 && n_array[i + 1] == 0)
-        ) {
-          words_string += 'Thousand '
-        }
-        if (
-          i == 6 &&
-          value != 0 &&
-          n_array[i + 1] != 0 &&
-          n_array[i + 2] != 0
-        ) {
-          words_string += 'Hundred and '
-        } else if (i == 6 && value != 0) {
-          words_string += 'Hundred '
-        }
-      }
-      words_string = words_string.split('  ').join(' ')
-    }
-    words_string += 'Rupees Only'
-    return words_string
-  }
+  // function convertNumberToWords(amount) {
+  //   var words = new Array();
+  //   words[0] = '';
+  //   words[1] = 'One';
+  //   words[2] = 'Two';
+  //   words[3] = 'Three';
+  //   words[4] = 'Four';
+  //   words[5] = 'Five';
+  //   words[6] = 'Six';
+  //   words[7] = 'Seven';
+  //   words[8] = 'Eight';
+  //   words[9] = 'Nine';
+  //   words[10] = 'Ten';
+  //   words[11] = 'Eleven';
+  //   words[12] = 'Twelve';
+  //   words[13] = 'Thirteen';
+  //   words[14] = 'Fourteen';
+  //   words[15] = 'Fifteen';
+  //   words[16] = 'Sixteen';
+  //   words[17] = 'Seventeen';
+  //   words[18] = 'Eighteen';
+  //   words[19] = 'Nineteen';
+  //   words[20] = 'Twenty';
+  //   words[30] = 'Thirty';
+  //   words[40] = 'Forty';
+  //   words[50] = 'Fifty';
+  //   words[60] = 'Sixty';
+  //   words[70] = 'Seventy';
+  //   words[80] = 'Eighty';
+  //   words[90] = 'Ninety';
+  //   amount = amount?.toString();
+  //   var atemp = amount?.split('.');
+  //   var number = atemp?.[0]?.split(',').join('');
+  //   var n_length = number?.length;
+  //   var words_string = '';
+  //   if (n_length <= 9) {
+  //     var n_array = new Array(0, 0, 0, 0, 0, 0, 0, 0, 0);
+  //     var received_n_array = new Array();
+  //     for (var i = 0; i < n_length; i++) {
+  //       received_n_array[i] = number.substr(i, 1);
+  //     }
+  //     for (var i = 9 - n_length, j = 0; i < 9; i++, j++) {
+  //       n_array[i] = received_n_array[j];
+  //     }
+  //     for (var i = 0, j = 1; i < 9; i++, j++) {
+  //       if (i == 0 || i == 2 || i == 4 || i == 7) {
+  //         if (n_array[i] == 1) {
+  //           n_array[j] = 10 + parseInt(n_array[j]);
+  //           n_array[i] = 0;
+  //         }
+  //       }
+  //     }
+  //     var value = '';
+  //     for (var i = 0; i < 9; i++) {
+  //       if (i == 0 || i == 2 || i == 4 || i == 7) {
+  //         value = n_array[i] * 10;
+  //       } else {
+  //         value = n_array[i];
+  //       }
+  //       if (value != 0) {
+  //         words_string += words[value] + ' ';
+  //       }
+  //       if (
+  //         (i == 1 && value != 0) ||
+  //         (i == 0 && value != 0 && n_array[i + 1] == 0)
+  //       ) {
+  //         words_string += 'Crores ';
+  //       }
+  //       if (
+  //         (i == 3 && value != 0) ||
+  //         (i == 2 && value != 0 && n_array[i + 1] == 0)
+  //       ) {
+  //         words_string += 'Lakhs ';
+  //       }
+  //       if (
+  //         (i == 5 && value != 0) ||
+  //         (i == 4 && value != 0 && n_array[i + 1] == 0)
+  //       ) {
+  //         words_string += 'Thousand ';
+  //       }
+  //       if (
+  //         i == 6 &&
+  //         value != 0 &&
+  //         n_array[i + 1] != 0 &&
+  //         n_array[i + 2] != 0
+  //       ) {
+  //         words_string += 'Hundred and ';
+  //       } else if (i == 6 && value != 0) {
+  //         words_string += 'Hundred ';
+  //       }
+  //     }
+  //     words_string = words_string.split('  ').join(' ');
+  //   }
+  //   words_string += 'Rupees Only';
+  //   return words_string;
+  // }
 
   function calcTotal(data, type) {
     if (type === 'mrp') {
@@ -419,7 +419,7 @@ const InvoiceFooter = ({
       <View style={styles.container}>
         <Text style={styles.total}>
           Rs.{' '}
-          {convertNumberToWords(
+          {convertNumToWords(
             parseFloat(
               parseFloat(footer?.net_amount || 0) +
                 parseFloat(footer?.debit_note_amount || 0) -
@@ -472,10 +472,7 @@ const InvoiceFooter = ({
       <View style={styles.middle_container}>
         {/* <Text style={styles.blank}>WISH YOU A SPEEDY</Text>
         <Text style={styles.blank}>RECOVERY</Text> */}
-        <Text style={styles.blank}>{message}</Text>
-      </View>
-
-      <View style={styles.qr_styles}>
+        {/* <Text style={styles.blank}>{message}</Text> */}
         <Image style={styles.logo} src={qr_code} />
       </View>
 
@@ -498,13 +495,22 @@ const InvoiceFooter = ({
         </Text>
         <Text style={styles.net_amount}>
           {/* {show_total ? parseFloat(footer?.net_amount || 0).toFixed(2) : ''} */}
+          {/* {show_total ? (
+            parseFloat(
+              parseFloat(footer?.net_amount || 0) +
+                parseFloat(footer?.debit_note_amount || 0) -
+                parseFloat(footer?.credit_note_amount || 0)
+            )?.toFixed(2)
+          ) : (
+            <Text style={styles.net_amount}>Continued...</Text>
+          )} */}
           {show_total
             ? parseFloat(
                 parseFloat(footer?.net_amount || 0) +
                   parseFloat(footer?.debit_note_amount || 0) -
                   parseFloat(footer?.credit_note_amount || 0)
               )?.toFixed(2)
-            : 'Continued...'}
+            : 'Continued..'}
         </Text>
         {/* {!show_total && <Text style={styles.net_amount}>Continued...</Text>} */}
       </View>

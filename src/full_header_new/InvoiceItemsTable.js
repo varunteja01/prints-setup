@@ -27,6 +27,8 @@ const InvoiceItemsTable = ({
   printColumns,
   printTableStyles,
   pageno,
+  dynamicPagination = false,
+  maxCharsPerLine,
 }) => {
   return (
     <View style={styles.tableContainer}>
@@ -42,8 +44,14 @@ const InvoiceItemsTable = ({
         styles={StyleSheet.create(printTableStyles)}
         max_items={max_items}
         pageno={pageno}
+        dynamicPagination={dynamicPagination}
+        line_height={maxCharsPerLine}
       />
-      <InvoiceTableBlankSpace rowsCount={max_items - products.length} />
+      <InvoiceTableBlankSpace
+        rowsCount={
+          max_items - products.length > 0 ? max_items - products.length : 0
+        }
+      />
     </View>
   )
 }

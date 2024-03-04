@@ -28,6 +28,7 @@ import FullHeaderVerticalA5NoLines from '../full_header_vertical_a5_no_lines/Inv
 import FullHeaderBlockEmpty from '../full_header_block_empty/Invoice'
 import FullHeader from '../full_header/Invoice'
 import FullHeaderNew from '../full_header_new/Invoice'
+import FullHeaderChange from '../full_header_change/Invoice'
 import NoIrnInvoice3 from '../noIrnNewFooter3/Invoice'
 import DefaultRetailInvoice from '../default_retail_invoice/Invoice'
 import IrnWithAcknowledgement from '../irnWithAcknowledgement/Invoice'
@@ -39,7 +40,7 @@ const pageSize = { A4: 'A4', LEGAL: 'LEGAL' }
 const orientation = { PORTRAIT: 'portrait', LANDSCAPE: 'landscape' }
 const items = 24
 const dynamicPagination = false
-const max_chars = 40
+const max_chars = 39
 const page_blanks = 40
 const clientInformation = {} //logo
 const settingsInfo = {} //qr code
@@ -157,6 +158,7 @@ const Invoice = ({
   const maxRowsPerPage = 15
   const pagesData = []
 
+  console.log(products)
   for (let i = 0; i < products.length; i += maxRowsPerPage) {
     const pageData = products.slice(i, i + maxRowsPerPage)
     const emptyRowCount = maxRowsPerPage - pageData.length
@@ -166,6 +168,7 @@ const Invoice = ({
         pageData.push({ emptyRow: true })
       }
     }
+    console.log(pageData)
     pagesData.push(pageData)
   }
 
@@ -211,6 +214,8 @@ const Invoice = ({
       </View>
     </Page>
   ))
+
+  console.log(pagesData)
 
   const noIrn = (
     <NoIrnInvoice
@@ -345,7 +350,8 @@ const Invoice = ({
         styles: retailStyles.page,
         imageContainer: retailStyles.imageContainer,
       }}
-      pages={pagesData}
+      pages={products}
+      // pages={pagesData}
       title={title}
       invoice={invoice}
       entry={entry}
@@ -358,7 +364,8 @@ const Invoice = ({
       clientInformation={clientInformation}
       settingsInfo={settingsInfo}
       crdb_amount={crdb_amount}
-      dynamicPagination={dynamicPagination}
+      dynamicPagination={invoice?.dynamic_length}
+      // dynamicPagination={dynamicPagination}
       maxCharsPerLine={max_chars}
       page_blanks={page_blanks}
     />
@@ -525,7 +532,8 @@ const Invoice = ({
         styles: styles.page,
         imageContainer: styles.imageContainer,
       }}
-      pages={pagesData}
+      pages={products}
+      // pages={pagesData}
       title={title}
       invoice={invoice}
       entry={entry}
@@ -538,7 +546,8 @@ const Invoice = ({
       clientInformation={clientInformation}
       settingsInfo={settingsInfo}
       crdb_amount={crdb_amount}
-      dynamicPagination={dynamicPagination}
+      dynamicPagination={invoice?.dynamic_length}
+      // dynamicPagination={dynamicPagination}
       maxCharsPerLine={max_chars}
       page_blanks={page_blanks}
     />
@@ -550,7 +559,8 @@ const Invoice = ({
         styles: styles.page,
         imageContainer: styles.imageContainer,
       }}
-      pages={pagesData}
+      pages={products}
+      // pages={pagesData}
       title={title}
       invoice={invoice}
       entry={entry}
@@ -563,12 +573,39 @@ const Invoice = ({
       clientInformation={clientInformation}
       settingsInfo={settingsInfo}
       crdb_amount={crdb_amount}
-      dynamicPagination={dynamicPagination}
+      dynamicPagination={invoice?.dynamic_length}
+      // dynamicPagination={dynamicPagination}
       maxCharsPerLine={max_chars}
       page_blanks={page_blanks}
     />
   )
-
+  const full_header_change = (
+    <FullHeaderChange
+      pageDetails={{
+        pageSize: pageSize.A4,
+        styles: styles.page,
+        imageContainer: styles.imageContainer,
+      }}
+      pages={products}
+      // pages={pagesData}
+      title={title}
+      invoice={invoice}
+      entry={entry}
+      customer={customer}
+      max_items={max_items}
+      printColumns={printColumns}
+      printTableStyles={printTableStyles}
+      items={items}
+      products={products}
+      clientInformation={clientInformation}
+      settingsInfo={settingsInfo}
+      crdb_amount={crdb_amount}
+      dynamicPagination={invoice?.dynamic_length}
+      // dynamicPagination={dynamicPagination}
+      maxCharsPerLine={max_chars}
+      page_blanks={page_blanks}
+    />
+  )
   const compact_retail_invoice_new = (
     <CompactRetailInvoiceNew
       pageDetails={{
@@ -576,7 +613,8 @@ const Invoice = ({
         styles: styles.page,
         imageContainer: styles.imageContainer,
       }}
-      pages={pagesData}
+      pages={products}
+      // pages={pagesData}
       title={title}
       invoice={invoice}
       entry={entry}
@@ -590,7 +628,8 @@ const Invoice = ({
       clientInformation={clientInformation}
       settingsInfo={settingsInfo}
       crdb_amount={crdb_amount}
-      dynamicPagination={dynamicPagination}
+      dynamicPagination={invoice?.dynamic_length}
+      // dynamicPagination={dynamicPagination}
       maxCharsPerLine={max_chars}
       page_blanks={page_blanks}
     />
@@ -602,7 +641,8 @@ const Invoice = ({
         styles: styles.page,
         imageContainer: styles.imageContainer,
       }}
-      pages={pagesData}
+      pages={products}
+      // pages={pagesData}
       title={title}
       invoice={invoice}
       entry={entry}
@@ -615,7 +655,8 @@ const Invoice = ({
       clientInformation={clientInformation}
       settingsInfo={settingsInfo}
       crdb_amount={crdb_amount}
-      dynamicPagination={dynamicPagination}
+      dynamicPagination={invoice?.dynamic_length}
+      // dynamicPagination={dynamicPagination}
       maxCharsPerLine={max_chars}
       page_blanks={page_blanks}
     />
@@ -699,7 +740,7 @@ const Invoice = ({
 
   return (
     <PDFViewer style={{ width: '100%', height: '100%' }}>
-      <Document>{full_header}</Document>
+      <Document>{noIrnNewFooter2}</Document>
     </PDFViewer>
   )
 }

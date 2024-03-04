@@ -1,13 +1,14 @@
 import React from 'react'
 import { View, StyleSheet } from '@react-pdf/renderer'
+// import InvoiceTableHeader from './InvoiceTableHeader';
+// import InvoiceTableRow from '../Components/Table/InvoiceTableRow';
+// // import InvoiceTableRow from './InvoiceTableRow'
+// import InvoiceTableBlankSpace from './InvoiceTableBlankSpace';
 import InvoiceTableHeader from './InvoiceTableHeader'
 import InvoiceTableRow from './InvoiceTableRow'
 import InvoiceTableBlankSpace from './InvoiceTableBlankSpace'
-// import {
-//   InvoiceTableHeader,
-//   InvoiceTableRow,
-//   InvoiceTableBlankSpace,
-// } from '../Components/Table';
+
+const tableRowsCount = 15
 
 const styles = StyleSheet.create({
   tableContainer: {
@@ -23,6 +24,7 @@ const InvoiceItemsTable = ({
   invoice,
   products,
   max_items,
+  printType,
   printColumns,
   printTableStyles,
   pageno,
@@ -31,9 +33,14 @@ const InvoiceItemsTable = ({
 }) => {
   return (
     <View style={styles.tableContainer}>
-      <InvoiceTableHeader columns={printColumns} styles={printTableStyles} />
+      <InvoiceTableHeader
+        printType={printType}
+        columns={printColumns}
+        styles={printTableStyles}
+      />
       <InvoiceTableRow
         items={products}
+        printType={printType}
         columns={printColumns}
         styles={StyleSheet.create(printTableStyles)}
         max_items={max_items}

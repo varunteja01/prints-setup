@@ -71,14 +71,14 @@ const styles = StyleSheet.create({
     // width: '20%',
     paddingTop: '2px',
     paddingLeft: '5px',
-    border: 1,
+    // border: 1,
   },
   imageContainer2: {
     marginTop: 0,
     // width: '20%',
     paddingTop: '2px',
     paddingRight: '5px',
-    border: 1,
+    // border: 1,
   },
   billTo: {
     marginTop: 0,

@@ -1,8 +1,8 @@
-import React from 'react';
-import { Text, View, StyleSheet } from '@react-pdf/renderer';
+import React from 'react'
+import { Text, View, StyleSheet } from '@react-pdf/renderer'
 
-const borderColor = '#dbdbdb';
-const fontColor = '#000';
+const borderColor = '#dbdbdb'
+const fontColor = '#000'
 const styles = StyleSheet.create({
   container: {
     flexDirection: 'row',
@@ -37,7 +37,7 @@ const styles = StyleSheet.create({
     textAlign: 'left',
     paddingRight: '2px',
   },
-});
+})
 
 const TempNote = ({ footer, page_number }) => (
   <View style={styles.container}>
@@ -48,6 +48,6 @@ const TempNote = ({ footer, page_number }) => (
 
     {/* <Text style={styles.sno}>{footer.temp_invoice_number}</Text> */}
   </View>
-);
+)
 
-export default TempNote;
+export default TempNote

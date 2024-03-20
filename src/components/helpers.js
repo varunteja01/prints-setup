@@ -85,6 +85,109 @@ export function convertNumToWords(amount) {
     }
     words_string = words_string.split('  ').join(' ')
   }
-  words_string += 'Rupees Only'
+  words_string += 'Rupees'
+
+  if (atemp[1]) {
+    var paise = atemp[1].slice(0, 2) // consider only first two digits for paise
+    if (parseInt(paise) > 0) {
+      words_string += ' ' + convertPaiseToWords(paise) + ' Paise'
+    }
+  }
+  words_string += ' Only'
   return words_string
+}
+
+function convertPaiseToWords(paise) {
+  var words = new Array()
+  words[0] = ''
+  words[1] = 'One'
+  words[2] = 'Two'
+  words[3] = 'Three'
+  words[4] = 'Four'
+  words[5] = 'Five'
+  words[6] = 'Six'
+  words[7] = 'Seven'
+  words[8] = 'Eight'
+  words[9] = 'Nine'
+  words[10] = 'Ten'
+  words[11] = 'Eleven'
+  words[12] = 'Twelve'
+  words[13] = 'Thirteen'
+  words[14] = 'Fourteen'
+  words[15] = 'Fifteen'
+  words[16] = 'Sixteen'
+  words[17] = 'Seventeen'
+  words[18] = 'Eighteen'
+  words[19] = 'Nineteen'
+  words[20] = 'Twenty'
+  words[30] = 'Thirty'
+  words[40] = 'Forty'
+  words[50] = 'Fifty'
+  words[60] = 'Sixty'
+  words[70] = 'Seventy'
+  words[80] = 'Eighty'
+  words[90] = 'Ninety'
+
+  var paise_words = ''
+
+  if (paise.length === 1) {
+    // paise = '0' + paise; // Adding a leading zero if only one digit is provided for paise
+    paise = paise + '0' // Adding a trailing zero if only one digit is provided for paise
+  }
+
+  var paiseValue = parseInt(paise)
+
+  if (paiseValue <= 20) {
+    paise_words += words[paiseValue]
+  } else {
+    paise_words += words[parseInt(paise[0]) * 10]
+    paise_words += ' ' + words[parseInt(paise[1])]
+  }
+
+  return paise_words
+}
+
+export const calculateMultiplier = (productNameWidth) => {
+  // Known percentage and its corresponding multiplier
+  const knownPercentage1 = 25
+  const knownMultiplier1 = 1.19
+  const knownPercentage2 = 30
+  const knownMultiplier2 = 1.25
+
+  // Calculate the slope (rate of change) of the line
+  const slope =
+    (knownMultiplier2 - knownMultiplier1) /
+    (knownPercentage2 - knownPercentage1)
+
+  // Calculate the multiplier for the given percentage using linear interpolation
+  const multiplier =
+    knownMultiplier1 + slope * (productNameWidth - knownPercentage1)
+
+  return !isNaN(multiplier) ? multiplier : 1.19
+}
+
+export const numberFormat = (value) =>
+  new Intl.NumberFormat('en-IN', {
+    currency: 'INR',
+  }).format(value)
+
+export function getTableCellHeight(
+  productCharCount,
+  productNameWidth,
+  orientation = 1
+) {
+  console.log(orientation)
+  let landscape = !orientation ? 1.1 : 1
+  let fontSize = !orientation ? 14.5 : 10.5
+
+  let lineHeight = parseFloat(
+    parseFloat(
+      productNameWidth * calculateMultiplier(productNameWidth)
+    )?.toFixed(2)
+  )
+
+  let cellHeight = Math.ceil(
+    Math.ceil(productCharCount / (lineHeight * landscape)) * fontSize
+  )
+  return !isNaN(cellHeight) ? cellHeight : 1
 }

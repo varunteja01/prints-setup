@@ -8,7 +8,7 @@ const styles = StyleSheet.create({
     flexDirection: 'row',
     borderBottomColor: '#dbdbdb',
     backgroundColor: '#fff',
-    borderBottomWidth: 1,
+    borderBottomWidth: 0.5,
     alignItems: 'center',
     height: 14,
     fontStyle: 'bold',
@@ -21,7 +21,7 @@ const styles = StyleSheet.create({
     backgroundColor: '#dbdbdb',
     color: fontColor,
     borderRightColor: borderColor,
-    borderRightWidth: 1,
+    borderRightWidth: 0.5,
     height: 14,
   },
   middle: {
@@ -33,21 +33,21 @@ const styles = StyleSheet.create({
     width: '60%',
     color: fontColor,
     // borderRightColor: borderColor,
-    // borderRightWidth: 1,
+    // borderRightWidth: .5,
     textAlign: 'left',
     paddingRight: '2px',
   },
 });
 
-const TempNote = ({ footer, page_number }) => (
+const InvoiceTableHeader = ({ footer, page_number }) => (
   <View style={styles.container}>
     <Text style={styles.hsn}>
       Powered by Smartpharma360™ || +91 7337441325 || www.smartpharma360.in
     </Text>
-    {/* <Text style={styles.middle}>{page_number}</Text> */}
+    <Text style={styles.middle}>{page_number}</Text>
 
-    {/* <Text style={styles.sno}>{footer.temp_invoice_number}</Text> */}
+    <Text style={styles.sno}>{/* {footer.temp_invoice_number} */}</Text>
   </View>
 );
 
-export default TempNote;
+export default InvoiceTableHeader;

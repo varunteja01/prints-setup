@@ -19,24 +19,32 @@ Font.register({
 
 const styles = StyleSheet.create({
   container: {
+    justifyContent: 'flex-end',
     flexDirection: 'column',
     alignItems: 'left',
     fontStyle: 'bold',
     fontSize: 7,
-    width: '40%',
+    width: '38%',
     height: '100%',
+    // borderBottom: 1,
   },
   middle_container: {
     flexDirection: 'column',
     fontStyle: 'bold',
     flexGrow: 1,
     fontSize: 7,
-    width: '20%',
+    justifyContent: 'flex-end',
+    height: '100%',
+    width: '22%',
+    // borderBottom: 1,
   },
   qr_styles: {
     paddingTop: '2px',
     paddingLeft: '5px',
     width: '15%',
+    height: '100%',
+
+    // borderBottom: 1,
   },
   logo: {
     width: 50,
@@ -47,23 +55,31 @@ const styles = StyleSheet.create({
     fontStyle: 'bold',
     flexGrow: 1,
     fontSize: 7,
-    width: '15%',
+    width: '13%',
+    height: '100%',
+    // borderBottom: 1,
+    paddingTop: 5,
   },
   right_value_container: {
     flexDirection: 'column',
     fontStyle: 'bold',
     flexGrow: 1,
     fontSize: 7,
-    width: '10%',
+    width: '12%',
+    height: '100%',
+    // borderBottom: 1,
+    paddingTop: 2,
   },
   footer2: {
     flexDirection: 'row',
     alignItems: 'center',
     height: 50,
+    // border: 1,
     fontStyle: 'bold',
     flexGrow: 1,
     fontSize: 7,
     width: '100%',
+    // border: 1,
   },
   footer3: {
     flexDirection: 'row',
@@ -164,12 +180,14 @@ const styles = StyleSheet.create({
     paddingLeft: '15px',
     height: 10,
     fontSize: 6,
+    // border: 1,
   },
   net_amount: {
     width: '100%',
     textAlign: 'right',
-    height: 20,
+    // height: 20,
     fontSize: 10,
+    // border: 1,
   },
   forDetails: {
     width: '100%',
@@ -190,7 +208,7 @@ const styles = StyleSheet.create({
   footer_value: {
     width: '100%',
     textAlign: 'right',
-    paddingRight: '2px',
+    paddingRight: '5px',
     height: 10,
     fontSize: 5,
   },
@@ -215,6 +233,15 @@ const styles = StyleSheet.create({
     height: '45px',
     paddingTop: '2px',
   },
+  row: {
+    flexDirection: 'row',
+  },
+  column: {
+    fontSize: '6px',
+    flexDirection: 'column',
+    paddingLeft: '20px',
+    paddingBottom: '14px',
+  },
 })
 
 const InvoiceFooter = ({
@@ -227,6 +254,7 @@ const InvoiceFooter = ({
   printType,
   message,
   show_total = false,
+  header,
 }) => {
   // function convertNumberToWords(amount) {
   //   var words = new Array();
@@ -417,7 +445,7 @@ const InvoiceFooter = ({
   return (
     <View style={styles.footer2}>
       <View style={styles.container}>
-        <Text style={styles.total}>
+        {/* <Text style={styles.total}>
           Rs.{' '}
           {convertNumToWords(
             parseFloat(
@@ -462,17 +490,66 @@ const InvoiceFooter = ({
           </Text>
         ) : (
           <Text />
-        )}
+        )} */}
         {/* <Text style={styles.total}>BILLED BY :</Text> */}
-        <Text style={styles.tnc_details}>
+        {/* <Text style={styles.tnc_details}>
           {invoice?.terms_and_conditions || ''}
-        </Text>
+        </Text> */}
+        <View style={styles.row}>
+          <View
+            style={{
+              width: '20%',
+              fontSize: '6px',
+              paddingBottom: '3px',
+              paddingLeft: '2px',
+            }}
+          >
+            <Text>&nbsp;</Text>
+          </View>
+          <View
+            style={{
+              width: '30%',
+              fontSize: '6px',
+              paddingBottom: '6px',
+              paddingLeft: '10px',
+            }}
+          >
+            <Text>{header?.added_by}</Text>
+          </View>
+          <View style={{ width: '50%', fontSize: '6px' }}>
+            {/* <Text>Signature of Pharmacist</Text> */}
+            <Text>&nbsp;</Text>
+          </View>
+        </View>
       </View>
 
       <View style={styles.middle_container}>
         {/* <Text style={styles.blank}>WISH YOU A SPEEDY</Text>
         <Text style={styles.blank}>RECOVERY</Text> */}
-        <Text style={styles.blank}>{message}</Text>
+        {/* <Text style={styles.blank}>{message}</Text>
+         */}
+        <View style={styles.column}>
+          <View style={{ flexDirection: 'row' }}>
+            <Text>&nbsp;</Text>
+            <Text style={{ paddingLeft: '25px' }}>
+              {footer?.gst_type == true && footer?.gst_1 != null
+                ? show_total == true
+                  ? (footer?.gst_1 / 2).toFixed(2)
+                  : ''
+                : (0).toFixed(2)}
+            </Text>
+          </View>
+          <View style={{ flexDirection: 'row' }}>
+            <Text>&nbsp;</Text>
+            <Text style={{ paddingLeft: '25px' }}>
+              {footer?.gst_type == true && footer?.gst_1 != null
+                ? show_total == true
+                  ? (footer?.gst_1 / 2).toFixed(2)
+                  : ''
+                : (0).toFixed(2)}
+            </Text>
+          </View>
+        </View>
       </View>
 
       <View style={styles.qr_styles}>
@@ -480,10 +557,14 @@ const InvoiceFooter = ({
       </View>
 
       <View style={styles.right_head_container}>
-        <Text style={styles.footer_heading}>Total MRP Value :</Text>
+        {/* <Text style={styles.footer_heading}>Total MRP Value :</Text>
         <Text style={styles.footer_heading}>{labelGenerate(printType)}</Text>
         <Text style={styles.footer_heading}>Rounding Amount :</Text>
-        <Text style={styles.net_amount}>Net Amount :</Text>
+        <Text style={styles.net_amount}>Net Amount :</Text> */}
+        <Text style={styles.footer_heading}>&nbsp;</Text>
+        <Text style={styles.footer_heading}>&nbsp;</Text>
+        <Text style={styles.footer_heading}>&nbsp;</Text>
+        <Text style={styles.net_amount}>&nbsp;</Text>
       </View>
 
       <View style={styles.right_value_container}>

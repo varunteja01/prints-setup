@@ -1,17 +1,19 @@
-import React from 'react';
-import { Text, View, StyleSheet } from '@react-pdf/renderer';
-import InvoiceThankYouMsg from './InvoiceThankYouMsg';
-import InvoiceFooterDetails from './InvoiceFooterDetails';
-import InvoiceNote from './InvoiceNote';
+import React from 'react'
+import { Text, View, StyleSheet } from '@react-pdf/renderer'
+import InvoiceThankYouMsg from './InvoiceThankYouMsg'
+import InvoiceFooterDetails from './InvoiceFooterDetails'
+import InvoiceNote from './InvoiceNote'
 
 const styles = StyleSheet.create({
   tableContainer: {
     flexDirection: 'row',
     flexWrap: 'wrap',
     marginTop: 0,
-    borderWidth: 1,
-    borderColor: '#000000',
-    height: '88px',
+    // borderRight: 1,
+    // borderLeft: 1,
+    // borderBottom: 1,
+    // borderColor: '#000000',
+    height: '70px',
   },
   forDetails: {
     width: '100%',
@@ -23,7 +25,7 @@ const styles = StyleSheet.create({
     height: '15px',
     fontSize: 8,
   },
-});
+})
 
 const InvoiceFooter = ({
   invoice,
@@ -35,14 +37,16 @@ const InvoiceFooter = ({
   message,
   show_total,
   qr_code,
+  header,
 }) => (
   <View style={styles.tableContainer}>
-    <InvoiceNote footer={footer} />
-    <InvoiceThankYouMsg items={items} footer={footer} gstEnabled={gstEnabled} />
+    {/* <InvoiceNote footer={footer} /> */}
+    {/* <InvoiceThankYouMsg items={items} footer={footer} gstEnabled={gstEnabled} /> */}
     <InvoiceFooterDetails
       invoice={invoice}
       footer={footer}
       items={items}
+      header={header}
       products={products}
       gstEnabled={gstEnabled}
       printType={printType}
@@ -50,8 +54,8 @@ const InvoiceFooter = ({
       show_total={show_total}
       qr_code={qr_code}
     />
-    <Text style={styles.forDetails}>For {invoice?.firm_name}</Text>
+    {/* <Text style={styles.forDetails}>For {invoice?.firm_name}</Text> */}
   </View>
-);
+)
 
-export default InvoiceFooter;
+export default InvoiceFooter

@@ -1,13 +1,29 @@
-import React from 'react';
-import { Page, View } from '@react-pdf/renderer';
-import InvoiceTitle from './InvoiceTitle';
-import InvoiceItemsTable from './InvoiceItemsTable';
-import InvoiceFooter from './InvoiceFooter';
-import TempNote from './TempNote';
+import React from 'react'
+import { Page, View, StyleSheet } from '@react-pdf/renderer'
+import InvoiceTitle from './InvoiceTitle'
+import InvoiceItemsTable from './InvoiceItemsTable'
+import InvoiceFooter from './InvoiceFooter'
+import TempNote from './TempNote'
 // import { customer, entry, products } from '../components/Constants'
 
+const pageSize = { A4: 'A4', LEGAL: 'LEGAL' }
+const orientation = { PORTRAIT: 'portrait', LANDSCAPE: 'landscape' }
+
+const styles = StyleSheet.create({
+  page: {
+    fontFamily: 'Helvetica',
+    fontSize: 11,
+    paddingLeft: '20px',
+    paddingRight: '20px',
+    paddingTop: '15px',
+    lineHeight: 1.5,
+    flexDirection: 'column',
+    size: pageSize.A4 + ' ' + orientation.LANDSCAPE,
+  },
+})
+
 const Invoice = ({
-  pageDetails: { pageSize, styles, imageContainer },
+  pageDetails: { pageSize, imageContainer },
   pages,
   title,
   invoiceDetails,
@@ -78,7 +94,7 @@ const Invoice = ({
 
   return pages.map((page, index) => {
     return (
-      <Page key={index} size={pageSize} style={styles}>
+      <Page key={index} size={pageSize} style={styles.page}>
         <View style={imageContainer}>
           <InvoiceTitle
             title={title}
@@ -109,6 +125,7 @@ const Invoice = ({
           <InvoiceFooter
             invoice={invoice}
             // footer={entry}
+            header={invoice_head}
             footer={invoice_head}
             // items={products?.length}
             items={page?.length}
@@ -124,11 +141,11 @@ const Invoice = ({
             message={message}
             show_total={index == pages.length - 1 ? true : false}
           />
-          <TempNote />
+          {/* <TempNote /> */}
         </View>
       </Page>
-    );
-  });
-};
+    )
+  })
+}
 
-export default Invoice;
+export default Invoice

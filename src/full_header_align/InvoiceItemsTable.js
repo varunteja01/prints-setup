@@ -3,21 +3,19 @@ import { View, StyleSheet } from '@react-pdf/renderer'
 // import InvoiceTableHeader from '../full_header/InvoiceTableHeader'
 // import InvoiceTableRow from '../full_header/InvoiceTableRow'
 // import InvoiceTableBlankSpace from '../full_header/InvoiceTableBlankSpace'
-import {
-  InvoiceTableBlankSpace,
-  InvoiceTableHeader,
-  InvoiceTableRow,
-} from '../components/Table'
-
+import InvoiceTableHeader from '../full_header_align/InvoiceTableHeader'
+import InvoiceTableRow from '../full_header_align/InvoiceTableRow'
+import InvoiceTableBlankSpace from '../full_header_align/InvoiceTableBlankSpace'
 const tableRowsCount = 15
 
 const styles = StyleSheet.create({
   tableContainer: {
+    paddingTop: 15,
     flexDirection: 'row',
     flexWrap: 'wrap',
     marginTop: 0,
-    borderWidth: 1,
-    borderColor: '#000',
+    // borderWidth: 1,
+    // borderColor: '#000',
   },
 })
 
@@ -36,11 +34,11 @@ const InvoiceItemsTable = ({
 }) => {
   return (
     <View style={styles.tableContainer}>
-      <InvoiceTableHeader
+      {/* <InvoiceTableHeader
         printType={printType}
         columns={printColumns}
         styles={printTableStyles}
-      />
+      /> */}
       <InvoiceTableRow
         items={products}
         printType={printType}

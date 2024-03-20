@@ -1,12 +1,12 @@
-import React, { Fragment } from 'react';
-import { Text, View, StyleSheet, Image } from '@react-pdf/renderer';
-import Moment from 'moment';
+import React, { Fragment } from 'react'
+import { Text, View, StyleSheet, Image } from '@react-pdf/renderer'
+import Moment from 'moment'
 
 const styles = StyleSheet.create({
   titleContainer: {
     flexDirection: 'column',
     marginTop: 0,
-    minHeight: '60px',
+    height: '108px',
     width: '100%',
   },
   rowContainer: {
@@ -42,28 +42,29 @@ const styles = StyleSheet.create({
     marginTop: 0,
     lineHeight: 1.1,
     width: '100%',
-    minHeight: '30px',
-    borderRightWidth: '1',
-    borderRightColor: '#000000',
-    borderLeftWidth: '1',
-    borderLeftColor: '#000000',
-    paddingTop: '2px',
+    height: '50px',
+    // borderRightWidth: '1',
+    // borderRightColor: '#000000',
+    // borderLeftWidth: '1',
+    // borderLeftColor: '#000000',
+    paddingTop: '7px',
   },
   grid3: {
     marginTop: 0,
     lineHeight: 1.1,
-    width: '55%',
+    width: '45%',
     height: '100%',
-    paddingLeft: '2px',
-    paddingTop: '5px',
+    paddingLeft: '10px',
+    paddingTop: '1px',
+    // border: 1,
   },
   doctor_grid: {
     marginTop: 0,
     lineHeight: 1.1,
-    width: '30%',
+    width: '35%',
     height: '100%',
-    paddingLeft: '2px',
-    paddingTop: '5px',
+    paddingLeft: '10px',
+    paddingTop: '1px',
   },
   imageContainer: {
     marginTop: 0,
@@ -105,7 +106,7 @@ const styles = StyleSheet.create({
   lr: {
     fontSize: 8,
   },
-});
+})
 
 const InvoiceTitle = ({
   title,
@@ -121,28 +122,28 @@ const InvoiceTitle = ({
     <View
       style={{
         flexDirection: 'row',
-        borderWidth: 1,
-        borderColor: '#000000',
+        // borderWidth: 1,
+        // borderColor: '#000000',
         paddingTop: '5px',
-        minHeight: '30px',
+        height: '58px',
         width: '100%',
       }}
     >
       <View style={styles.imageContainer}>
-        <Image style={styles.logo} src={logo_url} />
+        {/* <Image style={styles.logo} src={logo_url} /> */}
       </View>
       <View style={styles.headerContainer}>
-        <Text style={styles.billTo}>{invoice.firm_name}</Text>
+        {/* <Text style={styles.billTo}>{invoice.firm_name}</Text>
         <Text
           style={styles.address}
         >{`${invoice.line_1},${invoice.line_2},${invoice.pincode}`}</Text>
         <Text
           style={styles.address}
         >{`DL No: ${invoice?.dl1},${invoice?.dl2}  GSTIN No: ${invoice?.gstin}`}</Text>
-        <Text style={styles.address}>{`(Phone): ${invoice?.landline}`}</Text>
+        <Text style={styles.address}>{`(Phone): ${invoice?.landline}`}</Text> */}
       </View>
       <View style={styles.imageContainer}>
-        <Text
+        {/* <Text
           style={{
             width: '100%',
             textAlign: 'right',
@@ -151,7 +152,7 @@ const InvoiceTitle = ({
           }}
         >
           {title}
-        </Text>
+        </Text> */}
       </View>
     </View>
 
@@ -168,44 +169,52 @@ const InvoiceTitle = ({
               style={{
                 width: '100%',
                 flexDirection: 'row',
-                height: 12,
+                // height: 14,
+                margin: '6px 0 0 0',
               }}
             >
               <Text
                 style={{
-                  marginTop: 0,
-                  paddingBottom: 3,
-                  fontSize: 7,
-                  width: '27%',
+                  margin: '1px 0 1px 0',
+                  paddingBottom: 0,
+                  fontSize: 8,
+                  width: '20%',
                   textAlign: 'left',
                   fontFamily: 'Helvetica',
                   fontStyle: 'heavy',
+                  // border: 1,
                 }}
               >
-                Customer Name
+                {/* Cust. Name */}&nbsp;
               </Text>
               <Text
                 style={{
-                  marginTop: 0,
-                  paddingBottom: 3,
-                  fontSize: 7,
+                  margin: '1px 0 1px 0',
+                  paddingBottom: 0,
+                  fontSize: 8,
                   width: '2%',
                   textAlign: 'center',
                   fontFamily: 'Helvetica',
                   fontStyle: 'heavy',
+                  // border: 1,
                 }}
               >
-                :
+                {/* : */}&nbsp;
               </Text>
               <Text
                 style={{
-                  marginTop: 0,
-                  paddingBottom: 3,
-                  fontSize: 7,
-                  width: '71%',
+                  margin: '1px 0 1px 0',
+                  paddingBottom: 0,
+                  fontSize: 8,
+                  width: '78%',
+                  paddingLeft: '20px',
+                  // paddingTop: '2px',
+                  // marginTop: '2px',
                   textAlign: 'left',
                   fontFamily: 'Helvetica',
                   fontStyle: 'heavy',
+                  // border: 1,
+                  // paddingTop: '7px',
                 }}
               >
                 {customer?.name}
@@ -220,97 +229,100 @@ const InvoiceTitle = ({
             >
               <Text
                 style={{
-                  marginTop: 0,
-                  paddingBottom: 3,
-                  fontSize: 7,
-                  width: '27%',
+                  margin: '1px 0 1px 0',
+                  paddingBottom: 0,
+                  fontSize: 8,
+                  width: '20%',
                   textAlign: 'left',
                   fontFamily: 'Helvetica',
                   fontStyle: 'heavy',
+                  // border: 1,
                 }}
               >
-                Customer No.
+                {/* Mobile */}&nbsp;
               </Text>
               <Text
                 style={{
-                  marginTop: 0,
-                  paddingBottom: 3,
-                  fontSize: 7,
+                  margin: '1px 0 1px 0',
+                  paddingBottom: 0,
+                  fontSize: 8,
                   width: '2%',
                   textAlign: 'center',
                   fontFamily: 'Helvetica',
                   fontStyle: 'heavy',
                 }}
               >
-                :
+                {/* : */}&nbsp;
               </Text>
               <Text
                 style={{
-                  marginTop: 0,
-                  paddingBottom: 3,
-                  fontSize: 7,
-                  width: '71%',
+                  margin: '1px 0 1px 0',
+                  paddingBottom: 0,
+                  fontSize: 8,
+                  width: '78%',
+                  paddingLeft: '20px',
+                  // paddingTop: '3px',
                   textAlign: 'left',
+                  fontFamily: 'Helvetica',
+                  fontStyle: 'heavy',
+                  // border: 1,
+                }}
+              >
+                {customer?.phone}
+              </Text>
+            </View>
+
+            <View
+              style={{
+                width: '100%',
+                flexDirection: 'row',
+              }}
+            >
+              <Text
+                style={{
+                  margin: '1px 0 1px 0',
+                  // paddingBottom: 3,
+                  fontSize: 8,
+                  width: '20%',
+                  textAlign: 'left',
+                  fontFamily: 'Helvetica',
+                  fontStyle: 'heavy',
+                  // border: 1,
+                }}
+              >
+                {/* Doctor Name */}&nbsp;
+              </Text>
+              <Text
+                style={{
+                  margin: '1px 0 1px 0',
+                  // paddingBottom: 3,
+                  fontSize: 8,
+                  width: '2%',
+                  textAlign: 'center',
                   fontFamily: 'Helvetica',
                   fontStyle: 'heavy',
                 }}
               >
-                {customer?.mobile}
+                {/* : */}&nbsp;
               </Text>
-            </View>
-
-            {customerAddress ? (
-              <View
+              <Text
                 style={{
-                  width: '100%',
-                  flexDirection: 'row',
+                  margin: '1px 0 1px 0',
+                  // paddingBottom: 3,
+                  fontSize: 8,
+                  paddingLeft: '20px',
+                  width: '78%',
+                  textAlign: 'left',
+                  fontFamily: 'Helvetica',
+                  fontStyle: 'heavy',
+                  // border: 1,
                 }}
               >
-                <Text
-                  style={{
-                    marginTop: 0,
-                    paddingBottom: 3,
-                    fontSize: 7,
-                    width: '27%',
-                    textAlign: 'left',
-                    fontFamily: 'Helvetica',
-                    fontStyle: 'heavy',
-                  }}
-                >
-                  Customer Address
-                </Text>
-                <Text
-                  style={{
-                    marginTop: 0,
-                    paddingBottom: 3,
-                    fontSize: 7,
-                    width: '2%',
-                    textAlign: 'center',
-                    fontFamily: 'Helvetica',
-                    fontStyle: 'heavy',
-                  }}
-                >
-                  :
-                </Text>
-                <Text
-                  style={{
-                    marginTop: 0,
-                    paddingBottom: 3,
-                    fontSize: 7,
-                    width: '71%',
-                    textAlign: 'left',
-                    fontFamily: 'Helvetica',
-                    fontStyle: 'heavy',
-                  }}
-                >
-                  {`${customer?.address_1 ?? ''}`}
-                </Text>
-              </View>
-            ) : (
-              <></>
-            )}
+                {doctor?.doctor_name}
+              </Text>
+            </View>
           </View>
-          <View style={{ width: '15%' }}>
+          <View style={{ width: '20%' }}>
             <Text
               style={{
                 width: '100%',
@@ -319,7 +331,7 @@ const InvoiceTitle = ({
                 marginTop: '10px',
               }}
             >
-              {`${customer?.payment_mode ?? ''} BILL`}
+              {/* {`${customer?.payment_mode ?? ''} BILL`} */}
             </Text>
           </View>
           {/* <View style={{ width: '15%' }}></View> */}
@@ -328,44 +340,102 @@ const InvoiceTitle = ({
               style={{
                 width: '100%',
                 flexDirection: 'row',
-                height: 12,
+                // height: 14,
+                margin: '6px 0 0 0',
               }}
             >
               <Text
                 style={{
-                  marginTop: 0,
-                  paddingBottom: 3,
-                  fontSize: 7,
-                  width: '32%',
+                  margin: '1px 0 1px 0',
+                  paddingBottom: 0,
+                  fontSize: 8,
+                  width: '20%',
                   textAlign: 'left',
                   fontFamily: 'Helvetica',
                   fontStyle: 'heavy',
+                  // border: 1,
                 }}
               >
-                Invoice No
+                &nbsp;
               </Text>
               <Text
                 style={{
-                  marginTop: 0,
-                  paddingBottom: 3,
-                  fontSize: 7,
-                  width: '3%',
+                  margin: '1px 0 1px 0',
+                  paddingBottom: 0,
+                  fontSize: 8,
+                  width: '2%',
+                  textAlign: 'center',
+                  fontFamily: 'Helvetica',
+                  fontStyle: 'heavy',
+                  // border: 1,
+                }}
+              >
+                &nbsp;
+              </Text>
+              <Text
+                style={{
+                  margin: '1px 0 1px 0',
+                  paddingBottom: 0,
+                  fontSize: 8,
+                  width: '78%',
+                  paddingLeft: '10px',
+                  // paddingTop: '2px',
+                  // marginTop: '2px',
+                  textAlign: 'left',
+                  fontFamily: 'Helvetica',
+                  fontStyle: 'heavy',
+                  // border: 1,
+                  // paddingTop: '7px',
+                }}
+              >
+                &nbsp;
+              </Text>
+            </View>
+            <View
+              style={{
+                width: '100%',
+                flexDirection: 'row',
+              }}
+            >
+              <Text
+                style={{
+                  margin: '1px 0 1px 0',
+                  paddingBottom: 0,
+                  fontSize: 8,
+                  width: '25%',
+                  textAlign: 'left',
+                  fontFamily: 'Helvetica',
+                  fontStyle: 'heavy',
+                  // border: 1,
+                }}
+              >
+                {/* Invoice No */}&nbsp;
+              </Text>
+              <Text
+                style={{
+                  margin: '1px 0 1px 0',
+                  paddingBottom: 0,
+                  fontSize: 8,
+                  width: '2%',
                   textAlign: 'center',
                   fontFamily: 'Helvetica',
                   fontStyle: 'heavy',
                 }}
               >
-                :
+                {/* : */}&nbsp;
               </Text>
               <Text
                 style={{
-                  marginTop: 0,
-                  paddingBottom: 3,
-                  fontSize: 7,
-                  width: '65%',
+                  margin: '1px 0 1px 0',
+                  paddingBottom: 0,
+                  fontSize: 8,
+                  width: '73%',
+                  paddingLeft: '50px',
+                  // paddingTop: '3px',
                   textAlign: 'left',
                   fontFamily: 'Helvetica',
                   fontStyle: 'heavy',
+                  // border: 1,
                 }}
               >
                 {header?.entry_number}
@@ -379,39 +449,42 @@ const InvoiceTitle = ({
             >
               <Text
                 style={{
-                  marginTop: 0,
-                  paddingBottom: 3,
-                  fontSize: 7,
-                  width: '32%',
+                  margin: '1px 0 1px 0',
+                  // paddingBottom: 3,
+                  fontSize: 8,
+                  width: '25%',
                   textAlign: 'left',
                   fontFamily: 'Helvetica',
                   fontStyle: 'heavy',
+                  // border: 1,
                 }}
               >
-                Invoice Date
+                {/* Invoice Date */}&nbsp;
               </Text>
               <Text
                 style={{
-                  marginTop: 0,
-                  paddingBottom: 3,
-                  fontSize: 7,
-                  width: '3%',
+                  margin: '1px 0 1px 0',
+                  // paddingBottom: 3,
+                  fontSize: 8,
+                  width: '2%',
                   textAlign: 'center',
                   fontFamily: 'Helvetica',
                   fontStyle: 'heavy',
                 }}
               >
-                :
+                {/* : */}&nbsp;
               </Text>
               <Text
                 style={{
-                  marginTop: 0,
-                  paddingBottom: 3,
-                  fontSize: 7,
-                  width: '65%',
+                  margin: '1px 0 1px 0',
+                  // paddingBottom: 3,
+                  fontSize: 8,
+                  paddingLeft: '50px',
+                  width: '73%',
                   textAlign: 'left',
                   fontFamily: 'Helvetica',
                   fontStyle: 'heavy',
+                  // border: 1,
                 }}
               >
                 {header.entry_date === ''
@@ -424,57 +497,11 @@ const InvoiceTitle = ({
                       .format('DD-MM-YYYY HH:mm:ss')}
               </Text>
             </View>
-            <View
-              style={{
-                width: '100%',
-                flexDirection: 'row',
-              }}
-            >
-              <Text
-                style={{
-                  marginTop: 0,
-                  paddingBottom: 3,
-                  fontSize: 7,
-                  width: '33%',
-                  textAlign: 'left',
-                  fontFamily: 'Helvetica',
-                  fontStyle: 'heavy',
-                }}
-              >
-                Doctor Name
-              </Text>
-              <Text
-                style={{
-                  marginTop: 0,
-                  paddingBottom: 3,
-                  fontSize: 7,
-                  width: '2%',
-                  textAlign: 'center',
-                  fontFamily: 'Helvetica',
-                  fontStyle: 'heavy',
-                }}
-              >
-                :
-              </Text>
-              <Text
-                style={{
-                  marginTop: 0,
-                  paddingBottom: 3,
-                  fontSize: 7,
-                  width: '65%',
-                  textAlign: 'left',
-                  fontFamily: 'Helvetica',
-                  fontStyle: 'heavy',
-                }}
-              >
-                {doctor?.name}
-              </Text>
-            </View>
           </View>
         </View>
       </View>
     </View>
   </View>
-);
+)
 
-export default InvoiceTitle;
+export default InvoiceTitle

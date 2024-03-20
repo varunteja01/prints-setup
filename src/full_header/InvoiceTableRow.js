@@ -1,8 +1,8 @@
-import React, { Fragment } from 'react'
-import { Text, View, StyleSheet } from '@react-pdf/renderer'
-import Moment from 'moment'
+import React, { Fragment } from 'react';
+import { Text, View, StyleSheet } from '@react-pdf/renderer';
+import Moment from 'moment';
 
-const borderColor = '#000000'
+const borderColor = '#000000';
 
 const InvoiceTableRow = ({
   printType,
@@ -15,20 +15,17 @@ const InvoiceTableRow = ({
   verticalRows = false,
   dynamicPagination = false,
 }) => {
-  const create_style = StyleSheet.create(styles)
-  let sno_start = pageno * max_items
-  let sno = 0
+  const create_style = StyleSheet.create(styles);
+  let sno_start = pageno * max_items;
+  let sno = 0;
   const rows = items.map((item, row_index) => {
-    let cellHeight = item.product_name?.length > line_height ? 22 : 10.5
-    console.log('item.product_name', item.product_name)
-    console.log('item.product_name?.length', item.product_name?.length)
-    console.log('line_height', line_height)
+    let cellHeight = item.product_name?.length > line_height ? 22 : 10.5;
     // let cellHeight = 14.5;
     if (dynamicPagination) {
-      cellHeight = Math.ceil(item.product_name?.length / line_height) * 10.5
+      cellHeight = Math.ceil(item.product_name?.length / line_height) * 10.5;
     }
     let is_section_header =
-      item.product_name == 'Fridge' || item.product_name === 'Goods Return'
+      item.product_name == 'Fridge' || item.product_name === 'Goods Return';
 
     return (
       <View
@@ -51,13 +48,13 @@ const InvoiceTableRow = ({
             ...create_style[`${element.column}`],
             borderColor: is_section_header ? '#dbdbdb' : '',
             height: cellHeight,
-          }
+          };
           if (element.type == 'number') {
             return (
               <Text style={cell_style}>
                 {item[`${element.value}`] == 0 ? ' ' : item[`${element.value}`]}
               </Text>
-            )
+            );
           }
           if (element.type == 'amount') {
             return (
@@ -66,7 +63,7 @@ const InvoiceTableRow = ({
                   ? ' '
                   : parseFloat(item[`${element.value}`]).toFixed(2)}
               </Text>
-            )
+            );
           }
           if (element.type == 'expiry') {
             return (
@@ -76,20 +73,20 @@ const InvoiceTableRow = ({
                   ? ''
                   : Moment(item[`${element.value}`]).format('MM/YY')}
               </Text>
-            )
+            );
           }
           if (element.type == 'item_order') {
             return (
               <Text style={cell_style}>{item[`${element.value}`] + 1}</Text>
-            )
+            );
           }
           if (element.type == 'item_order_seq') {
-            !is_section_header && sno++
+            !is_section_header && sno++;
             return (
               <Text style={cell_style}>
                 {is_section_header ? '' : sno_start + sno}
               </Text>
-            )
+            );
           }
           if (element.type == 'rate') {
             return (
@@ -105,7 +102,7 @@ const InvoiceTableRow = ({
                   ? '^'
                   : ''}
               </Text>
-            )
+            );
           }
           if (element.type == 'mrp') {
             return (
@@ -115,7 +112,7 @@ const InvoiceTableRow = ({
                   : parseFloat(item[`${element.value}`]).toFixed(2)}
                 {item?.indicator_flags?.[0]?.mrp_indicator == true ? '*' : ''}
               </Text>
-            )
+            );
           }
           if (element.type == 'indicated_product_name') {
             return (
@@ -134,7 +131,7 @@ const InvoiceTableRow = ({
                 &nbsp;
                 {item[`${element.value}`] ?? ''}
               </Text>
-            )
+            );
           }
           if (element.type == 'indicators') {
             return (
@@ -152,16 +149,16 @@ const InvoiceTableRow = ({
                   : ''}
                 &nbsp;
               </Text>
-            )
+            );
           }
           return (
             <Text style={cell_style}>{item[`${element.value}`] ?? ''}</Text>
-          )
+          );
         })}
       </View>
-    )
-  })
-  return <Fragment>{rows}</Fragment>
-}
+    );
+  });
+  return <Fragment>{rows}</Fragment>;
+};
 
-export default InvoiceTableRow
+export default InvoiceTableRow;

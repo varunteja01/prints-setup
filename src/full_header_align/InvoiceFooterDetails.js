@@ -68,7 +68,7 @@ const styles = StyleSheet.create({
     width: '12%',
     height: '100%',
     // borderBottom: 1,
-    paddingTop: 2,
+    paddingTop: 3,
   },
   footer2: {
     flexDirection: 'row',
@@ -240,7 +240,7 @@ const styles = StyleSheet.create({
     fontSize: '6px',
     flexDirection: 'column',
     paddingLeft: '20px',
-    paddingBottom: '14px',
+    paddingBottom: '13px',
   },
 })
 
@@ -510,8 +510,8 @@ const InvoiceFooter = ({
             style={{
               width: '30%',
               fontSize: '6px',
-              paddingBottom: '6px',
-              paddingLeft: '10px',
+              paddingBottom: '5px',
+              paddingLeft: '7px',
             }}
           >
             <Text>{header?.added_by}</Text>
@@ -577,7 +577,7 @@ const InvoiceFooter = ({
         <Text style={styles.footer_value}>
           {show_total ? footer.rounding : ''}
         </Text>
-        <Text style={styles.net_amount}>
+        <Text style={{ ...styles.net_amount, paddingRight: '3px' }}>
           {/* {show_total ? parseFloat(footer?.net_amount || 0).toFixed(2) : ''} */}
           {show_total
             ? parseFloat(

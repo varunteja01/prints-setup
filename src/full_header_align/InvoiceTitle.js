@@ -48,6 +48,7 @@ const styles = StyleSheet.create({
     // borderLeftWidth: '1',
     // borderLeftColor: '#000000',
     paddingTop: '7px',
+    // border: 1,
   },
   grid3: {
     marginTop: 0,
@@ -56,7 +57,6 @@ const styles = StyleSheet.create({
     height: '100%',
     paddingLeft: '10px',
     paddingTop: '1px',
-    // border: 1,
   },
   doctor_grid: {
     marginTop: 0,
@@ -65,6 +65,7 @@ const styles = StyleSheet.create({
     height: '100%',
     paddingLeft: '10px',
     paddingTop: '1px',
+    paddingBottom: '1px',
   },
   imageContainer: {
     marginTop: 0,

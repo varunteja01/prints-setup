@@ -10,7 +10,7 @@ const tableRowsCount = 15
 
 const styles = StyleSheet.create({
   tableContainer: {
-    paddingTop: 15,
+    paddingTop: 14,
     flexDirection: 'row',
     flexWrap: 'wrap',
     marginTop: 0,

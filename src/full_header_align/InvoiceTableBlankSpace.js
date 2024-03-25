@@ -6,6 +6,7 @@ const rowStyles = StyleSheet.create({
     flexDirection: 'row',
     alignItems: 'center',
     height: 11,
+    // border: 1,
     fontStyle: 'bold',
     color: 'white',
   },

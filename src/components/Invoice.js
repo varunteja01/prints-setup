@@ -47,6 +47,9 @@ import QRCode from 'qrcode'
 import FullHeaderInvoice from '../full_header/Invoice'
 import FullHeaderInvoiceAlign from '../full_header_align/Invoice'
 import IrnFullHeaderVerticalA5WithoutBorder from '../irn_full_header_vertical_a5_without_border/Invoice'
+import FullHeaderBlockEmpty from '../full_header_block_empty/Invoice'
+import FullHeaderBlockEmptyNew from '../full_header_block_empty_new/Invoice'
+import CompactRetailInvoiceNormalSavedAmount from '../compact_retail_invoice_normal_saved_amount/Invoice'
 import { calculateMultiplier, convertNumToWords } from './helpers'
 // import FullHeaderBlock from './full_header_block/Invoice'
 // import FullHeaderBlockEmpty from './full_header_block_empty/Invoice'
@@ -145,6 +148,7 @@ const styles = StyleSheet.create({
   },
   imageContainer2: {
     height: '50%',
+    // border: 1,
   },
   halfA5: {
     flexDirection: 'row',
@@ -747,6 +751,130 @@ export default function Invoice({
                 snoStart={snoStart}
                 blankLinesCount={blankLinesCount}
                 customerAddress={false}
+              />
+            )
+            pdf_pages = pdf_pages?.concat(fullHeaderRows)
+            break
+          }
+          case 'full_header_block_empty': {
+            const fullHeaderRows = (
+              <FullHeaderBlockEmpty
+                pageDetails={{
+                  pageSize: pageSize.A4,
+                  styles: styles.page,
+                  imageContainer: styles.imageContainer,
+                }}
+                pages={updatedPages}
+                title={title}
+                invoiceDetails={invoice}
+                invoice={invoice}
+                invoice_head={invoice_head}
+                doctor_details={doctor_details}
+                patient_details={patient_details}
+                max_items={max_items}
+                printColumns={printColumns}
+                printTableStyles={printTableStyles}
+                products_arr={products_arr}
+                gstEnabled={gstEnabled}
+                message={message}
+                print_layout={print_layout}
+                settingsInfo={
+                  paymentUrl != ''
+                    ? { ...settingsInfo, qr_code: paymentUrl }
+                    : settingsInfo
+                }
+                clientInformation={clientInformation}
+                blockImage={
+                  window.location.origin + '/assets/images/blocks/block.png'
+                }
+                inventoryType={inventoryType}
+                dynamicPagination={invoice?.dynamic_length ?? false}
+                maxCharsPerLine={max_chars}
+                snoStart={snoStart}
+                blankLinesCount={blankLinesCount}
+              />
+            )
+            pdf_pages = pdf_pages?.concat(fullHeaderRows)
+            break
+          }
+          case 'full_header_block_empty_new': {
+            const fullHeaderRows = (
+              <FullHeaderBlockEmptyNew
+                pageDetails={{
+                  pageSize: pageSize.A4,
+                  styles: styles.page,
+                  imageContainer: styles.imageContainer,
+                }}
+                pages={updatedPages}
+                title={title}
+                invoiceDetails={invoice}
+                invoice={invoice}
+                invoice_head={invoice_head}
+                doctor_details={doctor_details}
+                patient_details={patient_details}
+                max_items={max_items}
+                printColumns={printColumns}
+                printTableStyles={printTableStyles}
+                products_arr={products_arr}
+                gstEnabled={gstEnabled}
+                message={message}
+                print_layout={print_layout}
+                settingsInfo={
+                  paymentUrl != ''
+                    ? { ...settingsInfo, qr_code: paymentUrl }
+                    : settingsInfo
+                }
+                clientInformation={clientInformation}
+                blockImage={
+                  window.location.origin + '/assets/images/blocks/block.png'
+                }
+                inventoryType={inventoryType}
+                dynamicPagination={invoice?.dynamic_length ?? false}
+                maxCharsPerLine={max_chars}
+                snoStart={snoStart}
+                blankLinesCount={blankLinesCount}
+              />
+            )
+            pdf_pages = pdf_pages?.concat(fullHeaderRows)
+            break
+          }
+          case 'compact_retail_invoice_normal_saved_amount': {
+            const fullHeaderRows = (
+              <CompactRetailInvoiceNormalSavedAmount
+                pageDetails={{
+                  pageSize: pageSize.A4,
+                  styles: styles.page,
+                  imageContainer: styles.imageContainer,
+                }}
+                pages={updatedPages}
+                title={title}
+                invoiceDetails={invoice}
+                invoice={invoice}
+                invoice_head={invoice_head}
+                doctor_details={doctor_details}
+                patient_details={patient_details}
+                max_items={max_items}
+                printColumns={printColumns}
+                printTableStyles={printTableStyles}
+                products_arr={products_arr}
+                gstEnabled={gstEnabled}
+                message={message}
+                print_layout={print_layout}
+                settingsInfo={
+                  paymentUrl != ''
+                    ? { ...settingsInfo, qr_code: paymentUrl }
+                    : settingsInfo
+                }
+                clientInformation={clientInformation}
+                blockImage={
+                  window.location.origin + '/assets/images/blocks/block.png'
+                }
+                inventoryType={inventoryType}
+                user={user}
+                dynamicPagination={invoice?.dynamic_length ?? false}
+                maxCharsPerLine={max_chars}
+                snoStart={snoStart}
+                blankLinesCount={blankLinesCount}
               />
             )
             pdf_pages = pdf_pages?.concat(fullHeaderRows)

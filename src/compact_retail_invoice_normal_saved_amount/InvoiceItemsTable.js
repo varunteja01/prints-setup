@@ -1,15 +1,13 @@
-import React from 'react';
-import { View, StyleSheet } from '@react-pdf/renderer';
-import InvoiceTableHeader from './InvoiceTableHeader';
-import InvoiceTableRow from './InvoiceTableRow';
-import InvoiceTableBlankSpace from './InvoiceTableBlankSpace';
-// import {
-//   InvoiceTableHeader,
-//   InvoiceTableRow,
-//   InvoiceTableBlankSpace,
-// } from '../Components/Table';
-
-const tableRowsCount = 15;
+import React from 'react'
+import { View, StyleSheet } from '@react-pdf/renderer'
+// import InvoiceTableHeader from './InvoiceTableHeader';
+// import InvoiceTableRow from '../Components/Table/InvoiceTableRow';
+// import InvoiceTableBlankSpace from './InvoiceTableBlankSpace';
+import {
+  InvoiceTableHeader,
+  InvoiceTableRow,
+  InvoiceTableBlankSpace,
+} from '../components/Table'
 
 const styles = StyleSheet.create({
   tableContainer: {
@@ -19,7 +17,7 @@ const styles = StyleSheet.create({
     borderWidth: 1,
     borderColor: '#000',
   },
-});
+})
 
 const InvoiceItemsTable = ({
   invoice,
@@ -29,9 +27,10 @@ const InvoiceItemsTable = ({
   printColumns,
   printTableStyles,
   pageno,
+  dynamicPagination,
+  maxCharsPerLine,
   snoStart,
   blankLinesCount,
-  maxCharsPerLine,
 }) => {
   return (
     <View style={styles.tableContainer}>
@@ -46,17 +45,15 @@ const InvoiceItemsTable = ({
         columns={printColumns}
         styles={StyleSheet.create(printTableStyles)}
         max_items={max_items}
-        line_height={maxCharsPerLine}
         pageno={pageno}
+        dynamicPagination={dynamicPagination}
+        line_height={maxCharsPerLine}
         snoStart={snoStart}
       />
-      <InvoiceTableBlankSpace
-        rowsCount={blankLinesCount}
-        // rowsCount={max_items - products.length}
-        printType={printType}
-      />
+      <InvoiceTableBlankSpace rowsCount={blankLinesCount} />
+      {/* <InvoiceTableBlankSpace rowsCount={max_items - products.length} /> */}
     </View>
-  );
-};
+  )
+}
 
-export default InvoiceItemsTable;
+export default InvoiceItemsTable

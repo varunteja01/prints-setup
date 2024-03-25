@@ -6,49 +6,40 @@ const fontColor = '#000';
 const styles = StyleSheet.create({
   container: {
     flexDirection: 'row',
-    borderBottomColor: '#dbdbdb',
-    backgroundColor: '#fff',
-    borderBottomWidth: 1,
     alignItems: 'center',
-    height: 16,
+    height: 14,
     fontStyle: 'bold',
-    flexGrow: 1,
     fontSize: 8,
   },
-  sno: {
-    width: '15%',
+  right: {
+    width: '30%',
     paddingLeft: '3px',
-    backgroundColor: '#dbdbdb',
+    // backgroundColor: '#dbdbdb',
     color: fontColor,
-    borderRightColor: borderColor,
-    borderRightWidth: 1,
     height: 14,
+    textAlign: 'right',
   },
-  hsn: {
+  left: {
     width: '50%',
     color: fontColor,
-    // borderRightColor: borderColor,
-    // borderRightWidth: 1,
     textAlign: 'left',
     paddingRight: '2px',
   },
   middle: {
-    width: '35%',
+    width: '20%',
     color: fontColor,
     textAlign: 'left',
     paddingRight: '2px',
-    fontSize: 9,
-    fontFamily: 'Helvetica-Bold',
   },
 });
 
-const InvoiceTableHeader = ({ footer, page_number }) => (
+const InvoiceTableHeader = ({ footer, page_number, timestamp }) => (
   <View style={styles.container}>
-    <Text style={styles.hsn}>
+    <Text style={styles.left}>
       Powered by Smartpharma360™ || +91 7337441325 || www.smartpharma360.in
     </Text>
     <Text style={styles.middle}>{page_number}</Text>
-    <Text style={styles.sno}>{footer.temp_invoice_number}</Text>
+    <Text style={styles.right}>Billed By: {footer?.added_by}</Text>
   </View>
 );
 

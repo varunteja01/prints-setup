@@ -60,9 +60,9 @@ export const invoice = {
   client_id: 6,
   print_layout_transfer_out_id: 30,
   max_items_per_page: 19,
-  b2c_max_items_per_page: 17,
+  b2c_max_items_per_page: 15,
   print_layout_sale_key: 'full_header_no_logo',
-  print_layout_b2c_sale_key: 'full_header_disc_retail_align',
+  print_layout_b2c_sale_key: 'compact_retail_invoice_normal_saved_amount',
   print_layout_sale_dc_key: 'full_header_a5_dc',
   print_layout_transfer_out_key: 'irn_with_acknowledgement_a4_format',
   print_layout_sale_return_key: 'b2b_default_laser',
@@ -71,7 +71,7 @@ export const invoice = {
 }
 
 export const entry = {
-  entry_number: 'S23000430',
+  entry_number: 'SI-BDU-23-009963',
   entry_date: '2023-10-19',
   id: 569386,
   customer_id: '',
@@ -599,7 +599,7 @@ export const products = [
     product_id: 85999,
     batch_id: 2273628,
     product_name:
-      'DOLO 650 n erkh e fkh efhb i ah n  afjeb jek ker nkw efefkj wefesd',
+      'DOLO 650 n erkh e fkh efhb i ah n  afjeb j EKJ F EJ CN KWfkj wo jek ker nkw efefkj wefesd',
     product_code: 'DOLO650',
     box_pack: null,
     case_pack: null,
@@ -1342,6 +1342,7 @@ export const products = [
     actual_selling_price: '25.08',
     net_amount: 58.42999999999999,
   },
+
   {
     id: 3165221,
     created_at: '2023-10-19T12:39:22.715Z',
@@ -1390,7 +1391,8 @@ export const products = [
     acp_margin: '12.70',
     product_id: 85999,
     batch_id: 2273628,
-    product_name: 'DOLO 650',
+    product_name:
+      'DOLO 65dfnw efweh fwiehf wne fwihe fwiehf weh fwhe fweh fwihef wehf wiehf fhb i ah n  afjeb j EKJ F EJ CN KWfkj wo jek ker nkw efefkj wefesd',
     product_code: 'DOLO650',
     box_pack: null,
     case_pack: null,
@@ -3299,7 +3301,7 @@ export const printColumns = [
 
 export const printTableStyles = {
   column1: {
-    width: '4%',
+    width: '3.7%',
     borderRightColor: '#000',
     borderRightWidth: 0.3,
     color: '#000',
@@ -3308,7 +3310,7 @@ export const printTableStyles = {
     height: 14.5,
   },
   column2: {
-    width: '4%',
+    width: '3.6%',
     borderRightColor: '#000',
     borderRightWidth: 0.3,
     color: '#000',
@@ -3328,7 +3330,7 @@ export const printTableStyles = {
     height: 14.5,
   },
   column4: {
-    width: '5%',
+    width: '5.6%',
     color: '#000',
     borderRightColor: '#000',
     borderRightWidth: 0.3,
@@ -3339,7 +3341,7 @@ export const printTableStyles = {
     height: 14.5,
   },
   column5: {
-    width: '4%',
+    width: '3.7%',
     color: '#000',
     borderRightColor: '#000',
     borderRightWidth: 0.3,
@@ -3348,7 +3350,7 @@ export const printTableStyles = {
     height: 14.5,
   },
   column6: {
-    width: '10.5%',
+    width: '10.9%',
     color: '#000',
     borderRightColor: '#000',
     borderRightWidth: 0.3,
@@ -3358,7 +3360,7 @@ export const printTableStyles = {
     height: 14.5,
   },
   column7: {
-    width: '5.5%',
+    width: '5.4%',
     color: '#000',
     borderRightColor: '#000',
     borderRightWidth: 0.3,
@@ -3388,7 +3390,7 @@ export const printTableStyles = {
     height: 14.5,
   },
   column10: {
-    width: '6.5%',
+    width: '5.5%',
     color: '#000',
     borderRightColor: '#000',
     borderRightWidth: 0.3,
@@ -3398,7 +3400,7 @@ export const printTableStyles = {
     height: 14.5,
   },
   column11: {
-    width: '6.5%',
+    width: '7.2%',
     color: '#000',
     borderRightColor: '#000',
     borderRightWidth: 0.3,
@@ -3408,7 +3410,7 @@ export const printTableStyles = {
     height: 14.5,
   },
   column12: {
-    width: '7.5%',
+    width: '7.4%',
     color: '#000',
     borderRightColor: '#000',
     borderRightWidth: 0.3,
@@ -3418,11 +3420,11 @@ export const printTableStyles = {
     height: 14.5,
   },
   column13: {
-    width: '7.5%',
+    width: '6.5%',
     color: '#000',
     textAlign: 'center',
-    borderRightColor: '#000',
-    borderRightWidth: 0.3,
+    // borderRightColor: '#000',
+    // borderRightWidth: 0.3,
     paddingRight: '2px',
     paddingTop: '2px',
     height: 14.5,

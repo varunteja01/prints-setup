@@ -1,5 +1,5 @@
 import React from 'react'
-import { Page, View, StyleSheet } from '@react-pdf/renderer'
+import { Page, View, StyleSheet, Text } from '@react-pdf/renderer'
 import InvoiceTitle from './InvoiceTitle'
 import InvoiceItemsTable from './InvoiceItemsTable'
 import InvoiceFooter from './InvoiceFooter'
@@ -19,6 +19,12 @@ const styles = StyleSheet.create({
     lineHeight: 1.5,
     flexDirection: 'column',
     size: pageSize.A4 + ' ' + orientation.LANDSCAPE,
+  },
+  poweredBy: {
+    height: '14px',
+    paddingTop: '1px',
+    paddingLeft: '2px',
+    marginTop: -28,
   },
 })
 
@@ -48,50 +54,7 @@ const Invoice = ({
   products,
   snoStart,
   blankLinesCount,
-  customerAddress,
 }) => {
-  // let updatedPages = [];
-  // let countsPerPage = [];
-  // let copy = [];
-  // let maxItems = max_items;
-  // let new_line_height = maxCharsPerLine;
-
-  // let i = 0;
-  // let count = 0;
-  // let pageNo = 0;
-  // let lastPage = 0;
-  // while (i < pages.length) {
-  //   let floorValue = Math.floor(
-  //     pages?.[i]?.product_name?.length / new_line_height,
-  //   );
-  //   let ceilValue = Math.ceil(
-  //     pages?.[i]?.product_name?.length / new_line_height,
-  //   );
-  //   count = ceilValue > 1 ? count + floorValue : count + ceilValue;
-
-  //   if (count < maxItems) {
-  //     copy?.push(pages[i]);
-  //     i++;
-  //   } else {
-  //     countsPerPage = [...countsPerPage, count];
-  //     updatedPages = [...updatedPages, [...copy, pages[i]]];
-  //     count = 0;
-  //     copy = [];
-  //     i++;
-  //     pageNo++;
-  //   }
-
-  //   if (i == pages.length - 1) {
-  //     lastPage = pageNo;
-  //     countsPerPage = [...countsPerPage, count];
-  //     updatedPages = [...updatedPages, copy];
-  //   } else if (pages?.length === 1) {
-  //     lastPage = 1;
-  //     countsPerPage = [1];
-  //     updatedPages = [copy];
-  //   }
-  // }
-
   return pages.map((page, index) => {
     return (
       <Page key={index} size={pageSize} style={styles.page}>
@@ -107,7 +70,6 @@ const Invoice = ({
             doctor={doctor_details}
             logo_url={`${clientInformation?.client_logo}`}
             inventoryType={inventoryType}
-            customerAddress={customerAddress}
           />
           <InvoiceItemsTable
             invoice={invoice}
@@ -142,6 +104,12 @@ const Invoice = ({
             show_total={index == pages.length - 1 ? true : false}
           />
           {/* <TempNote /> */}
+        </View>
+        <View style={styles.poweredBy}>
+          <Text style={{ fontSize: '7px' }}>
+            www.smartpharma360.in || +91 7337441325 || Powered by
+            Smartpharma360™
+          </Text>
         </View>
       </Page>
     )

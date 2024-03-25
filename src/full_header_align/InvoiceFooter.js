@@ -9,6 +9,7 @@ const styles = StyleSheet.create({
     flexDirection: 'row',
     flexWrap: 'wrap',
     marginTop: 0,
+    // border: 1,
     // borderRight: 1,
     // borderLeft: 1,
     // borderBottom: 1,
@@ -24,6 +25,20 @@ const styles = StyleSheet.create({
     textOverflow: true,
     height: '15px',
     fontSize: 8,
+  },
+  bottomContainer: {
+    width: '100%',
+    flexDirection: 'row',
+    marginTop: -12,
+    height: '8px',
+  },
+  powerbottom: {
+    width: '40%',
+    textAlign: 'right',
+    paddingTop: '8px',
+    textOverflow: true,
+    height: '8px',
+    fontSize: 6,
   },
 })
 
@@ -55,6 +70,12 @@ const InvoiceFooter = ({
       qr_code={qr_code}
     />
     {/* <Text style={styles.forDetails}>For {invoice?.firm_name}</Text> */}
+    {/* <View style={styles.bottomContainer}>
+      <Text style={styles.bottom}>{'All Bank Cards are accepted. '}</Text>
+      <Text style={styles.powerbottom}>
+        www.smartpharma360.in || +91 7337441325 || Powered by Smartpharma360™
+      </Text>
+    </View> */}
   </View>
 )
 

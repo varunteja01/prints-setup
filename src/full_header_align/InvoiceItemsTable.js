@@ -14,6 +14,8 @@ const styles = StyleSheet.create({
     flexDirection: 'row',
     flexWrap: 'wrap',
     marginTop: 0,
+    // border: 1,
+    height: '200px',
     // borderWidth: 1,
     // borderColor: '#000',
   },

@@ -1,7 +1,7 @@
 import React, { Fragment } from 'react'
 import { Text, View, StyleSheet } from '@react-pdf/renderer'
 import Moment from 'moment'
-import { calculateMultiplier, getTableCellHeight } from '../components/helpers'
+import { calculateMultiplier } from '../components/helpers'
 
 const borderColor = '#000000'
 
@@ -43,8 +43,6 @@ const InvoiceTableRow = ({
       Math.ceil(item.product_name?.length / lineHeight) * fontSize
     )
 
-    console.log('cellHeight', cellHeight)
-
     // let cellHeight = getTableCellHeight(item.product_name?.length, line_height)
 
     let is_section_header =
@@ -54,8 +52,10 @@ const InvoiceTableRow = ({
       <View
         style={{
           flexDirection: 'row',
-          borderBottomColor: borderColor,
-          borderBottomWidth: verticalRows ? 0 : 0.5,
+          margin: '0 0 0 2px',
+          // borderBottomColor: borderColor,
+          borderBottomColor: '#5C514F',
+          borderBottomWidth: verticalRows ? 0 : 0.3,
           alignItems: 'center',
           fontStyle: 'bold',
           flexGrow: 1,

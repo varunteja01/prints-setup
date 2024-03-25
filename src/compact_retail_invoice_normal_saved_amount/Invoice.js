@@ -1,10 +1,11 @@
-import React from 'react';
-import { Page, View } from '@react-pdf/renderer';
-import InvoiceTitle from './InvoiceTitle';
-import InvoiceItemsTable from './InvoiceItemsTable';
-import InvoiceFooter from './InvoiceFooter';
+import React from 'react'
+import { Page, View } from '@react-pdf/renderer'
+import InvoiceTitle from './InvoiceTitle'
+import InvoiceItemsTable from './InvoiceItemsTable'
+import InvoiceFooter from './InvoiceFooter'
+import TempNote from './TempNote'
 
-const FullHeaderBlockEmpty = ({
+const Invoice = ({
   pageDetails: { pageSize, styles, imageContainer },
   pages,
   title,
@@ -23,23 +24,24 @@ const FullHeaderBlockEmpty = ({
   settingsInfo,
   clientInformation,
   inventoryType,
+  user,
+  dynamicPagination,
+  maxCharsPerLine,
   snoStart,
   blankLinesCount,
-  maxCharsPerLine,
 }) => {
   return pages.map((page, index) => (
     <Page size={pageSize} style={styles}>
       <View style={imageContainer}>
         <InvoiceTitle
           title={title}
-          invoice={invoice}
+          invoice={invoiceDetails}
           header={invoice_head}
           customer={patient_details}
           doctor={doctor_details}
           logo_url={`${clientInformation?.client_logo}`}
-          length={pages?.length}
-          number={index + 1}
           inventoryType={inventoryType}
+          user={user}
         />
         <InvoiceItemsTable
           invoice={invoice}
@@ -49,8 +51,9 @@ const FullHeaderBlockEmpty = ({
           printColumns={printColumns}
           printTableStyles={printTableStyles}
           pageno={index}
-          snoStart={snoStart?.[index]}
+          dynamicPagination={dynamicPagination}
           maxCharsPerLine={maxCharsPerLine}
+          snoStart={snoStart?.[index]}
           blankLinesCount={blankLinesCount?.[index]}
         />
         <InvoiceFooter
@@ -60,18 +63,20 @@ const FullHeaderBlockEmpty = ({
           products={products_arr}
           gstEnabled={gstEnabled}
           printType={print_layout}
-          length={pages?.length}
-          number={index + 1}
           qr_code={`${
             settingsInfo?.qr_code ??
             'https://sp360logo.blob.core.windows.net/logo/1704796242270-white-square.jpg'
           }`}
-          settings={invoiceDetails}
           message={message}
+          show_total={index == pages.length - 1 ? true : false}
+        />
+        <TempNote
+          footer={invoice_head}
+          page_number={`Page ${index + 1} of ${pages?.length}`}
         />
       </View>
     </Page>
-  ));
-};
+  ))
+}
 
-export default FullHeaderBlockEmpty;
+export default Invoice

@@ -2,45 +2,38 @@ import React from 'react';
 import { Text, View, StyleSheet } from '@react-pdf/renderer';
 
 const fontColor = '#000';
-const borderColor = '#000';
+const borderColor = '#000000';
 const styles = StyleSheet.create({
   container: {
     flexDirection: 'row',
-    backgroundColor: '#dbdbdb',
     alignItems: 'center',
-    height: 14,
+    height: 10,
     fontStyle: 'bold',
     flexGrow: 1,
-    fontSize: 8,
+    fontSize: 6,
     width: '100%',
-    borderBottomWidth: 1,
-    borderBottomColor: borderColor,
   },
   footer2: {
     flexDirection: 'row',
     alignItems: 'center',
-    height: 18,
+    height: 10,
     fontStyle: 'bold',
     flexGrow: 1,
-    fontSize: 9,
+    fontSize: 6,
     width: '100%',
   },
   gst: {
-    width: '4%',
+    width: '100%',
     color: fontColor,
-    textAlign: 'right',
-    borderRightColor: borderColor,
-    borderRightWidth: 1,
-    height: 14,
+    textAlign: 'center',
+    height: 10,
   },
   gst_value: {
     width: '10%',
     color: fontColor,
     textAlign: 'right',
     paddingRight: '2px',
-    borderRightColor: borderColor,
-    borderRightWidth: 1,
-    height: 14,
+    height: 10,
   },
   gst_discount: {
     width: '10%',
@@ -49,7 +42,7 @@ const styles = StyleSheet.create({
     paddingRight: '2px',
     borderRightColor: borderColor,
     borderRightWidth: 1,
-    height: 14,
+    height: 10,
   },
   cgst_value: {
     width: '10%',
@@ -58,7 +51,7 @@ const styles = StyleSheet.create({
     paddingRight: '2px',
     borderRightColor: borderColor,
     borderRightWidth: 1,
-    height: 14,
+    height: 10,
   },
   sgst_value: {
     width: '10%',
@@ -67,7 +60,7 @@ const styles = StyleSheet.create({
     paddingRight: '2px',
     borderRightColor: borderColor,
     borderRightWidth: 1,
-    height: 14,
+    height: 10,
   },
   igst_value: {
     width: '10%',
@@ -76,32 +69,15 @@ const styles = StyleSheet.create({
     paddingRight: '2px',
     borderRightColor: borderColor,
     borderRightWidth: 1,
-    height: 14,
-  },
-  total: {
-    width: '20%',
-    color: fontColor,
-    textAlign: 'right',
-    paddingRight: '2px',
-    paddingTop: '1px',
-    height: 14,
-    fontSize: 8,
-    fontStyle: 'bold',
+    height: 10,
   },
 });
 
-const InvoiceFooter = ({ footer, clientAnalyticStats }) => {
+const InvoiceFooter = ({ items, footer, gstEnabled }) => {
   return (
     <View style={styles.container}>
-      <Text style={styles.gst}>GST%</Text>
-      <Text style={styles.gst_discount}>Disc.</Text>
-      <Text style={styles.gst_value}>Taxable Value</Text>
-      <Text style={styles.cgst_value}>CGST Amt.</Text>
-      <Text style={styles.sgst_value}>SGST Amt.</Text>
-      <Text style={styles.igst_value}>IGST Amt.</Text>
-      <Text style={styles.total}>Total Due Amount</Text>
-      <Text style={styles.total}>
-        {clientAnalyticStats?.net_outstanding_amount?.slice(1, -3) || ''}
+      <Text style={styles.gst}>
+        *** We Will Pray For Your Good Health & A Speedy Recovery ***
       </Text>
     </View>
   );

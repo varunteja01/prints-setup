@@ -29,7 +29,7 @@ const styles = StyleSheet.create({
     flexGrow: 1,
     fontSize: 7,
     width: '40%',
-    // border: 1,
+    padding: '2px 0px 3px 3px',
   },
   middle_container: {
     flexDirection: 'column',
@@ -37,7 +37,6 @@ const styles = StyleSheet.create({
     flexGrow: 1,
     fontSize: 7,
     width: '20%',
-    // border: 1,
   },
   right_head_container: {
     flexDirection: 'column',
@@ -46,7 +45,6 @@ const styles = StyleSheet.create({
     fontSize: 7,
     width: '27%',
     marginTop: 6,
-    // border: 1,
   },
   right_value_container: {
     flexDirection: 'column',
@@ -55,7 +53,6 @@ const styles = StyleSheet.create({
     fontSize: 7,
     width: '13%',
     marginTop: 7,
-    // border: 1,
   },
   footer2: {
     flexDirection: 'row',
@@ -310,7 +307,11 @@ const InvoiceFooter = ({
   return (
     <View style={styles.footer2}>
       <View style={styles.container}>
-        <Image style={{ height: '40px', width: '200px' }} src={block} />
+        {/* <Image style={{ height: '40px', width: '200px' }} src={block} /> */}
+        <Text>1. Cutting Medicine and Fridge Items not Refundable.</Text>
+        <Text>2. Bill Copy mandatory for medicine exchange.</Text>
+        <Text>3. 10 Days validity time for medicine return.</Text>
+        <Text>4. Money Not refundable only medicine exchange.</Text>
       </View>
 
       <View style={styles.middle_container}>

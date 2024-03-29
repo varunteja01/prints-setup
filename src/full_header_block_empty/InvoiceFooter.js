@@ -57,6 +57,7 @@ const InvoiceFooter = ({
   length,
   number,
   qr_code,
+  invoice_notes,
   settings,
   message,
 }) => (
@@ -70,6 +71,7 @@ const InvoiceFooter = ({
       printType={printType}
       length={length}
       number={number}
+      invoice_notes={invoice_notes}
     />
     <InvoiceThankYouMsg items={items} footer={footer} gstEnabled={gstEnabled} />
     <InvoiceFooterDetails

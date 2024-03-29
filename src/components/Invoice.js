@@ -50,7 +50,7 @@ import IrnFullHeaderVerticalA5WithoutBorder from '../irn_full_header_vertical_a5
 import FullHeaderBlockEmpty from '../full_header_block_empty/Invoice'
 import FullHeaderBlockEmptyNew from '../full_header_block_empty_new/Invoice'
 import CompactRetailInvoiceNormalSavedAmount from '../compact_retail_invoice_normal_saved_amount/Invoice'
-import NoIrnWithDue from '../noIrnWithDue/Invoice'
+import IrnWithDueAmount from '../irnWithDueAmount/Invoice'
 import { calculateMultiplier, convertNumToWords } from './helpers'
 // import FullHeaderBlock from './full_header_block/Invoice'
 // import FullHeaderBlockEmpty from './full_header_block_empty/Invoice'
@@ -883,9 +883,9 @@ export default function Invoice({
             pdf_pages = pdf_pages?.concat(fullHeaderRows)
             break
           }
-          case 'no_irn_with_due': {
+          case 'irn_with_due_amount': {
             const fullHeaderRows = (
-              <NoIrnWithDue
+              <IrnWithDueAmount
                 pageDetails={{
                   pageSize: pageSize.A4,
                   orientation: orientation.LANDSCAPE,

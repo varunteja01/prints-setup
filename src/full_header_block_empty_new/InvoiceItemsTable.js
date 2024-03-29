@@ -1,15 +1,15 @@
-import React from 'react';
-import { View, StyleSheet } from '@react-pdf/renderer';
-import InvoiceTableHeader from './InvoiceTableHeader';
-import InvoiceTableRow from './InvoiceTableRow';
-import InvoiceTableBlankSpace from './InvoiceTableBlankSpace';
-// import {
-//   InvoiceTableHeader,
-//   InvoiceTableRow,
-//   InvoiceTableBlankSpace,
-// } from '../Components/Table';
+import React from 'react'
+import { View, StyleSheet } from '@react-pdf/renderer'
+// import InvoiceTableHeader from './InvoiceTableHeader';
+// import InvoiceTableRow from './InvoiceTableRow';
+// import InvoiceTableBlankSpace from './InvoiceTableBlankSpace';
+import {
+  InvoiceTableHeader,
+  InvoiceTableRow,
+  InvoiceTableBlankSpace,
+} from '../components/Table'
 
-const tableRowsCount = 15;
+const tableRowsCount = 15
 
 const styles = StyleSheet.create({
   tableContainer: {
@@ -19,7 +19,7 @@ const styles = StyleSheet.create({
     borderWidth: 1,
     borderColor: '#000',
   },
-});
+})
 
 const InvoiceItemsTable = ({
   invoice,
@@ -56,7 +56,7 @@ const InvoiceItemsTable = ({
         printType={printType}
       />
     </View>
-  );
-};
+  )
+}
 
-export default InvoiceItemsTable;
+export default InvoiceItemsTable

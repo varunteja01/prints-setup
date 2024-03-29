@@ -1,6 +1,6 @@
-import React, { Fragment } from 'react';
-import { Text, View, StyleSheet, Image } from '@react-pdf/renderer';
-import Moment from 'moment';
+import React, { Fragment } from 'react'
+import { Text, View, StyleSheet, Image } from '@react-pdf/renderer'
+import Moment from 'moment'
 
 const styles = StyleSheet.create({
   titleContainer: {
@@ -92,7 +92,7 @@ const styles = StyleSheet.create({
   lr: {
     fontSize: 8,
   },
-});
+})
 
 const InvoiceTitle = ({
   title,
@@ -219,7 +219,7 @@ const InvoiceTitle = ({
         </View>
       </View>
     </View>
-  );
-};
+  )
+}
 
-export default InvoiceTitle;
+export default InvoiceTitle

@@ -1,8 +1,8 @@
-import React from 'react';
-import { Page, View } from '@react-pdf/renderer';
-import InvoiceTitle from './InvoiceTitle';
-import InvoiceItemsTable from './InvoiceItemsTable';
-import InvoiceFooter from './InvoiceFooter';
+import React from 'react'
+import { Page, View } from '@react-pdf/renderer'
+import InvoiceTitle from './InvoiceTitle'
+import InvoiceItemsTable from './InvoiceItemsTable'
+import InvoiceFooter from './InvoiceFooter'
 
 const FullHeaderBlockEmpty = ({
   pageDetails: { pageSize, styles, imageContainer },
@@ -27,6 +27,7 @@ const FullHeaderBlockEmpty = ({
   blankLinesCount,
   maxCharsPerLine,
 }) => {
+  console.log(settingsInfo)
   return pages.map((page, index) => (
     <Page size={pageSize} style={styles}>
       <View style={imageContainer}>
@@ -66,12 +67,16 @@ const FullHeaderBlockEmpty = ({
             settingsInfo?.qr_code ??
             'https://sp360logo.blob.core.windows.net/logo/1704796242270-white-square.jpg'
           }`}
+          invoice_notes={`${
+            settingsInfo?.footer_image_url ??
+            'https://sp360logo.blob.core.windows.net/logo/1704796242270-white-square.jpg'
+          }`}
           settings={invoiceDetails}
           message={message}
         />
       </View>
     </Page>
-  ));
-};
+  ))
+}
 
-export default FullHeaderBlockEmpty;
+export default FullHeaderBlockEmpty

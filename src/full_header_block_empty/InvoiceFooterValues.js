@@ -2,6 +2,7 @@ import React from 'react'
 import { Text, View, StyleSheet, Font, Image } from '@react-pdf/renderer'
 // import { numberFormat } from 'constants/number';
 import block from './block.png'
+import english from './english.png'
 
 const fontColor = '#000'
 const borderColor = '#000000'
@@ -229,6 +230,7 @@ const InvoiceFooter = ({
   printType,
   length,
   number,
+  invoice_notes,
 }) => {
   function calcTotal(data, type) {
     if (type === 'mrp') {
@@ -310,7 +312,9 @@ const InvoiceFooter = ({
   return (
     <View style={styles.footer2}>
       <View style={styles.container}>
-        <Image style={{ height: '40px', width: '200px' }} src={block} />
+        <Image style={{ height: '40px', width: '200px' }} src={invoice_notes} />
+        {/* <Image style={{ height: '40px', width: '200px' }} src={english} /> */}
+        {/* <Image style={{ height: '40px', width: '200px' }} src={block} /> */}
       </View>
 
       <View style={styles.middle_container}>

@@ -51,6 +51,8 @@ import FullHeaderBlockEmpty from '../full_header_block_empty/Invoice'
 import FullHeaderBlockEmptyNew from '../full_header_block_empty_new/Invoice'
 import CompactRetailInvoiceNormalSavedAmount from '../compact_retail_invoice_normal_saved_amount/Invoice'
 import IrnWithDueAmount from '../irnWithDueAmount/Invoice'
+import LegalPrintFormat from '../legal_print_format/Invoice'
+import LegalPrintFormatNew from '../legal_print_format_new/invoice'
 import { calculateMultiplier, convertNumToWords } from './helpers'
 // import FullHeaderBlock from './full_header_block/Invoice'
 // import FullHeaderBlockEmpty from './full_header_block_empty/Invoice'
@@ -190,6 +192,7 @@ export default function Invoice({
   resetState = () => {},
   printColumns = {},
   printTableStyles = {},
+  logo_url = {},
   message = '',
   inventoryType = '',
   manualPrintLayout = null,
@@ -897,6 +900,96 @@ export default function Invoice({
                 entry={entry}
                 customer={customer}
                 max_items={max_items}
+                printColumns={printColumns}
+                printTableStyles={printTableStyles}
+                items={items}
+                products={products}
+                clientInformation={clientInformation}
+                settingsInfo={
+                  paymentUrl != ''
+                    ? { ...settingsInfo, qr_code: paymentUrl }
+                    : settingsInfo
+                }
+                print_layout={print_layout}
+                fetchQRUrl={fetchQRUrl}
+                clientAnalyticStats={clientAnalyticStats}
+                snoStart={snoStart}
+                blankLinesCount={blankLinesCount}
+              />
+            )
+            pdf_pages = pdf_pages?.concat(fullHeaderRows)
+            break
+          }
+          case 'legal_print_format': {
+            const fullHeaderRows = (
+              <LegalPrintFormat
+                pageDetails={{
+                  pageSize: pageSize.LEGAL,
+                  orientation: orientation.LANDSCAPE,
+                  styles: styles.legalPage,
+                }}
+                pages={updatedPages}
+                title={title}
+                invoice={invoice}
+                entry={entry}
+                //
+                header={entry}
+                customer={customer}
+                max_items={max_items}
+                //
+                vendorTableColumns={printColumns}
+                vendorTableStyles={printTableStyles}
+                //
+                customerTableColumns={printColumns}
+                customerTableStyles={printTableStyles}
+                //
+                logo_url={logo_url}
+                printColumns={printColumns}
+                printTableStyles={printTableStyles}
+                items={items}
+                products={products}
+                clientInformation={clientInformation}
+                settingsInfo={
+                  paymentUrl != ''
+                    ? { ...settingsInfo, qr_code: paymentUrl }
+                    : settingsInfo
+                }
+                print_layout={print_layout}
+                fetchQRUrl={fetchQRUrl}
+                clientAnalyticStats={clientAnalyticStats}
+                snoStart={snoStart}
+                blankLinesCount={blankLinesCount}
+              />
+            )
+            pdf_pages = pdf_pages?.concat(fullHeaderRows)
+            break
+          }
+          case 'legal_print_format_new': {
+            const fullHeaderRows = (
+              <LegalPrintFormatNew
+                pageDetails={{
+                  pageSize: pageSize.LEGAL,
+                  orientation: orientation.LANDSCAPE,
+                  styles: styles.legalPage,
+                }}
+                pages={updatedPages}
+                title={title}
+                invoice={invoice}
+                entry={entry}
+                //
+                header={entry}
+                //
+                footer={entry}
+                customer={customer}
+                max_items={max_items}
+                //
+                vendorTableColumns={printColumns}
+                vendorTableStyles={printTableStyles}
+                //
+                customerTableColumns={printColumns}
+                customerTableStyles={printTableStyles}
+                //
+                logo_url={logo_url}
                 printColumns={printColumns}
                 printTableStyles={printTableStyles}
                 items={items}

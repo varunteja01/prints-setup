@@ -19,7 +19,8 @@ import {
 } from 'jsprintmanager';
 
 import InvoiceTitleNoLogo from './InvoiceTitle';
-import InvoiceItemsTableNoLogo from './InvoiceItemsTable';
+// import InvoiceItemsTableNoLogo from './InvoiceItemsTable';
+import InvoiceItemsTableNoLogo from 'components/Table/Print/InvoiceItemsTable';
 import InvoiceFooterNoLogo from './InvoiceFooter';
 import TempNoteNoLogo from './TempNote';
 import apiRequest from 'utils/api';
@@ -207,9 +208,8 @@ export default function Invoice({
         items={items}
         invoice={invoice}
         qr_code={`${
-          settingsInfo?.qr_code == ''
-            ? 'https://staticfilessp360.blob.core.windows.net/logos/white.jpg'
-            : settingsInfo?.qr_code
+          settingsInfo?.qr_code ??
+          'https://sp360logo.blob.core.windows.net/logo/1704796242270-white-square.jpg'
         }`}
         crdb_amount={crdb_amount}
       />

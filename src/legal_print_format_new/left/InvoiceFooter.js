@@ -75,36 +75,46 @@ const InvoiceFooter = ({
             <Text style={footer_heading}>No of Cs.</Text>
             <Text style={footer_icon}>:</Text>
             <Text style={footer_value_border}>{items}</Text>
-            <Text style={footer_heading2}>28%</Text>=
-            <Text style={footer_heading3}>Taxable Amt</Text>
+            <Text style={{ ...footer_heading2, fontFamily: 'Helvetica-Bold' }}>
+              28%
+            </Text>
+            =<Text style={footer_heading3}>{footer.gst_4_value}</Text>
           </View>{' '}
           <View style={container}>
             <Text style={footer_heading}>Sort By</Text>
             <Text style={footer_icon}>:</Text>
             <Text style={footer_value_border}>{items}</Text>
-            <Text style={footer_heading2}>18%</Text>=
-            <Text style={footer_heading3}>Taxable Amt</Text>
+            <Text style={{ ...footer_heading2, fontFamily: 'Helvetica-Bold' }}>
+              18%
+            </Text>
+            =<Text style={footer_heading3}>{footer.gst_3_value}</Text>
           </View>
           <View style={container}>
             <Text style={footer_heading}>Checked By</Text>
             <Text style={footer_icon}>:</Text>
             <Text style={footer_value_border}>{items}</Text>
-            <Text style={footer_heading2}>12%</Text>=
-            <Text style={footer_heading3}>Taxable Amt</Text>
+            <Text style={{ ...footer_heading2, fontFamily: 'Helvetica-Bold' }}>
+              12%
+            </Text>
+            =<Text style={footer_heading3}>{footer.gst_2_value}</Text>
           </View>
           <View style={container}>
             <Text style={footer_heading}>Route</Text>
             <Text style={footer_icon}>:</Text>
             <Text style={footer_value_border}>{items}</Text>
-            <Text style={footer_heading2}>5%</Text>=
-            <Text style={footer_heading3}>Taxable Amt</Text>
+            <Text style={{ ...footer_heading2, fontFamily: 'Helvetica-Bold' }}>
+              5%
+            </Text>
+            =<Text style={footer_heading3}>{footer.gst_1_value}</Text>
           </View>
           <View style={container}>
             <Text style={footer_heading}>Print Time</Text>
             <Text style={footer_icon}>:</Text>
             <Text style={footer_value_border}>{items}</Text>
-            <Text style={footer_heading2}>0%</Text>=
-            <Text style={footer_heading3}>Taxable Amt</Text>
+            <Text style={{ ...footer_heading2, fontFamily: 'Helvetica-Bold' }}>
+              0%
+            </Text>
+            =<Text style={footer_heading3}>{footer.gst_exempted_value}</Text>
           </View>
         </View>
         <View style={grandTotal}>
@@ -160,6 +170,7 @@ const InvoiceFooter = ({
                 textAlign: 'center',
                 margin: '1px 1px 1px 1px',
                 padding: '2px',
+                backgroundColor: '#dbdbdb',
               }}
             >
               {`Rs. ${numberFormat(

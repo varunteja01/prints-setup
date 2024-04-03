@@ -18,6 +18,7 @@ import { legalInvoiceStyle } from './InvoiceStyles'
 
 const Invoice = ({
   pageDetails: { pageSize, orientation, styles },
+  pages,
   title,
   invoice,
   header,
@@ -90,8 +91,8 @@ const Invoice = ({
             invoice={invoice}
             products={products}
             max_items={max_items}
-            tableColumns={vendorTableColumns}
-            tableStyles={vendorTableStyles}
+            tableColumns={customerTableColumns}
+            tableStyles={customerTableStyles}
             pageno={pageno}
             snoStart={snoStart}
             blankLinesCount={blankLinesCount}
@@ -117,6 +118,8 @@ const Invoice = ({
             invoice={invoice}
             products={products}
             max_items={max_items}
+            // tableColumns={tableColumns}
+            // tableStyles={tableStyles}
             tableColumns={vendorTableColumns}
             tableStyles={vendorTableStyles}
             pageno={pageno}

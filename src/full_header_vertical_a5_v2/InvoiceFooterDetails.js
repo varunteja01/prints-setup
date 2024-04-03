@@ -1,7 +1,7 @@
 import React from 'react'
 import { Text, View, StyleSheet, Font, Image } from '@react-pdf/renderer'
 import { numberFormat } from './number'
-// import { convertNumToWords } from 'utils/helpers';
+import { convertNumToWords } from '../components/helpers'
 
 const borderColor = '#100c08'
 
@@ -583,7 +583,7 @@ const InvoiceFooter = ({
         <View style={styles.footer5}>
           <View style={styles.amount_words}>
             <Text>
-              {numberFormat(
+              {convertNumToWords(
                 (footer?.net_amount || 0) + Number(crdb_amount || 0)
               )}
             </Text>

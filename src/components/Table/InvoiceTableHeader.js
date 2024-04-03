@@ -2,6 +2,7 @@ import React from 'react'
 import { Text, View, StyleSheet } from '@react-pdf/renderer'
 
 const InvoiceTableHeader = ({ columns, styles }) => {
+  console.log('cols', columns)
   return (
     <View
       style={{

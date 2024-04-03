@@ -236,25 +236,25 @@ export const legalInvoiceStyleFooterLeft = StyleSheet.create({
 export const legalInvoiceStyleHeaderMiddle = StyleSheet.create({
   titleContainer: {
     flexDirection: 'row',
-    // height: '25vh',
+
     height: '28%',
   },
   firstItem: {
     height: '100%',
     flexDirection: 'column',
     width: '39%',
-    border: 1,
+    borderRight: 1,
   },
   vendor: {
     flexDirection: 'row',
     borderBottom: 1,
     height: '34px',
-    // height: '23%',
+
     width: '100%',
   },
   vendorHeaderImage: {
     width: '20%',
-    border: 1,
+    // border: 1,
     paddingTop: '2px',
     paddingLeft: '2px',
   },
@@ -263,41 +263,45 @@ export const legalInvoiceStyleHeaderMiddle = StyleSheet.create({
     height: '28px',
     border: 1,
   },
-  vendorHeaderNameView: { border: 1, width: '80%', padding: '0px 0px 0px 2px' },
+  vendorHeaderNameView: {
+    // borderRight: 1,
+    width: '80%',
+    padding: '0px 0px 0px 2px',
+  },
   vendorHeaderName: {
     width: '100%',
     fontSize: 8,
     fontFamily: 'Helvetica-Bold',
     padding: '2px 0px 0px 5px',
-    border: 1,
+    // border: 1,
+    width: '80%',
   },
   vendorInfo: {
     height: '125px',
     flexDirection: 'column',
     fontSize: '7px',
-    border: 1,
+    // border: 1,
     padding: '2px 1px 0px 2px',
+    gap: '2px',
   },
   address1: {
     fontSize: '7px',
     fontFamily: 'Helvetica-Bold',
-    // marginBottom: '5px',
-    border: 1,
+
+    // border: 1,
     height: '23px',
   },
   address2: {
     fontFamily: 'Helvetica',
     fontSize: '7px',
     fontFamily: 'Helvetica-Bold',
-    border: '1',
-    // marginBottom: '5px',
-    // height: '25px',
+    // border: '1',
   },
   vendorOtherInfo: {
     flexDirection: 'row',
     fontSize: '7px',
-    // height: '13',
-    border: '1',
+
+    // border: '1',
   },
   secondItem: {
     flexDirection: 'column',
@@ -597,7 +601,7 @@ export const legalInvoiceStyleHeaderRight = StyleSheet.create({
   },
   vendorHeaderImage: {
     width: '24%',
-    border: 1,
+    // border: 1,
     paddingTop: '2px',
     paddingLeft: '2px',
   },
@@ -605,11 +609,11 @@ export const legalInvoiceStyleHeaderRight = StyleSheet.create({
   vendorHeaderLogo: {
     width: '28px',
     height: '28px',
-    border: 1,
+    // border: 1,
   },
 
   vendorHeaderNameView: {
-    border: 1,
+    // border: 1,
     width: '76%',
     padding: '0px 0px 0px 2px',
     display: 'flex',
@@ -621,21 +625,22 @@ export const legalInvoiceStyleHeaderRight = StyleSheet.create({
     fontSize: 8,
     fontFamily: 'Helvetica-Bold',
     padding: '2px 0px 0px 5px',
-    border: 1,
+    // border: 1,
   },
   invoiceDetail: {
     fontSize: 9,
     // fontFamily: 'Helvetica-Bold',
     height: '45px',
-    border: '1px',
+    // border: '1px',
     flexDirection: 'column',
     justifyContent: 'space-between',
+    borderBottom: '1px',
   },
   invoiceNoAndDate: {
     flexDirection: 'row',
     height: '20px',
     paddingLeft: '5px',
-    border: 1,
+    // border: 1,
   },
   thirdItem: {
     flexDirection: 'column',
@@ -643,7 +648,7 @@ export const legalInvoiceStyleHeaderRight = StyleSheet.create({
     fontSize: '7px',
     width: '100%',
     gap: '1px',
-    border: 1,
+    // border: 1,
     marginBottom: '8px',
     height: 'auto',
   },
@@ -651,7 +656,7 @@ export const legalInvoiceStyleHeaderRight = StyleSheet.create({
     flexDirection: 'row',
     fontSize: 7,
     padding: '2px 0px 2px 2px',
-    border: 1,
+    // border: 1,
     height: '18px',
   },
 })
@@ -675,6 +680,37 @@ export const legalInvoiceStyleFooterRight = StyleSheet.create({
     fontSize: '8',
     height: '80px',
     justifyContent: 'space-between',
-    border: '1',
+    // border: '1',
+  },
+})
+
+export const legalInvoiceStyleTableRight = StyleSheet.create({
+  tableHeight: {
+    height: '229px',
+  },
+  tableHeaderStyles: {
+    height: '35px',
+    borderBottom: '1',
+    borderTop: '1',
+    flexDirection: 'column',
+  },
+  due: {
+    height: '50%',
+    marginLeft: '10px',
+    marginRight: '10px',
+    // borderBottom: 1
+  },
+  dueText: {
+    textDecoration: 'underline',
+    fontSize: '8',
+    textAlign: 'center',
+    paddingTop: '3px',
+  },
+  columns: {
+    height: '50%',
+    flexDirection: 'row',
+    fontFamily: 'Helvetica-Bold',
+    justifyContent: 'space-around',
+    fontSize: '7',
   },
 })

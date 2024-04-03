@@ -53,6 +53,7 @@ import CompactRetailInvoiceNormalSavedAmount from '../compact_retail_invoice_nor
 import IrnWithDueAmount from '../irnWithDueAmount/Invoice'
 import LegalPrintFormat from '../legal_print_format/Invoice'
 import LegalPrintFormatNew from '../legal_print_format_new/invoice'
+import FullHeaderVerticalA5V2 from '../full_header_vertical_a5_v2/Invoice'
 import { calculateMultiplier, convertNumToWords } from './helpers'
 // import FullHeaderBlock from './full_header_block/Invoice'
 // import FullHeaderBlockEmpty from './full_header_block_empty/Invoice'
@@ -190,12 +191,15 @@ export default function Invoice({
   printDetails,
   uploadBlob = false,
   resetState = () => {},
-  printColumns = {},
+  printColumns = [],
   printTableStyles = {},
+  copyPrintColumns = [],
+  copyPrintTableStyles = {},
   logo_url = {},
   message = '',
   inventoryType = '',
   manualPrintLayout = null,
+  crdb_amount = 0,
 }) {
   // const clientInformation = useSelector((state) => state.client)
   // const settingsInfo = useSelector((state) => state.settings)
@@ -965,31 +969,57 @@ export default function Invoice({
             break
           }
           case 'legal_print_format_new': {
-            const fullHeaderRows = (
+            const fullHeaderRows = updatedPages.map((page, index) => (
               <LegalPrintFormatNew
                 pageDetails={{
                   pageSize: pageSize.LEGAL,
                   orientation: orientation.LANDSCAPE,
                   styles: styles.legalPage,
                 }}
+                title={title}
+                invoice={invoice}
+                header={entry}
+                customer={customer}
+                logo_url={`${clientInformation?.client_logo}`}
+                products={page}
+                max_items={max_items}
+                footer={entry}
+                items={items}
+                vendorTableColumns={copyPrintColumns}
+                vendorTableStyles={copyPrintTableStyles}
+                customerTableColumns={printColumns}
+                customerTableStyles={printTableStyles}
+                show_total={index == updatedPages.length - 1 ? true : false}
+                crdb_amount={crdb_amount}
+                qr_code={`${
+                  settingsInfo?.qr_code ??
+                  'https://sp360logo.blob.core.windows.net/logo/1704796242270-white-square.jpg'
+                }`}
+                promoContent={entry}
+                page_number={`Page ${index + 1} of ${updatedPages.length}`}
+                pageno={index}
+                snoStart={snoStart?.[index]}
+                blankLinesCount={blankLinesCount?.[index]}
+              />
+            ))
+            pdf_pages = pdf_pages?.concat(fullHeaderRows)
+            break
+          }
+          case 'full_header_vertical_a5_v2': {
+            const fullHeaderRows = (
+              <FullHeaderVerticalA5V2
+                pageDetails={{
+                  halfPage: styles.halfPage,
+                  pageSize: pageSize.A4,
+                  imageContainer: styles.imageContainer,
+                  imageContainer2: styles.imageContainer2,
+                }}
                 pages={updatedPages}
                 title={title}
                 invoice={invoice}
                 entry={entry}
-                //
-                header={entry}
-                //
-                footer={entry}
                 customer={customer}
                 max_items={max_items}
-                //
-                vendorTableColumns={printColumns}
-                vendorTableStyles={printTableStyles}
-                //
-                customerTableColumns={printColumns}
-                customerTableStyles={printTableStyles}
-                //
-                logo_url={logo_url}
                 printColumns={printColumns}
                 printTableStyles={printTableStyles}
                 items={items}
@@ -1000,9 +1030,9 @@ export default function Invoice({
                     ? { ...settingsInfo, qr_code: paymentUrl }
                     : settingsInfo
                 }
+                crdb_amount={crdb_amount}
                 print_layout={print_layout}
-                fetchQRUrl={fetchQRUrl}
-                clientAnalyticStats={clientAnalyticStats}
+                branchType={perms?.branch_type}
                 snoStart={snoStart}
                 blankLinesCount={blankLinesCount}
               />

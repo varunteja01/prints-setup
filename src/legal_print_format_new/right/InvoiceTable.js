@@ -9,6 +9,11 @@ import {
   InvoiceTableBlankSpace,
 } from '../../components/Table'
 
+import { legalInvoiceStyleTableRight } from '../InvoiceStyles'
+
+const { tableHeight, tableHeaderStyles, due, dueText, columns } =
+  legalInvoiceStyleTableRight
+
 const InvoiceTable = ({
   invoice,
   products,
@@ -21,7 +26,7 @@ const InvoiceTable = ({
 }) => {
   return (
     <>
-      <InvoiceTableHeader columns={tableColumns} styles={tableStyles} />
+      {/* <InvoiceTableHeader columns={tableColumns} styles={tableStyles} />
       <InvoiceTableRow
         items={products}
         columns={tableColumns}
@@ -34,7 +39,21 @@ const InvoiceTable = ({
         rowsCount={blankLinesCount}
         olumns={tableColumns}
         styles={tableStyles}
-      />
+      /> */}
+
+      <View style={tableHeight}>
+        <View style={tableHeaderStyles}>
+          <View style={due}>
+            <Text style={dueText}>***** Due Bills Details *****</Text>
+          </View>
+          <View style={columns}>
+            <Text>Date</Text>
+            <Text>B.No</Text>
+            <Text>Amt</Text>
+            <Text>Days</Text>
+          </View>
+        </View>
+      </View>
     </>
   )
 }

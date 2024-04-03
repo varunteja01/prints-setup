@@ -1,7 +1,7 @@
 import React from 'react'
 import { Text, View, StyleSheet } from '@react-pdf/renderer'
-// import { numberFormat } from './number'
-// import { convertNumToWords } from 'utils/helpers'
+import { numberFormat } from './number'
+import { convertNumToWords } from '../components/helpers'
 
 const fontColor = '#000'
 const borderColor = '#100c08'

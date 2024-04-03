@@ -1,8 +1,8 @@
-import React from 'react';
-import { Text, View, StyleSheet, Font, Image } from '@react-pdf/renderer';
-import Moment from 'moment';
+import React from 'react'
+import { Text, View, StyleSheet, Font, Image } from '@react-pdf/renderer'
+import Moment from 'moment'
 
-const borderColor = '#100c08';
+const borderColor = '#100c08'
 
 const styles = StyleSheet.create({
   titleContainer: {
@@ -29,7 +29,7 @@ const styles = StyleSheet.create({
     textTransform: 'uppercase',
     paddingTop: '1px',
     marginBottom: '2px',
-    marginLeft: '4px',
+    marginLeft: '2px',
     borderBottomWidth: 0,
     borderBottomColor: borderColor,
   },
@@ -56,7 +56,7 @@ const styles = StyleSheet.create({
   },
   grid2: {
     marginTop: 0,
-    width: '35%',
+    width: '30%',
     lineHeight: 1.1,
     borderWidth: 1,
     borderColor: borderColor,
@@ -87,7 +87,7 @@ const styles = StyleSheet.create({
   },
   grid4: {
     marginTop: 0,
-    width: '20%',
+    width: '25%',
     lineHeight: 1.1,
     borderWidth: 1,
     borderColor: borderColor,
@@ -121,7 +121,7 @@ const styles = StyleSheet.create({
   lr: {
     fontSize: 8,
   },
-});
+})
 
 const InvoiceTitle = ({ title, invoice, header, customer, logo_url }) => {
   return (
@@ -214,14 +214,15 @@ const InvoiceTitle = ({ title, invoice, header, customer, logo_url }) => {
           >
             <Text
               style={{
-                width: '40%',
-                textAlign: 'right',
+                width: '30%',
+                textAlign: 'left',
                 marginRight: '3px',
+                marginLeft: '2px',
               }}
             >
               Sale Type
             </Text>
-            <Text style={{ width: '60%', marginLeft: '3px' }}>
+            <Text style={{ width: '70%', marginLeft: '3px' }}>
               : {header?.payment_mode == 0 ? `CASH` : `CREDIT`}
             </Text>
           </View>
@@ -232,6 +233,7 @@ const InvoiceTitle = ({ title, invoice, header, customer, logo_url }) => {
                 width: '100%',
                 height: '70px',
                 fontSize: '9',
+                // border: 1,
               }}
             >
               <View
@@ -243,19 +245,21 @@ const InvoiceTitle = ({ title, invoice, header, customer, logo_url }) => {
               >
                 <Text
                   style={{
-                    width: '30%',
+                    width: '26%',
                     textAlign: 'left',
                     marginLeft: '3px',
+                    // border: '1',
                   }}
                 >
                   Bill No.
                 </Text>
                 <Text
                   style={{
-                    width: '70%',
-                    marginRight: '3px',
+                    width: '74%',
+                    marginRight: '1px',
                     fontFamily: 'Helvetica-Bold',
                     fontSize: 9,
+                    // border: '1',
                   }}
                 >
                   : {header?.entry_number}
@@ -271,18 +275,20 @@ const InvoiceTitle = ({ title, invoice, header, customer, logo_url }) => {
               >
                 <Text
                   style={{
-                    width: '40%',
+                    width: '27%',
                     textAlign: 'left',
                     marginLeft: '3px',
+                    // border: 1,
                   }}
                 >
                   Date
                 </Text>
                 <Text
                   style={{
-                    width: '60%',
+                    width: '73%',
                     marginRight: '3px',
                     fontFamily: 'Helvetica-Bold',
+                    // border: 1,
                   }}
                 >
                   : {Moment(header.entry_date).format('DD-MM-YYYY')}
@@ -322,7 +328,7 @@ const InvoiceTitle = ({ title, invoice, header, customer, logo_url }) => {
         </View>
       </View>
     </View>
-  );
-};
+  )
+}
 
-export default InvoiceTitle;
+export default InvoiceTitle

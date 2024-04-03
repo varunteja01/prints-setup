@@ -4,10 +4,12 @@ import { View, StyleSheet } from '@react-pdf/renderer'
 //   InvoiceTableHeader,
 //   InvoiceTableRow,
 //   InvoiceTableBlankSpace,
-// } from '../Components/Table';
-import InvoiceTableHeader from '../full_header_vertical_a5_v2/InvoiceTableHeader'
-import InvoiceTableRow from '../full_header_vertical_a5_v2/InvoiceTableRow'
-import InvoiceTableBlankSpace from '../full_header_vertical_a5_v2/InvoiceTableBlankSpace'
+// } from '../Components/Table/wrapper';
+import {
+  InvoiceTableHeader,
+  InvoiceTableRow,
+  InvoiceTableBlankSpace,
+} from '../components/Table'
 
 const borderColor = '#100c08'
 const styles = StyleSheet.create({
@@ -29,6 +31,8 @@ const InvoiceItemsTable = ({
   printTableStyles,
   pageno,
   moduleSettings = {},
+  snoStart,
+  blankLinesCount,
 }) => (
   <View style={styles.tableContainer}>
     <InvoiceTableHeader columns={printColumns} styles={printTableStyles} />
@@ -38,8 +42,10 @@ const InvoiceItemsTable = ({
       styles={StyleSheet.create(printTableStyles)}
       pageno={pageno}
       max_items={max_items}
+      snoStart={snoStart}
     />
-    <InvoiceTableBlankSpace rowsCount={max_items - products.length} />
+    {/* <InvoiceTableBlankSpace rowsCount={max_items - products.length} /> */}
+    <InvoiceTableBlankSpace rowsCount={blankLinesCount} />
   </View>
 )
 

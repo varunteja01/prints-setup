@@ -15,6 +15,7 @@ const {
   vendor,
   vendorHeaderImage,
   vendorHeaderLogo,
+  vendorHeaderNameView,
   vendorHeaderName,
   vendorInfo,
   address1,
@@ -27,6 +28,7 @@ const {
   invoiceDetail2,
   invoiceDetail2Items,
   barcode,
+  barcodeImage,
   thirdItem,
   thirdItemFlex,
   paymentMode,
@@ -41,7 +43,7 @@ const InvoiceHeader = ({ title, invoice, header, customer, logo_url }) => {
             <View style={vendorHeaderImage}>
               <Image style={vendorHeaderLogo} src={logo_url} />
             </View>
-            <View>
+            <View style={vendorHeaderNameView}>
               <Text style={vendorHeaderName}>{invoice.firm_name}</Text>
             </View>
           </View>
@@ -68,7 +70,7 @@ const InvoiceHeader = ({ title, invoice, header, customer, logo_url }) => {
                 <Text>:</Text>
               </View>
               <View style={{ width: '80%' }}>
-                <Text></Text>
+                <Text>{invoice.landline}</Text>
               </View>
             </View>
             <View style={vendorOtherInfo}>
@@ -90,7 +92,7 @@ const InvoiceHeader = ({ title, invoice, header, customer, logo_url }) => {
                 <Text>:</Text>
               </View>
               <View style={{ width: '80%' }}>
-                <Text></Text>
+                <Text>{invoice.gstin}</Text>
               </View>
             </View>{' '}
             <View style={vendorOtherInfo}>
@@ -101,7 +103,9 @@ const InvoiceHeader = ({ title, invoice, header, customer, logo_url }) => {
                 <Text>:</Text>
               </View>
               <View style={{ width: '80%' }}>
-                <Text></Text>
+                <Text>
+                  <Text>{`${invoice.dl1}, ${invoice.dl2}`}</Text>
+                </Text>
               </View>
             </View>{' '}
             <View style={vendorOtherInfo}>
@@ -112,7 +116,7 @@ const InvoiceHeader = ({ title, invoice, header, customer, logo_url }) => {
                 <Text>:</Text>
               </View>
               <View style={{ width: '80%' }}>
-                <Text></Text>
+                <Text>{invoice.pan}</Text>
               </View>
             </View>
             <View style={vendorOtherInfo}>
@@ -123,7 +127,7 @@ const InvoiceHeader = ({ title, invoice, header, customer, logo_url }) => {
                 <Text>:</Text>
               </View>
               <View style={{ width: '80%' }}>
-                <Text></Text>
+                <Text>{invoice.email}</Text>
               </View>
             </View>
           </View>
@@ -169,6 +173,7 @@ const InvoiceHeader = ({ title, invoice, header, customer, logo_url }) => {
                   width: '68%',
                   border: 1,
                   fontFamily: 'Helvetica-Bold',
+                  paddingLeft: '2px',
                 }}
               >
                 <Text>{header.rep_name}</Text>
@@ -181,7 +186,14 @@ const InvoiceHeader = ({ title, invoice, header, customer, logo_url }) => {
               <View style={{ width: '2%' }}>
                 <Text>:</Text>
               </View>
-              <View style={{ width: '68%', border: 1 }}>
+              <View
+                style={{
+                  width: '68%',
+                  border: 1,
+                  fontFamily: 'Helvetica-Bold',
+                  paddingLeft: '2px',
+                }}
+              >
                 <Text>{header.mobile}</Text>
               </View>
             </View>{' '}
@@ -193,11 +205,13 @@ const InvoiceHeader = ({ title, invoice, header, customer, logo_url }) => {
                 <Text>:</Text>
               </View>
               <View style={{ width: '68%', border: 1 }}>
-                <Text>{header.rep_name}</Text>
+                <Text></Text>
               </View>
             </View>
           </View>
-          <View style={barcode}></View>
+          <View style={barcode}>
+            {/* <Image style={barcodeImage}></Image> */}
+          </View>
         </View>
         <View style={thirdItem}>
           <Text style={{ fontFamily: 'Helvetica-Bold' }}>
@@ -226,9 +240,7 @@ const InvoiceHeader = ({ title, invoice, header, customer, logo_url }) => {
               <Text>:</Text>
             </View>
             <View style={{ width: '73%', border: 1, paddingLeft: '3px' }}>
-              <Text>
-                {customer.dl_1},{customer.dl_2}
-              </Text>
+              <Text>{`${customer.dl_1}, ${customer.dl_2}`}</Text>
             </View>
           </View>
           <View style={thirdItemFlex}>
@@ -253,11 +265,24 @@ const InvoiceHeader = ({ title, invoice, header, customer, logo_url }) => {
               <Text>{customer.pan}</Text>
             </View>
             <View style={paymentMode}>
-              <Text>{header.payment_mode}</Text>
+              <Text>
+                {header.payment_mode == 0
+                  ? 'CASH'
+                  : header.payment_mode == 1
+                  ? 'CREDIT'
+                  : ''}
+              </Text>
             </View>
           </View>
-          <View style={{ borderTop: 1, paddingTop: '3px' }}>
-            <Text>IRN : </Text>
+          <View
+            style={{ borderTop: 1, paddingTop: '3px', flexDirection: 'row' }}
+          >
+            <Text style={{ width: '10%', border: '1' }}>IRN </Text>
+            <Text style={{ width: '2%', border: '1' }}>: </Text>
+            {/* <Text style={{ width: '88%', border: '1' }}>{`${
+              header?.irn || ''
+            }`}</Text> */}
+            <Text style={{ width: '88%', border: '1' }}></Text>
           </View>
         </View>
       </View>

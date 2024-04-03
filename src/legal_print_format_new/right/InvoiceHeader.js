@@ -14,6 +14,7 @@ const {
   vendor,
   vendorHeaderImage,
   vendorHeaderLogo,
+  vendorHeaderNameView,
   vendorHeaderName,
   invoiceDetail,
   invoiceNoAndDate,
@@ -29,8 +30,8 @@ const InvoiceHeader = ({ title, invoice, header, customer, logo_url }) => {
           <View style={vendorHeaderImage}>
             <Image style={vendorHeaderLogo} src={logo_url} />
           </View>
-          <View style={vendorHeaderName}>
-            <Text>{invoice.firm_name}</Text>
+          <View style={vendorHeaderNameView}>
+            <Text style={vendorHeaderName}>{invoice.firm_name}</Text>
           </View>
         </View>
         <View style={invoiceDetail}>
@@ -53,26 +54,32 @@ const InvoiceHeader = ({ title, invoice, header, customer, logo_url }) => {
             <View style={{ width: '2%' }}>
               <Text>:</Text>
             </View>
-            <View style={{ width: '78%', fontSize: 10 }}>
+            <View
+              style={{
+                width: '78%',
+                fontSize: 10,
+                fontFamily: 'Helvetica-Bold',
+              }}
+            >
               <Text> {header.entry_date}</Text>
             </View>
           </View>
         </View>
         <View style={thirdItem}>
-          <Text style={{ fontFamily: 'Helvetica-Bold' }}>
-            Code {customer.code}
+          <Text style={{ fontFamily: 'Helvetica-Bold', fontSize: '9px' }}>
+            C. Code {customer.code}
           </Text>
-          <Text>{customer.name}</Text>
+          <Text style={{ fontFamily: 'Helvetica-Bold' }}>{customer.name}</Text>
         </View>
         <View style={fourthItem}>
-          <Text style={{ width: '20%', fontSize: 8 }}>Login ID</Text>
+          <Text style={{ width: '25%', fontSize: 8 }}>Login ID</Text>
           <Text style={{ width: '2%' }}>:</Text>
-          <Text style={{ width: '78%' }}></Text>
+          <Text style={{ width: '73%' }}></Text>
         </View>
         <View style={fourthItem}>
-          <Text style={{ width: '20%', fontSize: 8 }}>Password</Text>
+          <Text style={{ width: '25%', fontSize: 8 }}>Password</Text>
           <Text style={{ width: '2%' }}>:</Text>
-          <Text style={{ width: '78%' }}></Text>
+          <Text style={{ width: '73%' }}></Text>
         </View>
       </View>
     </>

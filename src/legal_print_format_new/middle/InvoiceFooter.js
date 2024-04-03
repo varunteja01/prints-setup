@@ -65,7 +65,7 @@ const InvoiceFooter = ({
     <View
       style={{
         flexDirection: 'column',
-        height: 200,
+        height: 188,
         borderTopWidth: 0.5,
         borderTopColor: '#100c08',
       }}
@@ -126,9 +126,11 @@ const InvoiceFooter = ({
             <View style={{ width: '35%', border: 1, paddingLeft: '2px' }}>
               <Text>Prep By</Text>
             </View>
-
-            <View style={{ width: '65%', textAlign: 'center' }}>
-              <Text></Text>
+            <View style={{ width: '1%', border: 1, paddingLeft: '2px' }}>
+              <Text>:</Text>
+            </View>
+            <View style={{ width: '64%', border: 1, paddingLeft: '2px' }}>
+              <Text>Prep By</Text>
             </View>
           </View>
         </View>
@@ -139,69 +141,148 @@ const InvoiceFooter = ({
             <Text style={footer_value_border}>{items}</Text>
             <Text style={footer_heading2}>Taxable Amt</Text>
             <Text style={footer_heading3}>GST%</Text>
-            <Text style={footer_heading4}>CGST Amt</Text>
-            <Text style={footer_heading4}>SGST Amt</Text>
-            <Text style={footer_heading4}>IGST Amt</Text>
+            <Text style={{ ...footer_heading4, fontFamily: 'Helvetica-Bold' }}>
+              CGST Amt
+            </Text>
+            <Text style={{ ...footer_heading4, fontFamily: 'Helvetica-Bold' }}>
+              SGST Amt
+            </Text>
+            <Text style={{ ...footer_heading4, fontFamily: 'Helvetica-Bold' }}>
+              IGST Amt
+            </Text>
           </View>
           <View style={container}>
             <Text style={footer_heading}>Total Qty</Text>
             <Text style={footer_icon}>:</Text>
             <Text style={footer_value_border}>{totalQty(products)}</Text>
-            <Text style={footer_heading2}>Taxable Amt</Text>
+            <Text style={footer_heading2}>{footer.gst_4_value}</Text>
             <Text style={footer_heading3}>28%</Text>
-            <Text style={footer_heading4}>CGST Amt</Text>
-            <Text style={footer_heading4}>CGST Amt</Text>
-            <Text style={footer_heading4}>CGST Amt</Text>
+            <Text style={footer_heading4}>
+              {' '}
+              {footer.gst_type == true
+                ? (footer.gst_4 / 2).toFixed(2)
+                : (0).toFixed(2)}
+            </Text>
+            <Text style={footer_heading4}>
+              {' '}
+              {footer.gst_type == true
+                ? (footer.gst_4 / 2).toFixed(2)
+                : (0).toFixed(2)}
+            </Text>
+            <Text style={footer_heading4}>
+              {footer.gst_type == false ? footer.gst_4 : (0).toFixed(2)}
+            </Text>
           </View>
           <View style={container}>
             <Text style={footer_heading}>SchDiscGiven</Text>
             <Text style={footer_icon}>:</Text>
             <Text style={footer_value_border}>{totalQty(products)}</Text>
-            <Text style={footer_heading2}>Taxable Amt</Text>
+            <Text style={footer_heading2}>{footer.gst_3_value}</Text>
             <Text style={footer_heading3}>18%</Text>
-            <Text style={footer_heading4}>CGST Amt</Text>
-            <Text style={footer_heading4}>SGST Amt</Text>
-            <Text style={footer_heading4}>IGST Amt</Text>
-          </View>{' '}
+            <Text style={footer_heading4}>
+              {' '}
+              {footer.gst_type == true
+                ? (footer.gst_3 / 2).toFixed(2)
+                : (0).toFixed(2)}
+            </Text>
+            <Text style={footer_heading4}>
+              {' '}
+              {footer.gst_type == true
+                ? (footer.gst_3 / 2).toFixed(2)
+                : (0).toFixed(2)}
+            </Text>
+            <Text style={footer_heading4}>
+              {footer.gst_type == false
+                ? footer.gst_3.toFixed(2)
+                : (0).toFixed(2)}
+            </Text>
+          </View>
           <View style={container}>
             <Text style={footer_heading}>Sale Value</Text>
             <Text style={footer_icon}>:</Text>
             <Text style={footer_value_border}>{totalQty(products)}</Text>
-            <Text style={footer_heading2}>Taxable Amt</Text>
-            <Text style={footer_heading3}>5%</Text>
-            <Text style={footer_heading4}>CGST Amt</Text>
-            <Text style={footer_heading4}>CGST Amt</Text>
-            <Text style={footer_heading4}>CGST Amt</Text>
-          </View>{' '}
+            <Text style={footer_heading2}>{footer.gst_2_value}</Text>
+            <Text style={footer_heading3}>12%</Text>
+            <Text style={footer_heading4}>
+              {' '}
+              {footer.gst_type == true
+                ? (footer.gst_2 / 2).toFixed(2)
+                : (0).toFixed(2)}
+            </Text>
+            <Text style={footer_heading4}>
+              {' '}
+              {footer.gst_type == true
+                ? (footer.gst_2 / 2).toFixed(2)
+                : (0).toFixed(2)}
+            </Text>
+            <Text style={footer_heading4}>
+              {footer.gst_type == false
+                ? footer.gst_2.toFixed(2)
+                : (0).toFixed(2)}
+            </Text>
+          </View>
           <View style={container}>
             <Text style={footer_heading}>Cash Disc</Text>
             <Text style={footer_icon}>:</Text>
             <Text style={footer_value_border}>{totalQty(products)}</Text>
-            <Text style={footer_heading2}>Taxable Amt</Text>
-            <Text style={footer_heading3}>0%</Text>
-            <Text style={footer_heading4}>CGST Amt</Text>
-            <Text style={footer_heading4}>CGST Amt</Text>
-            <Text style={footer_heading4}>CGST Amt</Text>
+            <Text style={footer_heading2}>{footer.gst_1_value}</Text>
+            <Text style={footer_heading3}>5%</Text>
+            <Text style={footer_heading4}>
+              {' '}
+              {footer.gst_type == true
+                ? (footer.gst_1 / 2).toFixed(2)
+                : (0).toFixed(2)}
+            </Text>
+            <Text style={footer_heading4}>
+              {' '}
+              {footer.gst_type == true
+                ? (footer.gst_1 / 2).toFixed(2)
+                : (0).toFixed(2)}
+            </Text>
+            <Text style={footer_heading4}>
+              {footer.gst_type == false
+                ? footer.gst_1.toFixed(2)
+                : (0).toFixed(2)}
+            </Text>
           </View>
           <View style={container}>
             <Text style={footer_heading}>Total GST</Text>
             <Text style={footer_icon}>:</Text>
             <Text style={footer_value_border}>{totalQty(products)}</Text>
-            <Text style={footer_heading2}>Taxable Amt</Text>
-            <Text style={footer_heading3}>12%</Text>
-            <Text style={footer_heading4}>CGST Amt</Text>
-            <Text style={footer_heading4}>CGST Amt</Text>
-            <Text style={footer_heading4}>CGST Amt</Text>
+            <Text style={footer_heading2}>{footer.gst_exempted_value}</Text>
+            <Text style={footer_heading3}>0%</Text>
+            <Text style={footer_heading4}></Text>
+            <Text style={footer_heading4}></Text>
+            <Text style={footer_heading4}></Text>
           </View>
           <View style={container}>
             <Text style={footer_heading}>Checked By</Text>
             <Text style={footer_icon}>:</Text>
             <Text style={footer_value_border}>{totalQty(products)}</Text>
-            <Text style={footer_heading2}>Taxable Amt</Text>
-            <Text style={footer_heading3}>12%</Text>
-            <Text style={footer_heading4}>CGST Amt</Text>
-            <Text style={footer_heading4}>CGST Amt</Text>
-            <Text style={footer_heading4}>CGST Amt</Text>
+            <Text style={{ ...footer_heading2, fontFamily: 'Helvetica-Bold' }}>
+              {' '}
+              {(
+                parseFloat(footer.gst_1_value ?? 0) +
+                parseFloat(footer.gst_2_value ?? 0) +
+                parseFloat(footer.gst_3_value ?? 0)
+              ).toFixed(2)}
+            </Text>
+            <Text style={footer_heading3}></Text>
+            <Text style={{ ...footer_heading4, fontFamily: 'Helvetica-Bold' }}>
+              {footer.gst_type == true
+                ? ((footer.gst_1 + footer.gst_2 + footer.gst_3) / 2).toFixed(2)
+                : (0).toFixed(2)}
+            </Text>
+            <Text style={{ ...footer_heading4, fontFamily: 'Helvetica-Bold' }}>
+              {footer.gst_type == true
+                ? ((footer.gst_1 + footer.gst_2 + footer.gst_3) / 2).toFixed(2)
+                : (0).toFixed(2)}
+            </Text>
+            <Text style={{ ...footer_heading4, fontFamily: 'Helvetica-Bold' }}>
+              {footer.gst_type == false
+                ? (footer.gst_1 + footer.gst_2 + footer.gst_3).toFixed(2)
+                : (0).toFixed(2)}
+            </Text>
           </View>
         </View>
         <View style={grandTotal}>
@@ -242,7 +323,14 @@ const InvoiceFooter = ({
           </View>
           <View style={grandTotalItems2}>
             <Text style={grandTotalItemsStyle1}>Grand Total :</Text>
-            <Text style={grandTotalItemsStyle2}>
+            <Text
+              style={{
+                ...grandTotalItemsStyle2,
+                fontFamily: 'Helvetica-Bold',
+                fontSize: '8px',
+                backgroundColor: '#dbdbdb',
+              }}
+            >
               {`Rs. ${numberFormat(
                 parseFloat(footer?.net_amount || 0) +
                   parseFloat(footer?.debit_note_amount || 0) -
@@ -302,7 +390,7 @@ const InvoiceFooter = ({
         </View>
         <View
           style={{
-            width: '25%',
+            width: '34%',
             borderRightWidth: '1',
             borderRightColor: borderColor,
             height: '60px',
@@ -313,16 +401,19 @@ const InvoiceFooter = ({
             style={{
               padding: '2px 0 0 2px',
               height: '20px',
-              fontSize: '9px',
+              fontSize: '8px',
+              fontFamily: 'Helvetica-Bold',
             }}
           >
             For {invoice.firm_name}
           </Text>
           <Text
             style={{
-              margin: '20px 0 0 2px',
+              margin: '26px 0 0 2px',
               height: '15px',
               fontSize: '9px',
+              textAlign: 'right',
+              fontFamily: 'Helvetica-Bold',
             }}
           >
             Authorised Signatory

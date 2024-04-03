@@ -51,7 +51,7 @@ const InvoiceHeader = ({ title, invoice, header, customer, logo_url }) => {
               <View style={{ width: '2%' }}>
                 <Text>:</Text>
               </View>
-              <View style={{ width: '78%', fontSize: 7 }}>
+              <View style={{ width: '78%' }}>
                 <Text> {header.entry_number}</Text>
               </View>
             </View>
@@ -62,7 +62,7 @@ const InvoiceHeader = ({ title, invoice, header, customer, logo_url }) => {
               <View style={{ width: '2%' }}>
                 <Text>:</Text>
               </View>
-              <View style={{ width: '78%', fontSize: 7 }}>
+              <View style={{ width: '78%' }}>
                 <Text> {header.entry_date}</Text>
               </View>
             </View>
@@ -92,7 +92,13 @@ const InvoiceHeader = ({ title, invoice, header, customer, logo_url }) => {
             </View>
           </View>
           <View style={paymentType}>
-            <Text>CASH</Text>
+            <Text>
+              {header.payment_mode == 0
+                ? 'CASH'
+                : header.payment_mode == 1
+                ? 'CREDIT'
+                : ''}
+            </Text>
           </View>
         </View>
         <View style={secondItem}>

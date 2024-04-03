@@ -34,7 +34,7 @@ const InvoiceFooter = ({
       <View
         style={{
           flexDirection: 'column',
-          height: 200,
+          height: 188,
           borderTopWidth: 0.5,
           borderTopColor: '#100c08',
         }}

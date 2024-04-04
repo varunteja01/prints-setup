@@ -156,19 +156,27 @@ const InvoiceFooter = ({
           <View style={container}>
             <Text style={footer_heading}>Total Qty</Text>
             <Text style={footer_icon}>:</Text>
-            <Text style={footer_value_border}>{totalQty(products)}</Text>
-            <Text style={footer_heading2}>{footer.gst_4_value}</Text>
+            <Text style={footer_value_border}>
+              {show_total == true ? totalQty(products) : ''}
+            </Text>
+            <Text style={footer_heading2}>
+              {show_total == true ? footer?.gst_4_value : ''}
+            </Text>
             <Text style={footer_heading3}>28%</Text>
             <Text style={footer_heading4}>
               {' '}
-              {footer.gst_type == true
-                ? (footer.gst_4 / 2).toFixed(2)
+              {footer?.gst_type == true && footer?.gst_4 != null
+                ? show_total == true
+                  ? (footer?.gst_4 / 2).toFixed(2)
+                  : ''
                 : (0).toFixed(2)}
             </Text>
             <Text style={footer_heading4}>
               {' '}
-              {footer.gst_type == true
-                ? (footer.gst_4 / 2).toFixed(2)
+              {footer?.gst_type == true && footer?.gst_4 != null
+                ? show_total == true
+                  ? (footer?.gst_4 / 2).toFixed(2)
+                  : ''
                 : (0).toFixed(2)}
             </Text>
             <Text style={footer_heading4}>
@@ -179,18 +187,24 @@ const InvoiceFooter = ({
             <Text style={footer_heading}>SchDiscGiven</Text>
             <Text style={footer_icon}>:</Text>
             <Text style={footer_value_border}>{totalQty(products)}</Text>
-            <Text style={footer_heading2}>{footer.gst_3_value}</Text>
+            <Text style={footer_heading2}>
+              {show_total == true ? footer?.gst_3_value : ''}
+            </Text>
             <Text style={footer_heading3}>18%</Text>
             <Text style={footer_heading4}>
               {' '}
-              {footer.gst_type == true
-                ? (footer.gst_3 / 2).toFixed(2)
+              {footer?.gst_type == true && footer?.gst_3 != null
+                ? show_total == true
+                  ? (footer?.gst_3 / 2).toFixed(2)
+                  : ''
                 : (0).toFixed(2)}
             </Text>
             <Text style={footer_heading4}>
               {' '}
-              {footer.gst_type == true
-                ? (footer.gst_3 / 2).toFixed(2)
+              {footer?.gst_type == true && footer?.gst_3 != null
+                ? show_total == true
+                  ? (footer?.gst_3 / 2).toFixed(2)
+                  : ''
                 : (0).toFixed(2)}
             </Text>
             <Text style={footer_heading4}>
@@ -203,18 +217,24 @@ const InvoiceFooter = ({
             <Text style={footer_heading}>Sale Value</Text>
             <Text style={footer_icon}>:</Text>
             <Text style={footer_value_border}>{totalQty(products)}</Text>
-            <Text style={footer_heading2}>{footer.gst_2_value}</Text>
+            <Text style={footer_heading2}>
+              {show_total == true ? footer?.gst_2_value : ''}
+            </Text>
             <Text style={footer_heading3}>12%</Text>
             <Text style={footer_heading4}>
               {' '}
-              {footer.gst_type == true
-                ? (footer.gst_2 / 2).toFixed(2)
+              {footer?.gst_type == true && footer?.gst_2 != null
+                ? show_total == true
+                  ? (footer?.gst_2 / 2).toFixed(2)
+                  : ''
                 : (0).toFixed(2)}
             </Text>
             <Text style={footer_heading4}>
               {' '}
-              {footer.gst_type == true
-                ? (footer.gst_2 / 2).toFixed(2)
+              {footer?.gst_type == true && footer?.gst_2 != null
+                ? show_total == true
+                  ? (footer?.gst_2 / 2).toFixed(2)
+                  : ''
                 : (0).toFixed(2)}
             </Text>
             <Text style={footer_heading4}>
@@ -227,18 +247,24 @@ const InvoiceFooter = ({
             <Text style={footer_heading}>Cash Disc</Text>
             <Text style={footer_icon}>:</Text>
             <Text style={footer_value_border}>{totalQty(products)}</Text>
-            <Text style={footer_heading2}>{footer.gst_1_value}</Text>
+            <Text style={footer_heading2}>
+              {show_total == true ? footer?.gst_1_value : ''}
+            </Text>
             <Text style={footer_heading3}>5%</Text>
             <Text style={footer_heading4}>
               {' '}
-              {footer.gst_type == true
-                ? (footer.gst_1 / 2).toFixed(2)
+              {footer?.gst_type == true && footer?.gst_1 != null
+                ? show_total == true
+                  ? (footer?.gst_1 / 2).toFixed(2)
+                  : ''
                 : (0).toFixed(2)}
             </Text>
             <Text style={footer_heading4}>
               {' '}
-              {footer.gst_type == true
-                ? (footer.gst_1 / 2).toFixed(2)
+              {footer?.gst_type == true && footer?.gst_1 != null
+                ? show_total == true
+                  ? (footer?.gst_1 / 2).toFixed(2)
+                  : ''
                 : (0).toFixed(2)}
             </Text>
             <Text style={footer_heading4}>
@@ -251,7 +277,9 @@ const InvoiceFooter = ({
             <Text style={footer_heading}>Total GST</Text>
             <Text style={footer_icon}>:</Text>
             <Text style={footer_value_border}>{totalQty(products)}</Text>
-            <Text style={footer_heading2}>{footer.gst_exempted_value}</Text>
+            <Text style={footer_heading2}>
+              {show_total == true ? footer?.gst_exempted_value : ''}
+            </Text>
             <Text style={footer_heading3}>0%</Text>
             <Text style={footer_heading4}></Text>
             <Text style={footer_heading4}></Text>
@@ -262,22 +290,40 @@ const InvoiceFooter = ({
             <Text style={footer_icon}>:</Text>
             <Text style={footer_value_border}>{totalQty(products)}</Text>
             <Text style={{ ...footer_heading2, fontFamily: 'Helvetica-Bold' }}>
-              {' '}
-              {(
-                parseFloat(footer.gst_1_value ?? 0) +
-                parseFloat(footer.gst_2_value ?? 0) +
-                parseFloat(footer.gst_3_value ?? 0)
-              ).toFixed(2)}
+              {show_total == true
+                ? (
+                    parseFloat(footer?.gst_1_value ?? 0) +
+                    parseFloat(footer?.gst_2_value ?? 0) +
+                    parseFloat(footer?.gst_3_value ?? 0) +
+                    parseFloat(footer?.gst_4_value ?? 0)
+                  ).toFixed(2)
+                : ''}
             </Text>
             <Text style={footer_heading3}></Text>
             <Text style={{ ...footer_heading4, fontFamily: 'Helvetica-Bold' }}>
-              {footer.gst_type == true
-                ? ((footer.gst_1 + footer.gst_2 + footer.gst_3) / 2).toFixed(2)
+              {footer?.gst_type == true
+                ? show_total == true
+                  ? (
+                      (parseFloat(footer?.gst_1 ?? 0) +
+                        parseFloat(footer?.gst_2 ?? 0) +
+                        parseFloat(footer?.gst_3 ?? 0) +
+                        parseFloat(footer?.gst_4 ?? 0)) /
+                      2
+                    ).toFixed(2)
+                  : ''
                 : (0).toFixed(2)}
             </Text>
             <Text style={{ ...footer_heading4, fontFamily: 'Helvetica-Bold' }}>
-              {footer.gst_type == true
-                ? ((footer.gst_1 + footer.gst_2 + footer.gst_3) / 2).toFixed(2)
+              {footer?.gst_type == true
+                ? show_total == true
+                  ? (
+                      (parseFloat(footer?.gst_1 ?? 0) +
+                        parseFloat(footer?.gst_2 ?? 0) +
+                        parseFloat(footer?.gst_3 ?? 0) +
+                        parseFloat(footer?.gst_4 ?? 0)) /
+                      2
+                    ).toFixed(2)
+                  : ''
                 : (0).toFixed(2)}
             </Text>
             <Text style={{ ...footer_heading4, fontFamily: 'Helvetica-Bold' }}>

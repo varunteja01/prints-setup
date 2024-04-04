@@ -80,7 +80,10 @@ const InvoiceFooter = ({
             <Text style={{ ...footer_heading2, fontFamily: 'Helvetica-Bold' }}>
               28%
             </Text>
-            =<Text style={footer_heading3}>{footer.gst_4_value}</Text>
+
+            <Text style={footer_heading3}>
+              {show_total == true ? footer?.gst_4_value : ''}
+            </Text>
           </View>{' '}
           <View style={container}>
             <Text style={footer_heading}>Sort By</Text>
@@ -89,7 +92,10 @@ const InvoiceFooter = ({
             <Text style={{ ...footer_heading2, fontFamily: 'Helvetica-Bold' }}>
               18%
             </Text>
-            =<Text style={footer_heading3}>{footer.gst_3_value}</Text>
+            =
+            <Text style={footer_heading3}>
+              {show_total == true ? footer?.gst_3_value : ''}
+            </Text>
           </View>
           <View style={container}>
             <Text style={footer_heading}>Checked By</Text>
@@ -98,7 +104,10 @@ const InvoiceFooter = ({
             <Text style={{ ...footer_heading2, fontFamily: 'Helvetica-Bold' }}>
               12%
             </Text>
-            =<Text style={footer_heading3}>{footer.gst_2_value}</Text>
+            =
+            <Text style={footer_heading3}>
+              {show_total == true ? footer?.gst_2_value : ''}
+            </Text>
           </View>
           <View style={container}>
             <Text style={footer_heading}>Route</Text>
@@ -107,7 +116,10 @@ const InvoiceFooter = ({
             <Text style={{ ...footer_heading2, fontFamily: 'Helvetica-Bold' }}>
               5%
             </Text>
-            =<Text style={footer_heading3}>{footer.gst_1_value}</Text>
+            =
+            <Text style={footer_heading3}>
+              {show_total == true ? footer?.gst_1_value : ''}
+            </Text>
           </View>
           <View style={container}>
             <Text style={footer_heading}>Print Time</Text>
@@ -116,7 +128,10 @@ const InvoiceFooter = ({
             <Text style={{ ...footer_heading2, fontFamily: 'Helvetica-Bold' }}>
               0%
             </Text>
-            =<Text style={footer_heading3}>{footer.gst_exempted_value}</Text>
+            =
+            <Text style={footer_heading3}>
+              {show_total == true ? footer?.gst_exempted_value : ''}
+            </Text>
           </View>
         </View>
         <View style={grandTotal}>

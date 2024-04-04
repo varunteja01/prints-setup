@@ -976,6 +976,7 @@ export default function Invoice({
                   orientation: orientation.LANDSCAPE,
                   styles: styles.legalPage,
                 }}
+                pages={updatedPages}
                 title={title}
                 invoice={invoice}
                 header={entry}

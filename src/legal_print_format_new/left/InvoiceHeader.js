@@ -34,6 +34,7 @@ const InvoiceHeader = ({
   customer,
   logo_url,
   inventoryType,
+  show_total,
 }) => {
   return (
     <>

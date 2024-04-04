@@ -110,59 +110,59 @@ const InvoiceHeader = ({ title, invoice, header, customer, logo_url }) => {
           <Text>{customer.address_2}</Text>
           <Text>{customer.city}</Text>
           <View style={secondItemFlex}>
-            <View style={{ width: '25%', border: 1 }}>
+            <View style={{ width: '25%' }}>
               <Text>Phone</Text>
             </View>
             <View style={{ width: '2%' }}>
               <Text>:</Text>
             </View>
-            <View style={{ width: '73%', border: 1, paddingLeft: '3px' }}>
+            <View style={{ width: '73%', paddingLeft: '3px' }}>
               <Text>{customer.phone}</Text>
             </View>
           </View>
           <View style={secondItemFlex}>
-            <View style={{ width: '25%', border: 1 }}>
+            <View style={{ width: '25%' }}>
               <Text>D.L. No</Text>
             </View>
             <View style={{ width: '2%' }}>
               <Text>:</Text>
             </View>
-            <View style={{ width: '73%', border: 1, paddingLeft: '3px' }}>
+            <View style={{ width: '73%', paddingLeft: '3px' }}>
               <Text>
                 {customer.dl_1},{customer.dl_2}
               </Text>
             </View>
           </View>
           <View style={secondItemFlex}>
-            <View style={{ width: '25%', border: 1 }}>
+            <View style={{ width: '25%' }}>
               <Text>GST No</Text>
             </View>
             <View style={{ width: '2%' }}>
               <Text>:</Text>
             </View>
-            <View style={{ width: '73%', border: 1, paddingLeft: '3px' }}>
+            <View style={{ width: '73%', paddingLeft: '3px' }}>
               <Text>{customer.gstin}</Text>
             </View>
           </View>
           <View style={secondItemFlex}>
-            <View style={{ width: '25%', border: 1 }}>
+            <View style={{ width: '25%' }}>
               <Text>Pan</Text>
             </View>
             <View style={{ width: '2%' }}>
               <Text>:</Text>
             </View>
-            <View style={{ width: '73%', border: 1, paddingLeft: '3px' }}>
+            <View style={{ width: '73%', paddingLeft: '3px' }}>
               <Text>{customer.pan}</Text>
             </View>
           </View>
           <View style={secondItemFlex}>
-            <View style={{ width: '25%', border: 1 }}>
+            <View style={{ width: '25%' }}>
               <Text>Food Lic.</Text>
             </View>
             <View style={{ width: '2%' }}>
               <Text>:</Text>
             </View>
-            <View style={{ width: '73%', border: 1, paddingLeft: '3px' }}>
+            <View style={{ width: '73%', paddingLeft: '3px' }}>
               <Text>{header.food_license}</Text>
             </View>
           </View>

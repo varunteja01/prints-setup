@@ -100,36 +100,38 @@ const InvoiceFooter = ({
           <View style={loginPass}>
             <Text>**For Online Order**</Text>
             <View style={loginPassItems}>
-              <View style={{ width: '35%', border: 1, paddingLeft: '2px' }}>
+              <View style={{ width: '35%', paddingLeft: '2px' }}>
                 <Text>Login ID</Text>
               </View>
               <View style={{ width: '1%' }}>
                 <Text>:</Text>
               </View>
-              <View style={{ width: '64%', border: 1, paddingLeft: '3px' }}>
+              <View style={{ width: '64%', paddingLeft: '3px' }}>
                 <Text>{}</Text>
               </View>
             </View>
             <View style={loginPassItems}>
-              <View style={{ width: '35%', border: 1, paddingLeft: '2px' }}>
+              <View style={{ width: '35%', paddingLeft: '2px' }}>
                 <Text>Password</Text>
               </View>
               <View style={{ width: '1%' }}>
                 <Text>:</Text>
               </View>
-              <View style={{ width: '64%', border: 1, paddingLeft: '3px' }}>
+              <View style={{ width: '64%', paddingLeft: '3px' }}>
                 <Text>{}</Text>
               </View>
             </View>
           </View>
           <View style={preparedBy}>
-            <View style={{ width: '35%', border: 1, paddingLeft: '2px' }}>
+            <View style={{ width: '35%', paddingLeft: '2px' }}>
               <Text>Prep By</Text>
             </View>
-            <View style={{ width: '1%', border: 1, paddingLeft: '2px' }}>
+            <View style={{ width: '1%', paddingLeft: '2px' }}>
               <Text>:</Text>
             </View>
-            <View style={{ width: '64%', border: 1, paddingLeft: '2px' }}>
+            <View
+              style={{ width: '64%', paddingLeft: '2px', textAlign: 'center' }}
+            >
               <Text>Prep By</Text>
             </View>
           </View>
@@ -255,7 +257,7 @@ const InvoiceFooter = ({
             <Text style={footer_heading4}></Text>
             <Text style={footer_heading4}></Text>
           </View>
-          <View style={container}>
+          <View style={{ ...container, borderBottom: '0' }}>
             <Text style={footer_heading}>Checked By</Text>
             <Text style={footer_icon}>:</Text>
             <Text style={footer_value_border}>{totalQty(products)}</Text>
@@ -296,8 +298,27 @@ const InvoiceFooter = ({
             </Text>
           </View>
           <View style={grandTotalItems}>
-            <Text style={{ width: '50%', border: '1' }}>ADD TCS %</Text>
-            <Text style={{ width: '50%', border: '1' }}></Text>
+            <Text
+              style={{
+                width: '50%',
+                // border: '1',
+                padding: '1px 0px 0px 2px',
+              }}
+            >
+              ADD TCS %
+            </Text>
+            <View
+              style={{
+                flexDirection: 'row',
+                justifyContent: 'space-around',
+                width: '50%',
+                paddingTop: '1px',
+                fontSize: 7,
+              }}
+            >
+              <Text>0.00</Text>
+              <Text>0.00</Text>
+            </View>
           </View>
           <View style={grandTotalItems}>
             <Text style={grandTotalItemsStyle1}>R.off</Text>
@@ -360,30 +381,30 @@ const InvoiceFooter = ({
         </View>
         <View style={bankDetails}>
           <View style={{ flexDirection: 'row' }}>
-            <Text style={{ width: '30%', border: 1 }}>Bank Name</Text>
-            <Text style={{ width: '1%', border: 1 }}>:</Text>
-            <Text style={{ width: '69%', border: 1, paddingLeft: '3px' }}>
+            <Text style={{ width: '30%' }}>Bank Name</Text>
+            <Text style={{ width: '1%' }}>:</Text>
+            <Text style={{ width: '69%', paddingLeft: '3px' }}>
               {invoice?.bank_name}
             </Text>
           </View>
           <View style={{ flexDirection: 'row' }}>
-            <Text style={{ width: '30%', border: 1 }}>A/C No.</Text>
-            <Text style={{ width: '1%', border: 1 }}>:</Text>
-            <Text style={{ width: '69%', border: 1, paddingLeft: '3px' }}>
+            <Text style={{ width: '30%' }}>A/C No.</Text>
+            <Text style={{ width: '1%' }}>:</Text>
+            <Text style={{ width: '69%', paddingLeft: '3px' }}>
               {invoice.account_number}
             </Text>
           </View>{' '}
           <View style={{ flexDirection: 'row' }}>
-            <Text style={{ width: '30%', border: 1 }}>Branch</Text>
-            <Text style={{ width: '1%', border: 1 }}>:</Text>
-            <Text style={{ width: '69%', border: 1, paddingLeft: '3px' }}>
+            <Text style={{ width: '30%' }}>Branch</Text>
+            <Text style={{ width: '1%' }}>:</Text>
+            <Text style={{ width: '69%', paddingLeft: '3px' }}>
               {invoice?.branch_name}
             </Text>
           </View>{' '}
           <View style={{ flexDirection: 'row' }}>
-            <Text style={{ width: '30%', border: 1 }}>IFSC Code</Text>
-            <Text style={{ width: '1%', border: 1 }}>:</Text>
-            <Text style={{ width: '69%', border: 1, paddingLeft: '3px' }}>
+            <Text style={{ width: '30%' }}>IFSC Code</Text>
+            <Text style={{ width: '1%' }}>:</Text>
+            <Text style={{ width: '69%', paddingLeft: '3px' }}>
               {invoice?.ifsc_code}
             </Text>
           </View>
@@ -391,29 +412,32 @@ const InvoiceFooter = ({
         <View
           style={{
             width: '34%',
-            borderRightWidth: '1',
+            // borderRightWidth: '1',
             borderRightColor: borderColor,
-            height: '60px',
-            borderTopWidth: '1',
+            height: '75px',
+            // borderTopWidth: '1',
           }}
         >
           <Text
             style={{
-              padding: '2px 0 0 2px',
+              margin: '4px 0 0 2px',
               height: '20px',
               fontSize: '8px',
               fontFamily: 'Helvetica-Bold',
+              // border: 1,
             }}
           >
             For {invoice.firm_name}
           </Text>
           <Text
             style={{
-              margin: '26px 0 0 2px',
+              margin: '30px 0 0 2px',
               height: '15px',
               fontSize: '9px',
               textAlign: 'right',
               fontFamily: 'Helvetica-Bold',
+              paddingRight: '3px',
+              // border: 1,
             }}
           >
             Authorised Signatory

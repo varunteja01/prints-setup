@@ -162,7 +162,7 @@ const InvoiceHeader = ({ title, invoice, header, customer, logo_url }) => {
           </View>
           <View style={invoiceDetail2}>
             <View style={{ ...invoiceDetail2Items, height: '20px' }}>
-              <View style={{ width: '30%', border: 1 }}>
+              <View style={{ width: '30%' }}>
                 <Text>Sales Rep</Text>
               </View>
               <View style={{ width: '2%' }}>
@@ -171,7 +171,7 @@ const InvoiceHeader = ({ title, invoice, header, customer, logo_url }) => {
               <View
                 style={{
                   width: '68%',
-                  border: 1,
+                  // border: 1,
                   fontFamily: 'Helvetica-Bold',
                   paddingLeft: '2px',
                 }}
@@ -180,7 +180,7 @@ const InvoiceHeader = ({ title, invoice, header, customer, logo_url }) => {
               </View>
             </View>
             <View style={invoiceDetail2Items}>
-              <View style={{ width: '30%', border: 1 }}>
+              <View style={{ width: '30%' }}>
                 <Text>Mobile</Text>
               </View>
               <View style={{ width: '2%' }}>
@@ -189,7 +189,7 @@ const InvoiceHeader = ({ title, invoice, header, customer, logo_url }) => {
               <View
                 style={{
                   width: '68%',
-                  border: 1,
+
                   fontFamily: 'Helvetica-Bold',
                   paddingLeft: '2px',
                 }}
@@ -198,13 +198,13 @@ const InvoiceHeader = ({ title, invoice, header, customer, logo_url }) => {
               </View>
             </View>{' '}
             <View style={invoiceDetail2Items}>
-              <View style={{ width: '30%', border: 1 }}>
+              <View style={{ width: '30%' }}>
                 <Text>Route</Text>
               </View>
               <View style={{ width: '2%' }}>
                 <Text>:</Text>
               </View>
-              <View style={{ width: '68%', border: 1 }}>
+              <View style={{ width: '68%' }}>
                 <Text></Text>
               </View>
             </View>
@@ -222,46 +222,46 @@ const InvoiceHeader = ({ title, invoice, header, customer, logo_url }) => {
           <Text>{customer.address_2}</Text>
           <Text>{customer.city}</Text>
           <View style={thirdItemFlex}>
-            <View style={{ width: '25%', border: 1 }}>
+            <View style={{ width: '25%' }}>
               <Text>Phone</Text>
             </View>
             <View style={{ width: '2%' }}>
               <Text>:</Text>
             </View>
-            <View style={{ width: '73%', border: 1, paddingLeft: '3px' }}>
+            <View style={{ width: '73%', paddingLeft: '3px' }}>
               <Text>{customer.phone}</Text>
             </View>
           </View>
           <View style={thirdItemFlex}>
-            <View style={{ width: '25%', border: 1 }}>
+            <View style={{ width: '25%' }}>
               <Text>D.L. No</Text>
             </View>
             <View style={{ width: '2%' }}>
               <Text>:</Text>
             </View>
-            <View style={{ width: '73%', border: 1, paddingLeft: '3px' }}>
+            <View style={{ width: '73%', paddingLeft: '3px' }}>
               <Text>{`${customer.dl_1}, ${customer.dl_2}`}</Text>
             </View>
           </View>
           <View style={thirdItemFlex}>
-            <View style={{ width: '25%', border: 1 }}>
+            <View style={{ width: '25%' }}>
               <Text>GST No</Text>
             </View>
             <View style={{ width: '2%' }}>
               <Text>:</Text>
             </View>
-            <View style={{ width: '73%', border: 1, paddingLeft: '3px' }}>
+            <View style={{ width: '73%', paddingLeft: '3px' }}>
               <Text>{customer.gstin}</Text>
             </View>
           </View>
           <View style={thirdItemFlex}>
-            <View style={{ width: '25%', border: 1 }}>
+            <View style={{ width: '25%' }}>
               <Text>Pan</Text>
             </View>
             <View style={{ width: '2%' }}>
               <Text>:</Text>
             </View>
-            <View style={{ width: '40%', border: 1, paddingLeft: '3px' }}>
+            <View style={{ width: '40%', paddingLeft: '3px' }}>
               <Text>{customer.pan}</Text>
             </View>
             <View style={paymentMode}>
@@ -277,8 +277,8 @@ const InvoiceHeader = ({ title, invoice, header, customer, logo_url }) => {
           <View
             style={{ borderTop: 1, paddingTop: '3px', flexDirection: 'row' }}
           >
-            <Text style={{ width: '10%', border: '1' }}>IRN </Text>
-            <Text style={{ width: '2%', border: '1' }}>: </Text>
+            <Text style={{ width: '10%' }}>IRN </Text>
+            <Text style={{ width: '2%' }}>: </Text>
             {/* <Text style={{ width: '88%', border: '1' }}>{`${
               header?.irn || ''
             }`}</Text> */}

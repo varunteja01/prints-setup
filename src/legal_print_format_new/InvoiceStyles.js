@@ -50,6 +50,7 @@ export const legalInvoiceStyleHeaderLeft = StyleSheet.create({
     flexDirection: 'column',
     width: '45%',
     borderRight: 1,
+    borderBottom: 1,
   },
   vendor: {
     flexDirection: 'row',
@@ -57,7 +58,7 @@ export const legalInvoiceStyleHeaderLeft = StyleSheet.create({
   },
   vendorHeaderImage: {
     width: '25%',
-    border: 1,
+    // border: 1,
     paddingLeft: '2px',
   },
   vendorHeaderLogo: {
@@ -74,7 +75,7 @@ export const legalInvoiceStyleHeaderLeft = StyleSheet.create({
   officeCopyText: {
     fontFamily: 'Helvetica-Bold',
     fontSize: '10px',
-    border: '1',
+    // border: 1,
   },
   vendorName: {
     height: '24px',
@@ -86,7 +87,7 @@ export const legalInvoiceStyleHeaderLeft = StyleSheet.create({
     height: '100%',
     fontFamily: 'Helvetica-Bold',
     fontSize: '7px',
-    border: 1,
+    // border: 1,
     padding: '2px 0px 0px 2px',
   },
   invoiceDetail: {
@@ -104,7 +105,7 @@ export const legalInvoiceStyleHeaderLeft = StyleSheet.create({
   },
   invoiceDetails2: {
     flexDirection: 'column',
-    border: '1',
+    // border: '1',
     height: '64px',
     gap: '1px',
   },
@@ -127,6 +128,7 @@ export const legalInvoiceStyleHeaderLeft = StyleSheet.create({
     fontSize: '7px',
     width: '55%',
     gap: '3px',
+    borderBottom: 1,
   },
   secondItemFlex: {
     flexDirection: 'row',
@@ -149,7 +151,7 @@ export const legalInvoiceStyleFooterLeft = StyleSheet.create({
   thirdComponent: {
     flexDirection: 'row',
     height: '100px',
-    borderBottom: '1px solid #000',
+    // borderBottom: '1px solid #000',
   },
   calc: {
     flexDirection: 'column',
@@ -177,17 +179,25 @@ export const legalInvoiceStyleFooterLeft = StyleSheet.create({
     paddingLeft: '1px',
     fontSize: 7,
     height: 13,
+    paddingTop: '2px',
     // border: 1,
   },
-  footer_icon: { width: '1%', textAlign: 'right', paddingRight: '2px' },
+  footer_icon: {
+    width: '1%',
+    textAlign: 'right',
+    paddingRight: '2px',
+    // border: 1,
+  },
   footer_value_border: {
     width: '30%',
-    textAlign: 'right',
-    paddingRight: '3px',
+    textAlign: 'left',
+    // paddingRight: '3px',
+    paddingLeft: '2px',
     fontSize: 7,
     height: 13,
     borderRight: 1,
     // border: 1,
+    paddingTop: '2px',
   },
   footer_heading2: {
     width: '16%',
@@ -195,33 +205,37 @@ export const legalInvoiceStyleFooterLeft = StyleSheet.create({
     fontSize: 7,
     height: 13,
     borderRight: 1,
+    paddingTop: '2px',
   },
   footer_heading3: {
     width: '28%',
-    textAlign: 'center',
+    textAlign: 'right',
     fontSize: 7,
     height: 13,
     borderRight: 1,
+    paddingRight: '2px',
+    paddingTop: '2px',
   },
   grandTotal: {
     width: '40%',
-    border: 1,
+    // border: 1,
     flexDirection: 'column',
   },
   grandTotalItems: {
     flexDirection: 'row',
     height: 12,
     fontSize: 7,
+    // border: 1,
   },
   grandTotalItemsStyle1: {
     width: '50%',
-    border: '1',
+    // border: '1',
     padding: '1px 0px 0px 2px',
     display: 'flex',
   },
   grandTotalItemsStyle2: {
     width: '50%',
-    border: '1',
+    // border: '1',
     textAlign: 'right',
     padding: '1px 2px 0px 2px',
   },
@@ -244,6 +258,7 @@ export const legalInvoiceStyleHeaderMiddle = StyleSheet.create({
     flexDirection: 'column',
     width: '39%',
     borderRight: 1,
+    borderBottom: '1',
   },
   vendor: {
     flexDirection: 'row',
@@ -307,12 +322,13 @@ export const legalInvoiceStyleHeaderMiddle = StyleSheet.create({
     flexDirection: 'column',
     width: '29%',
     borderRight: 1,
+    borderBottom: 1,
   },
   taxInvoice: {
     fontSize: 10.5,
     fontFamily: 'Helvetica-Bold',
     textAlign: 'center',
-    borderBottom: '1px',
+    borderBottom: 1,
     height: '22px',
     paddingTop: '3px',
   },
@@ -321,32 +337,32 @@ export const legalInvoiceStyleHeaderMiddle = StyleSheet.create({
     fontSize: 9,
     fontFamily: 'Helvetica-Bold',
     height: '40px',
-    // gap: '4px',
-    border: '1px',
+    borderBottom: '1px',
   },
   invoiceNoAndDate: {
     flexDirection: 'row',
     height: '20px',
     paddingLeft: '5px',
-    border: 1,
+    // border: 1,
   },
   invoiceDetail2: {
     flexDirection: 'column',
-    border: '1',
+    // border: '1',
     height: '60px',
+    gap: '2px',
   },
   invoiceDetail2Items: {
     flexDirection: 'row',
     height: '15px',
     paddingLeft: '5px',
-    border: 1,
+    // border: 1,
     fontSize: 7,
   },
   barcode: {
     alignContent: 'center',
     border: 1,
     height: '40px',
-    padding: '4px 4px 4px 4px',
+    margin: '4px 4px 4px 4px',
   },
   // barcodeImage: {},
   thirdItem: {
@@ -355,13 +371,14 @@ export const legalInvoiceStyleHeaderMiddle = StyleSheet.create({
     fontSize: '7px',
     width: '32%',
     gap: '1.5px',
+    borderBottom: 1,
   },
   thirdItemFlex: {
     flexDirection: 'row',
   },
   paymentMode: {
     width: '33%',
-    border: 1,
+    // border: 1,
     alignItems: 'flex-end',
     paddingRight: '5px',
     fontFamily: 'Helvetica-Bold',
@@ -442,7 +459,7 @@ export const legalInvoiceStyleFooterMiddle = StyleSheet.create({
     flexGrow: 1,
     fontSize: 7,
     width: '50%',
-    border: 1,
+    // border: 1,
   },
   container: {
     flexDirection: 'row',
@@ -500,7 +517,7 @@ export const legalInvoiceStyleFooterMiddle = StyleSheet.create({
   },
   grandTotal: {
     width: '30%',
-    border: 1,
+    // border: 1,
     flexDirection: 'column',
   },
   grandTotalItems: {
@@ -515,14 +532,14 @@ export const legalInvoiceStyleFooterMiddle = StyleSheet.create({
   },
   grandTotalItemsStyle1: {
     width: '50%',
-    border: '1',
+    // border: '1',
     paddingLeft: '2px',
     display: 'flex',
     paddingTop: '1px',
   },
   grandTotalItemsStyle2: {
     width: '50%',
-    border: '1',
+    // border: '1',
     paddingRight: '2px',
     textAlign: 'right',
     paddingTop: '1px',
@@ -530,20 +547,20 @@ export const legalInvoiceStyleFooterMiddle = StyleSheet.create({
 
   //
   footer4: {
-    height: '70px',
+    height: '75px',
     flexDirection: 'row',
     alignItems: 'center',
     fontStyle: 'bold',
     // flexGrow: 1,
     fontSize: 7,
     width: '100%',
-    border: 1,
+    // border: 1,
   },
   tnc: {
     width: '27%',
     borderRightWidth: 1,
     borderRightColor: '#000',
-    height: '70px',
+    height: '75px',
   },
   declaration: {
     flexDirection: 'row',
@@ -562,7 +579,7 @@ export const legalInvoiceStyleFooterMiddle = StyleSheet.create({
     width: '12%',
     borderRightWidth: 1,
     borderRightColor: '#000',
-    height: '70px',
+    height: '75px',
     // padding: '4px 0 0 4px',
     display: 'flex',
     justifyContent: 'center',
@@ -576,11 +593,11 @@ export const legalInvoiceStyleFooterMiddle = StyleSheet.create({
   bankDetails: {
     flexDirection: 'column',
     width: '29%',
-    height: '70px',
+    height: '75px',
     borderRight: 1,
     fontSize: '7px',
     padding: '5px 0p 0px 4px',
-    gap: '3px',
+    gap: '4px',
   },
   signatory: {
     width: '25%',

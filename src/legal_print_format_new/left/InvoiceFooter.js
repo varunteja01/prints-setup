@@ -67,14 +67,16 @@ const InvoiceFooter = ({
           <View style={container}>
             <Text style={footer_heading}>Prep By</Text>
             <Text style={footer_icon}>:</Text>
-            <Text style={footer_value_border}>{items}</Text>
+            <Text style={footer_value_border}>varun teja</Text>
             <Text style={footer_heading2}>GST%</Text>=
-            <Text style={footer_heading3}>Taxable Amt</Text>
+            <Text style={{ ...footer_heading3, textAlign: 'center' }}>
+              Taxable Amt
+            </Text>
           </View>
           <View style={container}>
             <Text style={footer_heading}>No of Cs.</Text>
             <Text style={footer_icon}>:</Text>
-            <Text style={footer_value_border}>{items}</Text>
+            <Text style={footer_value_border}></Text>
             <Text style={{ ...footer_heading2, fontFamily: 'Helvetica-Bold' }}>
               28%
             </Text>
@@ -125,8 +127,27 @@ const InvoiceFooter = ({
             </Text>
           </View>
           <View style={grandTotalItems}>
-            <Text style={{ width: '50%', border: '1' }}>ADD TCS %</Text>
-            <Text style={{ width: '50%', border: '1' }}></Text>
+            <Text
+              style={{
+                width: '50%',
+                // border: '1',
+                padding: '1px 0px 0px 2px',
+              }}
+            >
+              ADD TCS %
+            </Text>
+            <View
+              style={{
+                flexDirection: 'row',
+                justifyContent: 'space-around',
+                width: '50%',
+                paddingTop: '1px',
+                fontSize: 7,
+              }}
+            >
+              <Text>0.00</Text>
+              <Text>0.00</Text>
+            </View>
           </View>
           <View style={grandTotalItems}>
             <Text style={grandTotalItemsStyle1}>R.off</Text>
@@ -154,7 +175,7 @@ const InvoiceFooter = ({
             <Text
               style={{
                 width: '30%',
-                border: 1,
+                // border: 1,
                 fontSize: 7,
                 textAlign: 'center',
               }}

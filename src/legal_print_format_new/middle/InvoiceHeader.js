@@ -5,7 +5,7 @@ import {
   legalInvoiceStyle,
   legalInvoiceStyleHeaderMiddle,
 } from '../InvoiceStyles'
-import moment from 'moment'
+import Moment from 'moment'
 
 // Destructure the imported styles
 const { container } = legalInvoiceStyle
@@ -34,7 +34,14 @@ const {
   paymentMode,
 } = legalInvoiceStyleHeaderMiddle
 
-const InvoiceHeader = ({ title, invoice, header, customer, logo_url }) => {
+const InvoiceHeader = ({
+  title,
+  invoice,
+  header,
+  customer,
+  logo_url,
+  inventoryType,
+}) => {
   return (
     <>
       <View style={titleContainer}>
@@ -156,7 +163,17 @@ const InvoiceHeader = ({ title, invoice, header, customer, logo_url }) => {
                 <Text>:</Text>
               </View>
               <View style={{ width: '78%', fontSize: 10 }}>
-                <Text> {header.entry_date}</Text>
+                <Text>
+                  {' '}
+                  {header.entry_date === ''
+                    ? ''
+                    : inventoryType == 'proforma' && header.entry_date !== ''
+                    ? Moment(header?.entry_date)?.format('DD/MM/YYYY')
+                    : Moment(header?.created_at)
+                        .utc()
+                        .local()
+                        .format('DD/MM/YYYY')}
+                </Text>
               </View>
             </View>
           </View>
@@ -275,14 +292,29 @@ const InvoiceHeader = ({ title, invoice, header, customer, logo_url }) => {
             </View>
           </View>
           <View
-            style={{ borderTop: 1, paddingTop: '3px', flexDirection: 'row' }}
+            style={{
+              borderTop: 1,
+              paddingTop: '3px',
+              flexDirection: 'row',
+              // flexGrow: 1,
+              // flexShrink: 1,
+            }}
           >
             <Text style={{ width: '10%' }}>IRN </Text>
             <Text style={{ width: '2%' }}>: </Text>
             {/* <Text style={{ width: '88%', border: '1' }}>{`${
               header?.irn || ''
             }`}</Text> */}
-            <Text style={{ width: '88%', border: '1' }}></Text>
+            <Text
+              style={{
+                width: '88%',
+                // border: '1',
+                height: '35px',
+                flexShrink: 1,
+              }}
+            >
+              {header.irn.slice(0, 38) + ' ' + header.irn.slice(38)}
+            </Text>
           </View>
         </View>
       </View>

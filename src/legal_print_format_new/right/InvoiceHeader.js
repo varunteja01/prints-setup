@@ -5,7 +5,7 @@ import {
   legalInvoiceStyle,
   legalInvoiceStyleHeaderRight,
 } from '../InvoiceStyles'
-import moment from 'moment'
+import Moment from 'moment'
 
 // Destructure the imported styles
 const { container } = legalInvoiceStyle
@@ -22,7 +22,14 @@ const {
   fourthItem,
 } = legalInvoiceStyleHeaderRight
 
-const InvoiceHeader = ({ title, invoice, header, customer, logo_url }) => {
+const InvoiceHeader = ({
+  title,
+  invoice,
+  header,
+  customer,
+  logo_url,
+  inventoryType,
+}) => {
   return (
     <>
       <View style={titleContainer}>
@@ -36,12 +43,17 @@ const InvoiceHeader = ({ title, invoice, header, customer, logo_url }) => {
         </View>
         <View style={invoiceDetail}>
           <View style={invoiceNoAndDate}>
+            <View style={{ width: '20%' }}>
+              <Text>Inv. Dt</Text>
+            </View>
+            <View style={{ width: '2%' }}>
+              <Text>:</Text>
+            </View>
             <View
               style={{
-                width: '100%',
+                width: '78%',
                 fontSize: 10,
                 fontFamily: 'Helvetica-Bold',
-                paddingTop: '2px',
               }}
             >
               <Text> {header.entry_number}</Text>
@@ -61,7 +73,17 @@ const InvoiceHeader = ({ title, invoice, header, customer, logo_url }) => {
                 fontFamily: 'Helvetica-Bold',
               }}
             >
-              <Text> {header.entry_date}</Text>
+              <Text>
+                {' '}
+                {header.entry_date === ''
+                  ? ''
+                  : inventoryType == 'proforma' && header.entry_date !== ''
+                  ? Moment(header?.entry_date)?.format('DD/MM/YYYY')
+                  : Moment(header?.created_at)
+                      .utc()
+                      .local()
+                      .format('DD/MM/YYYY')}
+              </Text>
             </View>
           </View>
         </View>

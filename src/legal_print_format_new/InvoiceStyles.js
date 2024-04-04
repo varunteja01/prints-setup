@@ -626,7 +626,7 @@ export const legalInvoiceStyleHeaderRight = StyleSheet.create({
   vendorHeaderLogo: {
     width: '28px',
     height: '28px',
-    // border: 1,
+    border: 1,
   },
 
   vendorHeaderNameView: {

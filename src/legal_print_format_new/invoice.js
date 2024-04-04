@@ -40,6 +40,7 @@ const Invoice = ({
   pageno,
   snoStart,
   blankLinesCount,
+  inventoryType,
 }) => {
   const {
     container,
@@ -59,6 +60,7 @@ const Invoice = ({
             header={header}
             customer={customer}
             logo_url={logo_url}
+            inventoryType={inventoryType}
           />
           <InvoiceTableLeft
             invoice={invoice}
@@ -86,6 +88,7 @@ const Invoice = ({
             header={header}
             customer={customer}
             logo_url={logo_url}
+            inventoryType={inventoryType}
           />
           <InvoiceTableMiddle
             invoice={invoice}
@@ -113,6 +116,7 @@ const Invoice = ({
             header={header}
             customer={customer}
             logo_url={logo_url}
+            inventoryType={inventoryType}
           />
           <InvoiceTableRight
             invoice={invoice}

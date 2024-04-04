@@ -995,6 +995,7 @@ export default function Invoice({
                   settingsInfo?.qr_code ??
                   'https://sp360logo.blob.core.windows.net/logo/1704796242270-white-square.jpg'
                 }`}
+                inventoryType={inventoryType}
                 promoContent={entry}
                 page_number={`Page ${index + 1} of ${updatedPages.length}`}
                 pageno={index}

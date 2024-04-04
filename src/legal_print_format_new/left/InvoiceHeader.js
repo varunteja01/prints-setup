@@ -5,7 +5,7 @@ import {
   legalInvoiceStyle,
   legalInvoiceStyleHeaderLeft,
 } from '../InvoiceStyles'
-import moment from 'moment'
+import Moment from 'moment'
 
 const { container } = legalInvoiceStyle
 const {
@@ -27,7 +27,14 @@ const {
   secondItemFlex,
 } = legalInvoiceStyleHeaderLeft
 
-const InvoiceHeader = ({ title, invoice, header, customer, logo_url }) => {
+const InvoiceHeader = ({
+  title,
+  invoice,
+  header,
+  customer,
+  logo_url,
+  inventoryType,
+}) => {
   return (
     <>
       <View style={titleContainer}>
@@ -63,7 +70,17 @@ const InvoiceHeader = ({ title, invoice, header, customer, logo_url }) => {
                 <Text>:</Text>
               </View>
               <View style={{ width: '78%' }}>
-                <Text> {header.entry_date}</Text>
+                <Text>
+                  {' '}
+                  {header.entry_date === ''
+                    ? ''
+                    : inventoryType == 'proforma' && header.entry_date !== ''
+                    ? Moment(header?.entry_date)?.format('DD/MM/YYYY')
+                    : Moment(header?.created_at)
+                        .utc()
+                        .local()
+                        .format('DD/MM/YYYY')}
+                </Text>
               </View>
             </View>
           </View>

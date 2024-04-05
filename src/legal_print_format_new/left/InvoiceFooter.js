@@ -67,7 +67,7 @@ const InvoiceFooter = ({
           <View style={container}>
             <Text style={footer_heading}>Prep By</Text>
             <Text style={footer_icon}>:</Text>
-            <Text style={footer_value_border}>varun teja</Text>
+            <Text style={footer_value_border}>{footer?.added_by}</Text>
             <Text style={footer_heading2}>GST%</Text>=
             <Text style={{ ...footer_heading3, textAlign: 'center' }}>
               Taxable Amt
@@ -138,7 +138,9 @@ const InvoiceFooter = ({
           <View style={grandTotalItems}>
             <Text style={grandTotalItemsStyle1}>Total</Text>
             <Text style={grandTotalItemsStyle2}>
-              {parseFloat(footer?.gross_total ?? 0).toFixed(2)}
+              {show_total == true
+                ? parseFloat(footer?.gross_total || 0).toFixed(2)
+                : ''}
             </Text>
           </View>
           <View style={grandTotalItems}>
@@ -166,7 +168,9 @@ const InvoiceFooter = ({
           </View>
           <View style={grandTotalItems}>
             <Text style={grandTotalItemsStyle1}>R.off</Text>
-            <Text style={grandTotalItemsStyle2}>{footer?.rounding}</Text>
+            <Text style={grandTotalItemsStyle2}>
+              {show_total ? footer?.rounding : ''}
+            </Text>
           </View>
           <View style={grandTotalItems}>
             <Text style={grandTotalItemsStyle1}>Cr No.</Text>
@@ -209,11 +213,13 @@ const InvoiceFooter = ({
                 backgroundColor: '#dbdbdb',
               }}
             >
-              {`Rs. ${numberFormat(
-                parseFloat(footer?.net_amount || 0) +
-                  parseFloat(footer?.debit_note_amount || 0) -
-                  parseFloat(footer?.credit_note_amount || 0)
-              ).slice(0)}`}
+              {show_total
+                ? `Rs. ${parseFloat(
+                    parseFloat(footer?.net_amount || 0) +
+                      parseFloat(footer?.debit_note_amount || 0) -
+                      parseFloat(footer?.credit_note_amount || 0)
+                  ).toFixed(2)}`
+                : 'Continued...'}
             </Text>
           </View>
         </View>

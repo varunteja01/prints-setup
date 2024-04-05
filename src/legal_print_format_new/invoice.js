@@ -138,6 +138,7 @@ const Invoice = ({
             products={products}
             invoice={invoice}
             qr_code={qr_code}
+            show_total={show_total}
           />
         </View>
       </View>

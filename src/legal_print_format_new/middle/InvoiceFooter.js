@@ -132,7 +132,7 @@ const InvoiceFooter = ({
             <View
               style={{ width: '64%', paddingLeft: '2px', textAlign: 'center' }}
             >
-              <Text>Prep By</Text>
+              <Text>{footer?.added_by}</Text>
             </View>
           </View>
         </View>
@@ -337,10 +337,9 @@ const InvoiceFooter = ({
           <View style={grandTotalItems}>
             <Text style={grandTotalItemsStyle1}>Total</Text>
             <Text style={grandTotalItemsStyle2}>
-              {/* {show_total == true
-                ? parseFloat(footer?.gross_total ?? 0).toFixed(2)
-                : ''} */}
-              {parseFloat(footer?.gross_total ?? 0).toFixed(2)}
+              {show_total == true
+                ? parseFloat(footer?.gross_total || 0).toFixed(2)
+                : ''}
             </Text>
           </View>
           <View style={grandTotalItems}>
@@ -368,7 +367,9 @@ const InvoiceFooter = ({
           </View>
           <View style={grandTotalItems}>
             <Text style={grandTotalItemsStyle1}>R.off</Text>
-            <Text style={grandTotalItemsStyle2}>{footer?.rounding}</Text>
+            <Text style={grandTotalItemsStyle2}>
+              {show_total ? footer?.rounding : ''}
+            </Text>
           </View>
           <View style={grandTotalItems}>
             <Text style={grandTotalItemsStyle1}>Cr No.</Text>
@@ -398,11 +399,19 @@ const InvoiceFooter = ({
                 backgroundColor: '#dbdbdb',
               }}
             >
-              {`Rs. ${numberFormat(
+              {/* {`Rs. ${numberFormat(
                 parseFloat(footer?.net_amount || 0) +
                   parseFloat(footer?.debit_note_amount || 0) -
                   parseFloat(footer?.credit_note_amount || 0)
-              ).slice(0)}`}
+              ).slice(0)}`} */}
+
+              {show_total
+                ? `Rs. ${parseFloat(
+                    parseFloat(footer?.net_amount || 0) +
+                      parseFloat(footer?.debit_note_amount || 0) -
+                      parseFloat(footer?.credit_note_amount || 0)
+                  ).toFixed(2)}`
+                : 'Continued...'}
             </Text>
           </View>
         </View>

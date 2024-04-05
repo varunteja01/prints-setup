@@ -46,7 +46,9 @@ const InvoiceFooter = ({
           <View style={{ flexDirection: 'row' }}>
             <Text style={{ width: '50%', textAlign: 'left' }}>Total</Text>
             <Text style={{ width: '50%', textAlign: 'right' }}>
-              {parseFloat(footer?.gross_total ?? 0).toFixed(2)}
+              {show_total == true
+                ? parseFloat(footer?.gross_total || 0).toFixed(2)
+                : ''}
             </Text>
           </View>
           <View style={{ flexDirection: 'row' }}>
@@ -64,11 +66,13 @@ const InvoiceFooter = ({
           >
             <Text style={{ width: '50%', textAlign: 'left' }}>Net Amt</Text>
             <Text style={{ width: '50%', textAlign: 'right' }}>
-              {`Rs. ${numberFormat(
-                parseFloat(footer?.net_amount || 0) +
-                  parseFloat(footer?.debit_note_amount || 0) -
-                  parseFloat(footer?.credit_note_amount || 0)
-              ).slice(0)}`}
+              {show_total
+                ? `Rs. ${parseFloat(
+                    parseFloat(footer?.net_amount || 0) +
+                      parseFloat(footer?.debit_note_amount || 0) -
+                      parseFloat(footer?.credit_note_amount || 0)
+                  ).toFixed(2)}`
+                : 'Continued...'}
             </Text>
           </View>
         </View>

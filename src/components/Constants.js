@@ -2964,7 +2964,7 @@ export const customer = {
   dl_2: '790/TG/DSLA/ADB/2002/R',
   dl_3: '',
   dl_4: '',
-  food_license: '',
+  food_license: '323232343231241',
   dl_1_valid: '2027-03-29',
   dl_2_valid: '',
   dl_3_valid: '',

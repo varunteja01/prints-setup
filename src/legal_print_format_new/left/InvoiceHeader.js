@@ -181,7 +181,7 @@ const InvoiceHeader = ({
               <Text>:</Text>
             </View>
             <View style={{ width: '73%', paddingLeft: '3px' }}>
-              <Text>{header.food_license}</Text>
+              <Text>{`${customer?.food_license}`}</Text>
             </View>
           </View>
         </View>

@@ -1,5 +1,5 @@
 import React from 'react'
-import { Page, View } from '@react-pdf/renderer'
+import { Page, View, Text } from '@react-pdf/renderer'
 import {
   InvoiceHeaderMiddle,
   InvoiceTableMiddle,
@@ -82,6 +82,7 @@ const Invoice = ({
           />
         </View>
         <View style={leftSpace}></View>
+
         <View style={middleContainer}>
           <InvoiceHeaderMiddle
             title={title}

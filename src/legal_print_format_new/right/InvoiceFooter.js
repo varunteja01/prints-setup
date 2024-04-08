@@ -54,7 +54,7 @@ const InvoiceFooter = ({
           <View style={{ flexDirection: 'row' }}>
             <Text style={{ width: '50%', textAlign: 'left' }}>Disc@</Text>
             <Text style={{ width: '50%', textAlign: 'right' }}>
-              {parseFloat(footer?.gross_total ?? 0).toFixed(2)}
+              {show_total ? Number(footer?.total_disc).toFixed(2) : ''}
             </Text>
           </View>
           <View

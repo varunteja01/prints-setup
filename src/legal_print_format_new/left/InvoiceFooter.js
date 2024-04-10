@@ -175,15 +175,19 @@ const InvoiceFooter = ({
           <View style={grandTotalItems}>
             <Text style={grandTotalItemsStyle1}>Cr No.</Text>
             <Text style={grandTotalItemsStyle2}>
-              {parseFloat(footer?.debit_note_amount || 0) -
-                parseFloat(footer?.credit_note_amount || 0)}
+              {show_total
+                ? parseFloat(footer?.debit_note_amount || 0) -
+                  parseFloat(footer?.credit_note_amount || 0)
+                : ''}
             </Text>
           </View>
           <View style={grandTotalItems}>
             <Text style={grandTotalItemsStyle1}>Db No.</Text>
             <Text style={grandTotalItemsStyle2}>
-              {parseFloat(footer?.debit_note_amount || 0) -
-                parseFloat(footer?.credit_note_amount || 0)}
+              {show_total
+                ? parseFloat(footer?.debit_note_amount || 0) -
+                  parseFloat(footer?.credit_note_amount || 0)
+                : ''}
             </Text>
           </View>
           <View style={grandTotalItems}>

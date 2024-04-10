@@ -89,7 +89,7 @@ const InvoiceHeader = ({
             <View style={invoiceDetails2Direction}>
               <Text style={{ width: '30%', fontSize: '7px' }}>GST NO.</Text>
               <Text style={{ width: '2%' }}>:</Text>
-              <Text style={{ width: '68%' }}>{customer.gstin}</Text>
+              <Text style={{ width: '68%' }}>{invoice.gstin}</Text>
             </View>
             <View style={{ ...invoiceDetails2Direction, height: '22px' }}>
               <Text style={{ width: '30%', fontSize: '7px' }}>DL NO.</Text>
@@ -101,12 +101,12 @@ const InvoiceHeader = ({
             <View style={invoiceDetails2Direction}>
               <Text style={{ width: '30%', fontSize: '7px' }}>Food Lic</Text>
               <Text style={{ width: '2%' }}>:</Text>
-              <Text style={{ width: '68%' }}>{customer.gstin}</Text>
+              <Text style={{ width: '68%' }}></Text>
             </View>{' '}
             <View style={invoiceDetails2Direction}>
               <Text style={{ width: '30%', fontSize: '7px' }}>pan</Text>
               <Text style={{ width: '2%' }}>:</Text>
-              <Text style={{ width: '68%' }}>{customer.pan}</Text>
+              <Text style={{ width: '68%' }}>{invoice.pan}</Text>
             </View>
           </View>
           <View style={paymentType}>

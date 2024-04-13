@@ -62,7 +62,7 @@ export const invoice = {
   max_items_per_page: 15,
   b2c_max_items_per_page: 15,
   print_layout_sale_key: 'full_header_no_logo',
-  print_layout_b2c_sale_key: 'legal_print_format_new',
+  print_layout_b2c_sale_key: 'full_header_block_empty_new',
   print_layout_sale_dc_key: 'full_header_a5_dc',
   print_layout_transfer_out_key: 'irn_with_acknowledgement_a4_format',
   print_layout_sale_return_key: 'b2b_default_laser',
